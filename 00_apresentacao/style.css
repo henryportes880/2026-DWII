@@ -1,0 +1,117 @@
+/* Reset básico */
+/* Remove margens e espaçamentos padrão do navegador */
+* {
+    margin: 0;          /* Remove margem padrão */
+    padding: 0;         /* Remove espaçamento interno padrão */
+    box-sizing: border-box; 
+    /* Faz com que padding e borda não aumentem o tamanho total do elemento */
+}
+
+/* Corpo do site */
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    /* Define a fonte principal do site */
+
+    background-color: #f4f6f9;
+    /* Define a cor de fundo da página */
+
+    color: #333;
+    /* Define a cor padrão do texto */
+
+    text-align: center;
+    /* Centraliza os textos */
+}
+
+/* Header */
+/* Parte de cima do site */
+header {
+    background-color: #2c3e50;
+    /* Cor de fundo escura */
+
+    color: white;
+    /* Cor do texto branca */
+
+    padding: 25px 10px;
+    /* Espaçamento interno (25px em cima/baixo e 10px nas laterais) */
+}
+
+header h1 {
+    margin-bottom: 8px;
+    /* Espaço abaixo do título principal */
+}
+
+/* Container principal */
+/* Área central onde fica o conteúdo */
+.container {
+    padding: 40px 20px;
+    /* Espaçamento interno (40px cima/baixo e 20px laterais) */
+}
+
+/* Foto */
+/* Estilização da imagem de perfil */
+.foto {
+    width: 180px;
+    /* Largura da imagem */
+
+    height: 180px;
+    /* Altura da imagem */
+
+    border-radius: 50%;
+    /* Deixa a imagem redonda */
+
+    border: 5px solid #2c3e50;
+    /* Adiciona uma borda com a mesma cor do header */
+
+    object-fit: cover;
+    /* Ajusta a imagem para preencher o espaço sem deformar */
+
+    margin-bottom: 20px;
+    /* Espaço abaixo da imagem */
+}
+
+/* Texto */
+/* Estilização da seção de apresentação */
+.apresentacao {
+    max-width: 600px;
+    /* Define largura máxima para o texto não ficar muito esticado */
+
+    margin: 0 auto;
+    /* Centraliza a seção na página */
+
+    line-height: 1.6;
+    /* Aumenta o espaçamento entre as linhas do texto */
+}
+
+/* Footer */
+/* Parte de baixo do site */
+footer {
+    background-color: #2c3e50;
+    /* Cor de fundo igual ao header */
+
+    color: white;
+    /* Texto branco */
+
+    padding: 15px;
+    /* Espaçamento interno */
+
+    margin-top: 40px;
+    /* Espaço acima do rodapé */
+}
+
+/* Responsividade (bônus) */
+/* Aplica essas regras quando a tela for menor que 600px */
+@media (max-width: 600px) {
+
+    .foto {
+        width: 140px;
+        /* Diminui o tamanho da foto */
+
+        height: 140px;
+        /* Diminui a altura da foto */
+    }
+
+    header h1 {
+        font-size: 20px;
+        /* Diminui o tamanho do título em telas pequenas */
+    }
+}
