@@ -1,0 +1,290 @@
+/* ===== VARIÁVEIS DE COR ===== */
+:root {
+    --cor-principal: #A8D0E6;
+    --cor-fundo: #FFFFFF;
+    --cor-texto: #7B8D93;
+    --cor-contraste: #F0F0F0;
+    --cor-botao: #FFC9C9;
+}
+
+/* ===== RESET ===== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html, body {
+    height: 100%;
+}
+
+/* ===== BODY ===== */
+body {
+    display: flex;
+    flex-direction: column;
+    font-family: Arial, sans-serif;
+    background-color: var(--cor-fundo);
+    color: var(--cor-texto);
+}
+
+/* ===== HEADER ===== */
+header {
+    background-color: var(--cor-principal);
+    padding: 20px 30px;
+    text-align: center;
+}
+
+header h1 {
+    font-size: 2em;
+    margin-bottom: 5px;
+}
+
+header p {
+    font-size: 1.1em;
+}
+
+/* ===== NAVEGAÇÃO ===== */
+nav {
+    margin-top: 10px;
+}
+
+nav a {
+    color: var(--cor-texto);
+    text-decoration: none;
+    margin: 0 15px;
+    font-weight: bold;
+}
+
+nav a:hover {
+    text-decoration: underline;
+}
+
+/* ===== HERO ===== */
+.hero {
+    background: var(--cor-contraste);
+    text-align: center;
+    padding: 60px 20px;
+}
+
+.hero img.foto {
+    width: 180px;
+    height: 180px;
+    border-radius: 50%;
+    border: 4px solid var(--cor-principal);
+    object-fit: cover;
+    margin: 0 auto 20px;
+    display: block;
+}
+
+.hero h1 {
+    font-size: 2.5em;
+    margin-bottom: 10px;
+}
+
+.hero p {
+    font-size: 1.2em;
+}
+
+/* ===== CONTAINER PRINCIPAL ===== */
+.container {
+    flex: 1;
+    max-width: 900px;
+    margin: 40px auto;
+    padding: 0 20px;
+    line-height: 1.6;
+}
+
+/* ===== CARDS ===== */
+.card,
+.card-aula {
+    display: flex;
+    align-items: flex-start;
+    gap: 20px;
+    background: var(--cor-fundo);
+    padding: 20px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    border-left: 6px solid var(--cor-principal);
+    box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+}
+
+.card-aula .icone {
+    font-size: 32px;
+}
+
+.card-aula h3 {
+    margin: 5px 0 10px 0;
+}
+
+/* ===== BADGES ===== */
+.badge {
+    background: var(--cor-contraste);
+    font-size: 12px;
+    padding: 4px 8px;
+    border-radius: 5px;
+    font-weight: bold;
+}
+
+/* ===== TEXTO AUXILIAR ===== */
+.conceitos {
+    display: inline-block;
+    margin-top: 8px;
+    font-size: 13px;
+}
+
+/* ===== BOTÕES ===== */
+button,
+.btn,
+.cta {
+    display: inline-block;
+    background-color: var(--cor-botao);
+    border: none;
+    padding: 10px 18px;
+    border-radius: 6px;
+    color: var(--cor-texto);
+    font-weight: bold;
+    cursor: pointer;
+    text-decoration: none;
+    font-size: 14px;
+    transition: transform 0.15s ease, opacity 0.15s ease;
+}
+
+button:hover,
+.btn:hover,
+.cta:hover {
+    transform: translateY(-2px);
+    opacity: 0.9;
+}
+
+/* ===== TÍTULOS DE SEÇÃO ===== */
+.titulo-secao {
+    margin-bottom: 20px;
+    font-size: 1.8em;
+}
+
+/* ===== FORMULÁRIO ===== */
+.form-container {
+    background: var(--cor-fundo);
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.form-container label {
+    font-weight: bold;
+}
+
+.form-container input,
+.form-container textarea {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-family: Arial, sans-serif;
+}
+
+.form-container textarea {
+    resize: vertical;
+}
+
+.form-container button {
+    width: 140px;
+}
+
+/* ===== FOOTER ===== */
+footer {
+    background-color: var(--cor-contraste);
+    text-align: center;
+    padding: 20px;
+    font-size: 14px;
+}
+
+/* ===== RESPONSIVO ===== */
+@media (max-width: 600px) {
+
+    .hero img.foto {
+        width: 140px;
+        height: 140px;
+    }
+
+    .hero h1 {
+        font-size: 2em;
+    }
+
+    nav a {
+        display: block;
+        margin: 8px 0;
+    }
+
+    .card,
+    .card-aula {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+}
+
+/* ── Página de confirmação ──────────────────────────────── */
+
+.confirmacao {
+    max-width: 600px;
+    margin: 60px auto;
+    padding: 40px;
+    background: #eaf6ec;
+    border-left: 6px solid #3ba34a;
+    border-radius: 10px;
+    text-align: center;
+}
+
+.confirmacao-icone {
+    font-size: 60px;
+    margin-bottom: 10px;
+}
+
+.confirmacao-titulo {
+    font-size: 26px;
+    color: #2e7d32;
+    margin-bottom: 10px;
+}
+
+.confirmacao-texto {
+    font-size: 16px;
+    color: #374151;
+    margin-bottom: 15px;
+}
+
+/* botões */
+.botoes {
+    margin-top: 25px;
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+}
+
+.botao {
+    background: #3f5fa3;
+    color: white;
+    padding: 10px 18px;
+    border-radius: 6px;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.botao:hover {
+    background: #324b82;
+}
+
+.botao-outline {
+    border: 2px solid #3f5fa3;
+    color: #3f5fa3;
+    padding: 10px 18px;
+    border-radius: 6px;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.botao-outline:hover {
+    background: #eef2ff;
+}

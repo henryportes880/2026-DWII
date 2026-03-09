@@ -4,12 +4,12 @@ $profissao = "Estudante de Tecnologia";
 $curso = "Técnico em Informática - IFPR";
 $pagina_atual = "inicio";
 
-include 'includes/cabecalho.php';
-include 'includes/nav.php';
+include '../includes/cabecalho.php';
+include '../includes/nav.php';
 ?>
 
 <section class="hero">
-    <img src="imgs/henry.jpg" alt="Foto de Henry" class="foto" />
+    <img src="../imgs/henry.jpg" alt="Foto de Henry" class="foto" />
     <h1><?php echo $nome; ?></h1>
     <p><?php echo $profissao; ?> — <?php echo $curso; ?></p>
 </section>
@@ -20,4 +20,5 @@ include 'includes/nav.php';
     <!-- restante do conteúdo da página -->
 </main>
 
-<?php include 'includes/rodape.php'; ?>
+<?php include '../
+includes/rodape.php'; ?>

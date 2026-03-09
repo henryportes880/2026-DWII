@@ -1,38 +1,27 @@
-# 2026-DWII — Desenvolvimento Web II
+# Portfólio Dinâmico — Aula 03 DWII
 
-Repositório da disciplina **Desenvolvimento Web II** — 2026
-**Profe. Berssa** | IFPR — Centro de Referência Ponta Grossa
-
----
+Mini-site de portfólio pessoal desenvolvido em PHP puro.
+Gerado dinamicamente com variáveis, includes e menu com destaque na página ativa.
 
 ## 👤 Estudante
 
-- **Nome:** HENRY RAFAEL RIBEIRO PORTES
-- **Turma:** 3º ano — Técnico em Informática Integrado ao Ensino Médio
+- **Nome:** Henry Rafael Ribeiro Portes
+- **Turma:** 3º ano — Técnico em Informática Integrado
 - **Ano:** 2026
 
----
+## 📁 Estrutura do Projeto
 
-## 📁 Estrutura do Repositório
+| Pasta/Arquivo | Conteúdo |
+|---------------|----------|
+| `index.php` | Página inicial com variáveis PHP e apresentação pessoal |
+|                                            `sobre.php` | Página biográfica com 2+ parágrafos reais |
+| `projetos.php` | Página listando projetos pessoais |
+| `includes/` | Componentes compartilhados: cabeçalho, rodapé e menu dinâmico |
+| `style.css` | Estilização do site |
+| `imgs/` | Imagem de perfil e outros recursos visuais  |
 
-| Pasta | Conteúdo |
-|-------|----------|
-| `00_apresentacao/` | Página de apresentação pessoal (HTML + CSS) |
+## 🌐 Como executar
 
----
-
-## 🌐 Páginas Publicadas
-
-- 📄 [Página de Apresentação](00_apresentacao/index.html)
-
----
-
-## 🔗 Como visualizar
-
-1. Clone o repositório: `git clone https://github.com/henryportes880/-2026-DWII`
-2. Acesse a pasta `00_apresentacao/`
-3. Abra o arquivo `index.html` no navegador
-
----
-
-*Disciplina ministrada pelo Prof. Dr. João Henrique Berssanette — joao.berssanette@ifpr.edu.br*
+```bash
+cd ~/workspaces/2026-DWII
+php -S localhost:8001 -t 01_php-intro/
