@@ -38,4 +38,4 @@ O projeto utiliza **includes, variáveis PHP, arrays e formulários**, seguindo 
 ## 🌐 Como executar
 bash
 cd ~/workspaces/2026-DWII
-php -S localhost:8001 -t 01_php-intro/
+php -S localhost:8000
