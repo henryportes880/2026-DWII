@@ -1,27 +1,41 @@
-# Portfólio Dinâmico — Aula 03 DWII
+# Portfólio Dinâmico — Desenvolvimento Web II (DWII)
 
-Mini-site de portfólio pessoal desenvolvido em PHP puro.
-Gerado dinamicamente com variáveis, includes e menu com destaque na página ativa.
+Mini-site de portfólio pessoal desenvolvido em **PHP puro**.
+O projeto utiliza **includes, variáveis PHP, arrays e formulários**, seguindo a organização ensinada na disciplina.
 
-## 👤 Estudante
+---
 
-- **Nome:** Henry Rafael Ribeiro Portes
-- **Turma:** 3º ano — Técnico em Informática Integrado
-- **Ano:** 2026
+# 👤 Estudante
+
+* **Nome:** Henry Rafael Ribeiro Portes
+* **Curso:** Técnico em Informática Integrado ao Ensino Médio
+* **Turma:** 3º ano
+* **Ano:** 2026
+
+---
 
 ## 📁 Estrutura do Projeto
 
-| Pasta/Arquivo | Conteúdo |
-|---------------|----------|
-| `index.php` | Página inicial com variáveis PHP e apresentação pessoal |
-|                                            `sobre.php` | Página biográfica com 2+ parágrafos reais |
-| `projetos.php` | Página listando projetos pessoais |
-| `includes/` | Componentes compartilhados: cabeçalho, rodapé e menu dinâmico |
-| `style.css` | Estilização do site |
-| `imgs/` | Imagem de perfil e outros recursos visuais  |
+| Pasta / Arquivo              | Conteúdo                                  |
+| ---------------------------- | ----------------------------------------- |
+| `index.php`                  | Hub de navegação com acesso às atividades |
+| `includes/`                  | Componentes reutilizáveis do site         |
+| `includes/cabecalho.php`     | Cabeçalho e estrutura HTML                |
+| `includes/nav.php`           | Menu de navegação                         |
+| `includes/rodape.php`        | Rodapé do site                            |
+| `includes/style.css`         | Estilos globais do projeto                |
+| `00_apresentacao/`           | Página de apresentação pessoal            |
+| `01_php-intro/`              | Portfólio dinâmico com PHP                |
+| `01_php-intro/index.php`     | Página inicial do portfólio               |
+| `01_php-intro/sobre.php`     | Página biográfica                         |
+| `01_php-intro/projetos.php`  | Lista de projetos                         |
+| `02_formularios/`            | Formulário de contato da Aula 04          |
+| `02_formularios/contato.php` | Página com formulário HTML e método GET   |
+| `imgs/`                      | Imagens utilizadas no site                |
+
+---
 
 ## 🌐 Como executar
-
-```bash
+bash
 cd ~/workspaces/2026-DWII
 php -S localhost:8001 -t 01_php-intro/

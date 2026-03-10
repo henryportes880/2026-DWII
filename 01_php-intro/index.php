@@ -20,5 +20,4 @@ include '../includes/nav.php';
     <!-- restante do conteúdo da página -->
 </main>
 
-<?php include '../
-includes/rodape.php'; ?>
+<?php include '../includes/rodape.php'; ?>
