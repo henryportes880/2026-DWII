@@ -17,31 +17,41 @@ $aulas = [
 [
 "numero" => "00",
 "nome" => "Apresentação Pessoal",
-"descricao" => "Página estática com HTML e CSS com foto de perfil e layout responsivo.",
+"descricao" => "Página inicial com informações pessoais, foto de perfil e layout responsivo utilizando HTML e CSS.",
 "link" => "00_apresentacao/index.html",
 "icone" => "👤",
 "cor" => "#667280",
-"conceitos" => "HTML semântico, CSS Flexbox, responsividade"
+"conceitos" => "HTML semântico, CSS Flexbox, layout responsivo"
 ],
 
 [
 "numero" => "03",
 "nome" => "Portfólio Dinâmico com PHP",
-"descricao" => "Mini-site de portfólio com variáveis, includes e menu dinâmico.",
+"descricao" => "Mini site de portfólio utilizando PHP para gerar conteúdo dinâmico e organizar páginas com includes.",
 "link" => "01_php-intro/index.php",
 "icone" => "💻",
 "cor" => "#3b579d",
-"conceitos" => "Variáveis, echo, include, foreach, operador ternário"
+"conceitos" => "Variáveis PHP, echo, include, arrays, foreach, operador ternário"
 ],
 
 [
 "numero" => "04",
 "nome" => "Formulário de Contato",
-"descricao" => "Formulário com validação no servidor, proteção XSS e padrão PRG.",
+"descricao" => "Formulário de contato com envio de dados via POST, validação no servidor e proteção contra XSS.",
 "link" => "02_formularios/contato.php",
 "icone" => "📩",
 "cor" => "#3ba34a",
-"conceitos" => "$_POST, validação, htmlspecialchars(), header() + exit"
+"conceitos" => "$_POST, validação de dados, htmlspecialchars(), padrão PRG"
+],
+
+[
+"numero" => "05",
+"nome" => "Catálogo com Banco de Dados",
+"descricao" => "Sistema simples de catálogo utilizando conexão com banco de dados e exibição dinâmica dos registros.",
+"link" => "03_pdo/index.php",
+"icone" => "🗄️",
+"cor" => "#3d3e3f",
+"conceitos" => "PDO, conexão com banco de dados, consultas SQL, prepared statements"
 ]
 
 ];
