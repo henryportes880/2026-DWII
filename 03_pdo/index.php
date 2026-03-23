@@ -32,7 +32,7 @@ $tecnologias = $stmt->fetchAll();
 
 <h3><?php echo htmlspecialchars($tec['nome']); ?></h3>
 
-<span style="background: #e8edf5; color: #3b579d; padding: 3px 10px; border-radius: 20px; font-size: 13px;">
+<span style="background: #f5e8e8; color: #3b579d; padding: 3px 10px; border-radius: 20px; font-size: 13px;">
 <?php echo htmlspecialchars($tec['categoria']); ?>
 </span>
 

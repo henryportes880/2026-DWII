@@ -1,13 +1,34 @@
-/* ===== VARIÁVEIS DE COR ===== */
+/* ==============================
+   FONTE E VARIÁVEIS
+   ============================== */
+@import url('https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700;800&family=Geist+Mono:wght@400;500&display=swap');
+
 :root {
-    --cor-principal: #A8D0E6;
-    --cor-fundo: #FFFFFF;
-    --cor-texto: #7B8D93;
-    --cor-contraste: #F0F0F0;
-    --cor-botao: #FFC9C9;
+    --bg: #0a0e14;
+    --card: #0f1419;
+    --card-hover: #131820;
+    --text: #e8ecf1;
+    --text-sec: #8b95a5;
+    --accent: #3b82f6;
+    --accent-dark: #1e40af;
+    --success: #10b981;
+    
+    --border: rgba(255,255,255,0.06);
+    --border-hover: rgba(255,255,255,0.12);
+    --glow: rgba(59, 130, 246, 0.15);
+    
+    --shadow-sm: 0 4px 12px rgba(0,0,0,0.3);
+    --shadow-md: 0 12px 32px rgba(0,0,0,0.4);
+    --shadow-lg: 0 20px 48px rgba(0,0,0,0.5);
+    
+    --radius: 12px;
+    --radius-lg: 16px;
+    --transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-/* ===== RESET ===== */
+/* ==============================
+   RESET
+   ============================== */
 * {
     margin: 0;
     padding: 0;
@@ -16,275 +37,554 @@
 
 html, body {
     height: 100%;
+    scroll-behavior: smooth;
 }
 
-/* ===== BODY ===== */
+/* ==============================
+   BODY
+   ============================== */
+   
 body {
+    font-family: 'Geist', -apple-system, BlinkMacSystemFont, sans-serif;
+    background: var(--bg);
+    color: var(--text);
     display: flex;
     flex-direction: column;
-    font-family: Arial, sans-serif;
-    background-color: var(--cor-fundo);
-    color: var(--cor-texto);
+    align-items: center;
+    text-align: center;
+    line-height: 1.6;
+    position: relative;
+    overflow-x: hidden;
 }
 
-/* ===== HEADER ===== */
+/* Fundo com gradiente sutil */
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle at 20% 50%, rgba(59, 130, 246, 0.08) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(16, 185, 129, 0.05) 0%, transparent 50%);
+    pointer-events: none;
+    z-index: -1;
+}
+
+/* ==============================
+   HEADER
+   ============================== */
 header {
-    background-color: var(--cor-principal);
-    padding: 20px 30px;
-    text-align: center;
+    margin: 80px 0 50px;
+    animation: slideDown 0.6s ease-out;
+}
+
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 header h1 {
-    font-size: 2em;
-    margin-bottom: 5px;
+    font-size: 3.5rem;
+    font-weight: 800;
+    margin-bottom: 16px;
+    letter-spacing: -0.03em;
+    line-height: 1.1;
+    
+    background: linear-gradient(135deg, #ffffff 0%, #a0aec0 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
 }
 
 header p {
-    font-size: 1.1em;
+    color: var(--text-sec);
+    font-size: 1.1rem;
+    font-weight: 400;
+    max-width: 600px;
+    margin: 0 auto;
 }
 
-/* ===== NAVEGAÇÃO ===== */
+/* ==============================
+   NAVEGAÇÃO
+   ============================== */
 nav {
-    margin-top: 10px;
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-bottom: 80px;
+    animation: fadeIn 0.8s ease-out 0.2s both;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
 }
 
 nav a {
-    color: var(--cor-texto);
+    padding: 10px 24px;
+    background: var(--card);
+    border-radius: var(--radius);
+    color: var(--text);
     text-decoration: none;
-    margin: 0 15px;
-    font-weight: bold;
+    border: 1px solid var(--border);
+    font-weight: 500;
+    font-size: 0.95rem;
+    box-shadow: var(--shadow-sm);
+    transition: var(--transition);
+    position: relative;
+    overflow: hidden;
 }
 
-nav a:hover {
-    text-decoration: underline;
+nav a::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: var(--glow);
+    transition: left var(--transition);
+    z-index: -1;
 }
 
-/* ===== HERO ===== */
+nav a:hover::before {
+    left: 0;
+}
+
+nav a:hover,
+nav a:focus {
+    transform: translateY(-4px);
+    border-color: var(--border-hover);
+    box-shadow: var(--shadow-md);
+}
+
+/* ==============================
+   HERO
+   ============================== */
 .hero {
-    background: var(--cor-contraste);
-    text-align: center;
-    padding: 60px 20px;
+    margin-bottom: 60px;
+    animation: fadeIn 0.8s ease-out 0.4s both;
 }
 
-.hero img.foto {
-    width: 180px;
-    height: 180px;
+.hero img {
+    width: 200px;
+    height: 200px;
     border-radius: 50%;
-    border: 4px solid var(--cor-principal);
+    border: 3px solid var(--border);
+    margin-bottom: 28px;
+    box-shadow: var(--shadow-lg), 0 0 40px var(--glow);
     object-fit: cover;
-    margin: 0 auto 20px;
-    display: block;
+    transition: var(--transition);
+}
+
+.hero img:hover {
+    transform: scale(1.05);
+    border-color: var(--accent);
+    box-shadow: var(--shadow-lg), 0 0 60px var(--glow);
 }
 
 .hero h1 {
-    font-size: 2.5em;
-    margin-bottom: 10px;
+    font-size: 2.8rem;
+    font-weight: 700;
+    margin-bottom: 12px;
+    letter-spacing: -0.02em;
 }
 
 .hero p {
-    font-size: 1.2em;
+    color: var(--text-sec);
+    font-size: 1.05rem;
 }
 
-/* ===== CONTAINER PRINCIPAL ===== */
+/* ==============================
+   CONTAINER
+   ============================== */
 .container {
-    flex: 1;
+    width: 100%;
     max-width: 900px;
-    margin: 40px auto;
-    padding: 0 20px;
-    line-height: 1.6;
+    padding: 20px;
 }
 
-/* ===== CARDS ===== */
+/* ==============================
+   CARDS
+   ============================== */
 .card,
 .card-aula {
-    display: flex;
-    align-items: flex-start;
-    gap: 20px;
-    background: var(--cor-fundo);
-    padding: 20px;
-    border-radius: 8px;
-    margin-bottom: 20px;
-    border-left: 6px solid var(--cor-principal);
-    box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+    background: var(--card);
+    border-radius: var(--radius-lg);
+    padding: 28px;
+    margin-bottom: 24px;
+    
+    border: 1px solid var(--border);
+    box-shadow: var(--shadow-md);
+    
+    transition: var(--transition);
+    position: relative;
+    overflow: hidden;
 }
 
-.card-aula .icone {
-    font-size: 32px;
+.card::before,
+.card-aula::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--accent), transparent);
+    opacity: 0;
+    transition: opacity var(--transition);
 }
 
-.card-aula h3 {
-    margin: 5px 0 10px 0;
+.card:hover,
+.card-aula:hover {
+    transform: translateY(-6px);
+    border-color: var(--border-hover);
+    box-shadow: var(--shadow-lg);
+    background: var(--card-hover);
 }
 
-/* ===== BADGES ===== */
+.card:hover::before,
+.card-aula:hover::before {
+    opacity: 1;
+}
+
+/* ==============================
+   TEXTOS
+   ============================== */
+h2 {
+    font-size: 1.8rem;
+    font-weight: 700;
+    margin-bottom: 16px;
+    color: var(--text);
+}
+
+h3 {
+    font-size: 1.3rem;
+    font-weight: 600;
+    margin-bottom: 12px;
+    color: var(--text);
+}
+
+p {
+    color: var(--text-sec);
+    line-height: 1.7;
+}
+
+/* ==============================
+   BADGE
+   ============================== */
 .badge {
-    background: var(--cor-contraste);
-    font-size: 12px;
-    padding: 4px 8px;
-    border-radius: 5px;
-    font-weight: bold;
-}
-
-/* ===== TEXTO AUXILIAR ===== */
-.conceitos {
     display: inline-block;
-    margin-top: 8px;
-    font-size: 13px;
+    background: var(--glow);
+    color: var(--accent);
+    padding: 6px 12px;
+    border-radius: 8px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    border: 1px solid rgba(59, 130, 246, 0.3);
+    margin-right: 8px;
+    margin-bottom: 8px;
 }
 
-/* ===== BOTÕES ===== */
+/* ==============================
+   BOTÕES
+   ============================== */
 button,
 .btn,
-.cta {
+.cta,
+.botao {
     display: inline-block;
-    background-color: var(--cor-botao);
+    padding: 12px 28px;
+    border-radius: var(--radius);
+    background: var(--accent);
+    color: #fff;
     border: none;
-    padding: 10px 18px;
-    border-radius: 6px;
-    color: var(--cor-texto);
-    font-weight: bold;
-    cursor: pointer;
     text-decoration: none;
-    font-size: 14px;
-    transition: transform 0.15s ease, opacity 0.15s ease;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 0.95rem;
+    
+    transition: var(--transition);
+    box-shadow: var(--shadow-md);
+    position: relative;
+    overflow: hidden;
+}
+
+button::before,
+.btn::before,
+.cta::before,
+.botao::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    transition: width 0.6s, height 0.6s;
+}
+
+button:hover::before,
+.btn:hover::before,
+.cta:hover::before,
+.botao:hover::before {
+    width: 300px;
+    height: 300px;
 }
 
 button:hover,
 .btn:hover,
-.cta:hover {
-    transform: translateY(-2px);
-    opacity: 0.9;
+.cta:hover,
+.botao:hover {
+    transform: translateY(-3px);
+    background: var(--accent-dark);
+    box-shadow: var(--shadow-lg);
 }
 
-/* ===== TÍTULOS DE SEÇÃO ===== */
-.titulo-secao {
-    margin-bottom: 20px;
-    font-size: 1.8em;
+button:focus,
+.btn:focus,
+.cta:focus,
+.botao:focus {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
 }
 
-/* ===== FORMULÁRIO ===== */
+/* Botão secundário */
+.btn-secondary,
+.botao-secundario {
+    background: var(--card);
+    color: var(--text);
+    border: 1px solid var(--border);
+}
+
+.btn-secondary:hover,
+.botao-secundario:hover {
+    background: var(--card-hover);
+    border-color: var(--accent);
+}
+
+/* ==============================
+   FORMULÁRIO
+   ============================== */
 .form-container {
-    background: var(--cor-fundo);
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+    background: var(--card);
+    padding: 32px;
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-md);
     display: flex;
     flex-direction: column;
-    gap: 12px;
-}
-
-.form-container label {
-    font-weight: bold;
+    gap: 16px;
+    border: 1px solid var(--border);
 }
 
 .form-container input,
 .form-container textarea {
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 6px;
-    font-family: Arial, sans-serif;
+    padding: 12px 16px;
+    border-radius: var(--radius);
+    border: 1px solid var(--border);
+    background: var(--bg);
+    color: var(--text);
+    font-family: inherit;
+    font-size: 1rem;
+    transition: var(--transition);
+}
+
+.form-container input:focus,
+.form-container textarea:focus {
+    outline: none;
+    border-color: var(--accent);
+    box-shadow: 0 0 0 3px var(--glow);
+    background: rgba(59, 130, 246, 0.02);
 }
 
 .form-container textarea {
     resize: vertical;
+    min-height: 120px;
 }
 
-.form-container button {
-    width: 140px;
+.form-container label {
+    text-align: left;
+    font-weight: 500;
+    color: var(--text);
+    margin-bottom: 4px;
+    display: block;
 }
 
-/* ===== FOOTER ===== */
-footer {
-    background-color: var(--cor-contraste);
+/* ==============================
+   CONFIRMAÇÃO
+   ============================== */
+.confirmacao {
+    max-width: 600px;
+    margin: 80px auto;
+    padding: 48px;
+    background: var(--card);
+    border-left: 4px solid var(--accent);
+    border-radius: var(--radius-lg);
     text-align: center;
-    padding: 20px;
-    font-size: 14px;
+    box-shadow: var(--shadow-lg);
+    animation: slideUp 0.6s ease-out;
 }
 
-/* ===== RESPONSIVO ===== */
-@media (max-width: 600px) {
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
 
-    .hero img.foto {
+.confirmacao-titulo {
+    font-size: 28px;
+    font-weight: 700;
+    color: var(--success);
+    margin-bottom: 12px;
+}
+
+.confirmacao-texto {
+    color: var(--text-sec);
+    font-size: 1.05rem;
+}
+
+/* ==============================
+   FOOTER
+   ============================== */
+footer {
+    margin-top: 80px;
+    padding: 32px 20px;
+    border-top: 1px solid var(--border);
+    color: var(--text-sec);
+    font-size: 0.95rem;
+}
+
+footer a {
+    color: var(--accent);
+    text-decoration: none;
+    transition: var(--transition);
+}
+
+footer a:hover {
+    color: var(--accent-dark);
+    text-decoration: underline;
+}
+
+/* ==============================
+   RESPONSIVO
+   ============================== */
+@media (max-width: 768px) {
+    header h1 {
+        font-size: 2.5rem;
+    }
+
+    header p {
+        font-size: 1rem;
+    }
+
+    h2 {
+        font-size: 1.5rem;
+    }
+
+    nav {
+        gap: 10px;
+        margin-bottom: 60px;
+    }
+
+    nav a {
+        padding: 10px 20px;
+        font-size: 0.9rem;
+    }
+
+    .hero img {
+        width: 160px;
+        height: 160px;
+    }
+
+    .hero h1 {
+        font-size: 2.2rem;
+    }
+
+    .card,
+    .card-aula {
+        padding: 20px;
+    }
+
+    .form-container {
+        padding: 24px;
+    }
+
+    .confirmacao {
+        padding: 32px 24px;
+        margin: 60px auto;
+    }
+}
+
+@media (max-width: 480px) {
+    header {
+        margin: 60px 0 40px;
+    }
+
+    header h1 {
+        font-size: 2rem;
+    }
+
+    header p {
+        font-size: 0.95rem;
+    }
+
+    nav {
+        flex-direction: column;
+        align-items: stretch;
+        margin-bottom: 50px;
+    }
+
+    nav a {
+        width: 100%;
+    }
+
+    .hero img {
         width: 140px;
         height: 140px;
     }
 
     .hero h1 {
-        font-size: 2em;
+        font-size: 1.8rem;
     }
 
-    nav a {
-        display: block;
-        margin: 8px 0;
+    .container {
+        padding: 12px;
     }
 
     .card,
     .card-aula {
-        flex-direction: column;
-        align-items: flex-start;
+        padding: 16px;
+        margin-bottom: 16px;
     }
 
-}
+    button,
+    .btn,
+    .cta,
+    .botao {
+        width: 100%;
+    }
 
-/* ── Página de confirmação ──────────────────────────────── */
-
-.confirmacao {
-    max-width: 600px;
-    margin: 60px auto;
-    padding: 40px;
-    background: #eaf6ec;
-    border-left: 6px solid #3ba34a;
-    border-radius: 10px;
-    text-align: center;
-}
-
-.confirmacao-icone {
-    font-size: 60px;
-    margin-bottom: 10px;
-}
-
-.confirmacao-titulo {
-    font-size: 26px;
-    color: #2e7d32;
-    margin-bottom: 10px;
-}
-
-.confirmacao-texto {
-    font-size: 16px;
-    color: #374151;
-    margin-bottom: 15px;
-}
-
-/* botões */
-.botoes {
-    margin-top: 25px;
-    display: flex;
-    justify-content: center;
-    gap: 15px;
-}
-
-.botao {
-    background: #3f5fa3;
-    color: white;
-    padding: 10px 18px;
-    border-radius: 6px;
-    text-decoration: none;
-    font-weight: 600;
-}
-
-.botao:hover {
-    background: #324b82;
-}
-
-.botao-outline {
-    border: 2px solid #3f5fa3;
-    color: #3f5fa3;
-    padding: 10px 18px;
-    border-radius: 6px;
-    text-decoration: none;
-    font-weight: 600;
-}
-
-.botao-outline:hover {
-    background: #eef2ff;
+    footer {
+        margin-top: 60px;
+        padding: 24px 16px;
+    }
 }
