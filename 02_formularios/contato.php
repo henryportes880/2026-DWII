@@ -1,100 +1,83 @@
 <?php
 /**
- * -------------------------------------------------------------
  * ARQUIVO : 02_formularios/contato.php
- * Disciplina : Desenvolvimento Web II (2026-DWII)
- * Aula : 04 – PHP para Web: Formulários, GET e POST
- * Autor : Henry Rafael Ribeiro Portes
- * Conceitos : $_SERVER, REQUEST_METHOD, trim(), empty(), strlen()
- * -------------------------------------------------------------
+ * Refatorado: Remoção de estilos inline e padronização de classes.
  */
 
-// — VARIÁVEIS DO TEMPLATE
 $nome = "Henry Rafael Ribeiro Portes";
 $pagina_atual = "contato";
 $caminho_raiz = "../";
 $titulo_pagina = "Contato";
 
-
-// — ESTADO INICIAL
 $nome_visitante = '';
 $email = '';
 $mensagem = '';
 $erros = [];
 
-
-// — PROCESSAR SOMENTE SE VEIO POST
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $nome_visitante = trim($_POST['nome_visitante'] ?? '');
+    $email = trim($_POST['email'] ?? '');
+    $mensagem = trim($_POST['mensagem'] ?? '');
 
-$nome_visitante = trim($_POST['nome_visitante'] ?? '');
-$email = trim($_POST['email'] ?? '');
-$mensagem = trim($_POST['mensagem'] ?? '');
+    if ($nome_visitante === '') $erros[] = "O nome é obrigatório.";
+    if ($email === '') $erros[] = "O e-mail é obrigatório.";
+    if ($mensagem === '') {
+        $erros[] = "A mensagem é obrigatória.";
+    } elseif (strlen($mensagem) < 10) {
+        $erros[] = "A mensagem deve ter pelo menos 10 caracteres.";
+    }
 
-
-// VALIDAÇÃO
-if ($nome_visitante === '') {
-$erros[] = "O nome é obrigatório.";
+    if (empty($erros)) {
+        header('Location: obrigado.php?nome=' . urlencode($nome_visitante));
+        exit;
+    }
 }
 
-if ($email === '') {
-$erros[] = "O e-mail é obrigatório.";
-}
-
-if ($mensagem === '') {
-$erros[] = "A mensagem é obrigatória.";
-}
-elseif (strlen($mensagem) < 10) {
-$erros[] = "A mensagem deve ter pelo menos 10 caracteres.";
-}
-
-
-// REDIRECIONAMENTO (PRG)
-if (empty($erros)) {
-
-header('Location: obrigado.php?nome=' . urlencode($nome_visitante));
-exit;
-
-}
-
-}
+include '../includes/cabecalho.php'; 
 ?>
 
-<?php include '../includes/cabecalho.php'; ?>
-
 <div class="container">
+    <header class="header-pagina">
+        <h1 class="titulo-secao">📬 Entre em Contato</h1>
+        <p class="subtitulo">Tem alguma dúvida ou proposta? Mande uma mensagem abaixo.</p>
+    </header>
 
-<h1 class="titulo-secao">📬 Entre em Contato</h1>
+    <div class="form-wrapper">
+        <form class="form-container" action="contato.php" method="post">
+            <div class="form-group">
+                <label for="nome_visitante">Nome Completo *</label>
+                <input type="text" id="nome_visitante" name="nome_visitante" 
+                       placeholder="Ex: João Silva"
+                       value="<?= htmlspecialchars($nome_visitante) ?>">
+            </div>
 
-<form class="form-container" action="contato.php" method="post">
+            <div class="form-group">
+                <label for="email">E-mail de Contato *</label>
+                <input type="email" id="email" name="email" 
+                       placeholder="seu@email.com"
+                       value="<?= htmlspecialchars($email) ?>">
+            </div>
 
-<label>Nome *</label>
-<input type="text" name="nome_visitante" value="<?= htmlspecialchars($nome_visitante) ?>">
+            <div class="form-group">
+                <label for="mensagem">Sua Mensagem *</label>
+                <textarea id="mensagem" name="mensagem" rows="5" 
+                          placeholder="Como posso te ajudar?"><?= htmlspecialchars($mensagem) ?></textarea>
+            </div>
 
-<label>E-mail *</label>
-<input type="email" name="email" value="<?= htmlspecialchars($email) ?>">
+            <button type="submit" class="btn btn-primary">Enviar Mensagem</button>
+        </form>
 
-<label>Mensagem *</label>
-<textarea name="mensagem" rows="5"><?= htmlspecialchars($mensagem) ?></textarea>
-
-<button type="submit">Enviar Mensagem</button>
-
-</form>
-
-
-<!-- Exibir erros -->
-<?php if (!empty($erros)): ?>
-
-<div class="alerta-erro">
-<h3>⚠️ Corrija os erros abaixo:</h3>
-
-<?php foreach ($erros as $erro): ?>
-<p>• <?= htmlspecialchars($erro) ?></p>
-<?php endforeach; ?>
-
-</div>
-
-<?php endif; ?>
-
+        <?php if (!empty($erros)): ?>
+            <div class="alerta-erro">
+                <h3>⚠️ Corrija os erros abaixo:</h3>
+                <ul>
+                    <?php foreach ($erros as $erro): ?>
+                        <li><?= htmlspecialchars($erro) ?></li>
+                    <?php endforeach; ?>
+                </ul>
+            </div>
+        <?php endif; ?>
+    </div>
 </div>
 
 <?php include '../includes/rodape.php'; ?>

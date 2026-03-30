@@ -1,16 +1,16 @@
 # Portfólio Dinâmico — Desenvolvimento Web II (DWII)
 
-Mini-site de portfólio pessoal desenvolvido em **PHP puro**.  
-O projeto utiliza **includes, variáveis PHP, arrays, formulários, integração com banco de dados (PDO + MariaDB) e controle de acesso com sessões**, seguindo a organização ensinada na disciplina.
+Mini-site de portfólio pessoal desenvolvido em **PHP puro**.  
+O projeto utiliza **includes, variáveis PHP, arrays, formulários, integração com banco de dados (PDO + MariaDB), controle de acesso com sessões e operações de CRUD**, seguindo a organização ensinada na disciplina.
 
 ---
 
 # 👤 Estudante
 
-* **Nome:** Henry Rafael Ribeiro Portes  
-* **Curso:** Técnico em Informática Integrado ao Ensino Médio  
-* **Turma:** 3º ano  
-* **Ano:** 2026  
+* **Nome:** Henry Rafael Ribeiro Portes  
+* **Curso:** Técnico em Informática Integrado ao Ensino Médio  
+* **Turma:** 3º ano  
+* **Ano:** 2026  
 
 ---
 
@@ -20,15 +20,13 @@ Este repositório reúne as atividades desenvolvidas na disciplina **Desenvolvim
 
 Entre os conceitos praticados estão:
 
-- Estruturação de sites com **PHP**
-- Reutilização de código com **includes**
-- Uso de **variáveis e arrays**
-- Criação de **formulários HTML com método GET e POST**
-- Conexão com **banco de dados MariaDB usando PDO**
-- Consultas SQL com **SELECT, INSERT e prepared statements**
-- **Gestão de Sessões PHP** para autenticação de usuários
-- Criação de **Middleware de segurança** (funções de restrição de acesso)
-- Configuração de ambiente de desenvolvimento com **Dev Containers e Docker**
+- **Estruturação Modular:** Reutilização de componentes com `include` e `require`.
+- **Comunicação entre Páginas:** Uso de métodos `GET` e `POST`.
+- **Persistência em Banco de Dados:** Conexão segura via **PDO** e manipulação de dados com MariaDB.
+- **Operações CRUD:** Implementação completa de **Create** (Cadastrar) e **Read** (Listar).
+- **Segurança:** Proteção contra **SQL Injection** (Prepared Statements) e **XSS** (`htmlspecialchars`).
+- **Autenticação:** Gestão de sessões e middlewares de proteção de acesso.
+- **Ambiente Profissional:** Configuração via **Dev Containers e Docker**.
 
 ---
 
@@ -37,62 +35,54 @@ Entre os conceitos praticados estão:
 | Pasta / Arquivo | Conteúdo |
 |-----------------|----------|
 | `index.php` | Hub de navegação com acesso às atividades |
-| `includes/` | Componentes reutilizáveis do site |
-| `00_apresentacao/` | Página de apresentação pessoal |
-| `01_php-intro/` | Portfólio dinâmico com PHP |
-| `02_formularios/` | Formulário de contato (GET) |
+| `includes/` | Componentes reutilizáveis (Header, Footer, CSS) |
+| `00_apresentacao/` | Página de apresentação pessoal responsiva |
+| `01_php-intro/` | Portfólio dinâmico com arrays PHP |
+| `02_formularios/` | Práticas de envio e validação de dados |
 | `03_pdo/` | Catálogo de tecnologias com banco de dados |
-| `04_sessoes/` | **Sistema de login e área restrita** |
-| `04_sessoes/login.php` | Tela de login com verificação de credenciais |
-| `04_sessoes/painel.php` | Área protegida (exige login) |
-| `04_sessoes/publico.php` | Página de acesso livre com detecção de estado de login |
-| `04_sessoes/logout.php` | Encerramento de sessão e redirecionamento |
-| `04_sessoes/includes/auth.php` | Lógica centralizada de autenticação |
+| `04_sessoes/` | Sistema de login e controle de autenticação |
+| `05_crud/` | **Sistema de Gestão de Projetos (CRUD)** |
+| `05_crud/index.php` | Listagem dinâmica dos projetos cadastrados (**Read**) |
+| `05_crud/cadastrar.php`| Formulário e lógica de inserção no banco (**Create**) |
+| `05_crud/includes/conexao.php` | Configuração centralizada da conexão PDO |
 
 ---
 
-# 🔐 Autenticação e Controle de Acesso (Sessões PHP)
+# 📝 CRUD de Projetos (Create & Read)
 
-Nesta atividade foi implementado um sistema de login completo para simular uma área restrita, explorando a persistência de dados no lado do servidor.
+Nesta etapa, o projeto evoluiu para um sistema funcional de gerenciamento de portfólio. Agora é possível persistir novos projetos diretamente no banco de dados e exibi-los em tempo real.
 
-**Funcionalidades implementadas:**
-
-- **Início e Encerramento de Sessões:** Uso de `session_start()` e `session_destroy()`.
-- **Persistência de Dados:** Armazenamento de informações do usuário logado no array global `$_SESSION`.
-- **Segurança e Refatoração:** Extração da lógica de proteção para a função `requer_login()` dentro de um arquivo `auth.php`, facilitando a proteção de múltiplas páginas.
-- **Prevenção de Ataques:** Uso de `session_regenerate_id()` para evitar fixação de sessão e `htmlspecialchars()` para exibir dados do usuário com segurança.
-- **Experiência do Usuário (UX):** Redirecionamento automático de usuários não autenticados e persistência do nome de usuário no formulário em caso de erro.
+**Funcionalidades Principais:**
+- **Cadastro Dinâmico:** Validação de campos obrigatórios e sanitização de dados antes da inserção.
+- **Listagem Inteligente:** Exibição dos projetos em cards ordenados pelo mais recente (`ORDER BY criado_em DESC`).
+- **Tratamento de Erros:** Bloco `try/catch` na conexão e mensagens de feedback amigáveis para o usuário.
+- **UX (User Experience):** Feedback visual após cadastros bem-sucedidos e botões de navegação fluída entre o sistema e o índice principal.
 
 ---
 
-# 🗄️ Catálogo de Tecnologias (PDO + MariaDB)
+# 🔐 Autenticação e Controle de Acesso
 
-Nesta atividade foi desenvolvido um **catálogo dinâmico de tecnologias**, onde os dados são armazenados em um banco **MariaDB** e acessados pelo **PHP usando PDO**.
+Implementação de área restrita simulando um ambiente real de administração.
 
-Funcionalidades implementadas:
-
-- Conexão segura com banco de dados usando **PDO**
-- Consulta de dados com **query() + fetchAll()**
-- Busca de registro específico com **prepare() + execute()**
-- Uso de **parâmetros para evitar SQL Injection**
+- **Middleware `requer_login()`:** Função centralizada que protege arquivos sensíveis.
+- **Gestão de Estado:** Uso de `$_SESSION` para manter o usuário logado entre diferentes páginas.
+- **Logout Seguro:** Encerramento completo da sessão com limpeza de cookies do lado do cliente.
 
 ---
 
 # ⚙️ Ambiente de Desenvolvimento
 
 O projeto utiliza **Dev Containers com Docker** para configurar automaticamente:
-
-- PHP 8.2
-- MariaDB 10.11
-- Driver **PDO MySQL**
-- Cliente **mariadb** no terminal
+- **PHP 8.2**
+- **MariaDB 10.11**
+- Extensão **PDO MySQL** habilitada
+- Servidor embutido do PHP para testes rápidos
 
 ---
 
 # 🌐 Como executar o projeto
 
-No terminal do Codespace ou ambiente local (certifique-se de estar na raiz do projeto):
-
-```bash
-cd /workspaces/2026-DWII
-php -S localhost:8000
+1. Certifique-se de que o container Docker está rodando.
+2. No terminal (raiz do projeto):
+   ```bash
+   php -S localhost:8000

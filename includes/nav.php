@@ -1,11 +1,7 @@
-<?php
-$cor_inicio = ($pagina_atual === "inicio") ? "color: #f0b341; font-weight: bold;" : "color: #333;";
-$cor_sobre = ($pagina_atual === "sobre") ? "color: #f0b341; font-weight: bold;" : "color: #333;";
-$cor_projetos = ($pagina_atual === "projetos") ? "color: #f0b341; font-weight: bold;" : "color: #333;";
-?>
-
-<nav>
-  <a href="index.php" style="<?php echo $cor_inicio; ?>">Início</a>
-  <a href="sobre.php" style="<?php echo $cor_sobre; ?>">Sobre</a>
-  <a href="projetos.php" style="<?php echo $cor_projetos; ?>">Projetos</a>
+<nav class="navbar">
+    <div class="nav-container">
+        <a href="index.php" class="<?= ($pagina_atual === 'inicio') ? 'active' : '' ?>">Início</a>
+        <a href="sobre.php" class="<?= ($pagina_atual === 'sobre') ? 'active' : '' ?>">Sobre</a>
+        <a href="projetos.php" class="<?= ($pagina_atual === 'projetos') ? 'active' : '' ?>">Projetos</a>
+    </div>
 </nav>

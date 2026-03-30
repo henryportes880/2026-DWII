@@ -1,135 +1,117 @@
-```php
 <?php
-/*
-ARQUIVO: index.php (raiz do repositório 2026-DWII)
-Disciplina: Desenvolvimento Web II
-Aula: Hub de navegação do repositório
-Conceitos: array associativo, foreach, date(), htmlspecialchars()
-*/
+/**
+ * ARQUIVO: index.php
+ * HUB Principal do Repositório DWII 2026
+ */
 
-// VARIÁVEIS
 $nome = "Henry Rafael Ribeiro Portes";
 $subtitulo = "Repositório 2026 - Desenvolvimento Web II";
 
-// CATÁLOGO DE AULAS
 $aulas = [
-
-[
-"numero" => "00",
-"nome" => "Apresentação Pessoal",
-"descricao" => "Página inicial com informações pessoais, foto de perfil e layout responsivo utilizando HTML e CSS.",
-"link" => "00_apresentacao/index.html",
-"icone" => "👤",
-"cor" => "#667280",
-"conceitos" => "HTML semântico, CSS Flexbox, layout responsivo"
-],
-
-[
-"numero" => "03",
-"nome" => "Portfólio Dinâmico com PHP",
-"descricao" => "Mini site de portfólio utilizando PHP para gerar conteúdo dinâmico e organizar páginas com includes.",
-"link" => "01_php-intro/index.php",
-"icone" => "💻",
-"cor" => "#3b579d",
-"conceitos" => "Variáveis PHP, echo, include, arrays, foreach, operador ternário"
-],
-
-[
-"numero" => "04",
-"nome" => "Formulário de Contato",
-"descricao" => "Formulário de contato com envio de dados via POST, validação no servidor e proteção contra XSS.",
-"link" => "02_formularios/contato.php",
-"icone" => "📩",
-"cor" => "#3ba34a",
-"conceitos" => "$_POST, validação de dados, htmlspecialchars(), padrão PRG"
-],
-
-[
-"numero" => "05",
-"nome" => "Catálogo com Banco de Dados",
-"descricao" => "Sistema simples de catálogo utilizando conexão com banco de dados e exibição dinâmica dos registros.",
-"link" => "03_pdo/index.php",
-"icone" => "🗄️",
-"cor" => "#3d3e3f",
-"conceitos" => "PDO, conexão com banco de dados, consultas SQL, prepared statements"
-]
-
+    [
+        "numero" => "00",
+        "nome" => "Apresentação Pessoal",
+        "descricao" => "Página pessoal responsiva com foco em estrutura semântica.",
+        "link" => "00_apresentacao/index.html",
+        "icone" => "👤",
+        "conceitos" => ["HTML", "Flexbox", "Responsivo"]
+    ],
+    [
+        "numero" => "01-03",
+        "nome" => "Portfólio PHP",
+        "descricao" => "Site dinâmico utilizando includes e gerenciamento de estados.",
+        "link" => "01_php-intro/index.php",
+        "icone" => "💻",
+        "conceitos" => ["PHP", "Include", "Arrays"]
+    ],
+    [
+        "numero" => "04",
+        "nome" => "Formulário de Contato",
+        "descricao" => "Sistema de envio de mensagens com validação e proteção XSS.",
+        "link" => "02_formularios/contato.php",
+        "icone" => "📩",
+        "conceitos" => ["POST", "Validação", "Security"]
+    ],
+    [
+        "numero" => "05",
+        "nome" => "Banco de Dados",
+        "descricao" => "Implementação de catálogo utilizando a biblioteca PDO.",
+        "link" => "03_pdo/index.php",
+        "icone" => "🗄️",
+        "conceitos" => ["PDO", "SQL", "Query"]
+    ],
+    [
+        "numero" => "06",
+        "nome" => "Sistema de Login",
+        "descricao" => "Controle de acesso restrito com gerenciamento de sessões.",
+        "link" => "04_sessoes/login.php",
+        "icone" => "🔐",
+        "conceitos" => ["Session", "Auth", "Login"]
+    ],
+    [
+        "numero" => "07",
+        "nome" => "CRUD Completo",
+        "descricao" => "Gerenciador de projetos com as operações de Create e Read.",
+        "link" => "05_crud/index.php",
+        "icone" => "📝",
+        "conceitos" => ["Insert", "Select", "PDO-CRUD"]
+    ]
 ];
 ?>
 
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title><?php echo htmlspecialchars($subtitulo); ?></title>
-
-<link rel="stylesheet" href="../includes/style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><?= htmlspecialchars($subtitulo) ?></title>
+    <link rel="stylesheet" href="includes/style.css">
 </head>
 
-<body>
+<body class="hub-page">
 
-<header>
-<h1><?php echo htmlspecialchars($nome); ?></h1>
-<p><?php echo htmlspecialchars($subtitulo); ?></p>
+<header class="hub-header">
+    <div class="container">
+        <h1><?= htmlspecialchars($nome) ?></h1>
+        <p class="tagline"><?= htmlspecialchars($subtitulo) ?></p>
+    </div>
 </header>
 
-<div class="container">
+<main class="container">
+    <h2 class="titulo-secao">📂 Módulos da Disciplina</h2>
 
-<h2 class="secao">Projetos por Aula</h2>
+    <div class="grid-hub">
+        <?php foreach ($aulas as $aula): ?>
+            <article class="card card-hub">
+                <div class="card-topo">
+                    <span class="icone-projeto"><?= htmlspecialchars($aula['icone']) ?></span>
+                    <span class="badge-aula">Aula <?= htmlspecialchars($aula['numero']) ?></span>
+                </div>
 
-<?php foreach ($aulas as $aula): ?>
+                <div class="card-corpo">
+                    <h3><?= htmlspecialchars($aula['nome']) ?></h3>
+                    <p class="desc-hub"><?= htmlspecialchars($aula['descricao']) ?></p>
+                </div>
 
-<div class="card-aula" style="border-left-color: <?php echo $aula['cor']; ?>;">
+                <div class="tags">
+                    <?php foreach ($aula['conceitos'] as $conceito): ?>
+                        <span class="tag"><?= htmlspecialchars($conceito) ?></span>
+                    <?php endforeach; ?>
+                </div>
 
-<div class="icone">
-<?php echo $aula['icone']; ?>
-</div>
+                <a href="<?= htmlspecialchars($aula['link']) ?>" class="btn btn-block btn-projeto">
+                    Acessar Módulo →
+                </a>
+            </article>
+        <?php endforeach; ?>
+    </div>
+</main>
 
-<div class="conteudo">
-
-<span class="badge">
-Aula <?php echo htmlspecialchars($aula['numero']); ?>
-</span>
-
-<h3 style="color: <?php echo $aula['cor']; ?>;">
-<?php echo htmlspecialchars($aula['nome']); ?>
-</h3>
-
-<p>
-<?php echo htmlspecialchars($aula['descricao']); ?>
-</p>
-
-<span class="conceitos">
-🔑 <?php echo htmlspecialchars($aula['conceitos']); ?>
-</span>
-
-<br>
-
-<a href="<?php echo htmlspecialchars($aula['link']); ?>"
-class="btn"
-style="background: <?php echo $aula['cor']; ?>;">
-Abrir →
-</a>
-
-</div>
-</div>
-
-<?php endforeach; ?>
-
-<p style="text-align:right; font-size:13px; color:#9ca3af;">
-Gerado em: <?php echo date("d/m/Y \à\s H:i:s"); ?>
-</p>
-
-</div>
-
-<footer>
-<?php echo htmlspecialchars($nome); ?>
-&copy; <?php echo date("Y"); ?>
-| Desenvolvido com PHP | IFPR – Ponta Grossa
+<footer class="main-footer">
+    <div class="container">
+        <p><?= htmlspecialchars($nome) ?> &copy; <?= date("Y") ?> | Instituto Federal do Paraná</p>
+    </div>
 </footer>
 
 </body>
 </html>
-```

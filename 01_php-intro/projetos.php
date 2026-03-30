@@ -9,22 +9,29 @@ include '../includes/nav.php';
 ?>
 
 <section class="hero">
-    
-    <h1><?php echo $nome; ?></h1>
-    <p><?php echo $profissao; ?> — <?php echo $curso; ?></p>
+    <div class="hero-content">
+        <h1><?php echo $nome; ?></h1>
+        <p class="hero-subtitle"><?php echo $profissao; ?> — <?php echo $curso; ?></p>
+    </div>
 </section>
 
 <main class="container">
-    <h2>Meus Projetos</h2>
+    <h2 class="titulo-sessao">Meus Projetos</h2>
 
-    <p>Ao longo da minha trajetória em desenvolvimento web, venho construindo projetos que representam minha evolução técnica e meu aprendizado contínuo.</p>
+    <div class="card card-projeto">
+        <h3>Página de Apresentação</h3>
+        <p>Ao longo da minha trajetória em desenvolvimento web, venho construindo projetos que representam minha evolução técnica e meu aprendizado contínuo. Foco na organização estrutural e uso correto de tags semânticas.</p>
+    </div>
 
-    <p>Entre eles, está a minha Página de Apresentação Pessoal, um site desenvolvido com HTML e CSS com foco na organização estrutural e uso correto de tags semânticas.</p>
+    <div class="card card-projeto">
+        <h3>Portfólio Dinâmico em PHP</h3>
+        <p>Um mini-site com múltiplas páginas conectadas por meio de include e uso de variáveis PHP para tornar o conteúdo modular.</p>
+    </div>
 
-    <p>Também desenvolvi um Portfólio Dinâmico em PHP, um mini-site com múltiplas páginas conectadas por meio de include e uso de variáveis PHP.</p>
-
-    <p>Além disso, realizei diversos Exercícios de Lógica de Programação para fortalecer o raciocínio lógico e resolução de problemas.</p>
-
+    <div class="card card-projeto">
+        <h3>Lógica de Programação</h3>
+        <p>Desenvolvimento de diversos exercícios para fortalecer o raciocínio lógico e a resolução de problemas reais de código.</p>
+    </div>
 </main>
 
 <?php include '../includes/rodape.php'; ?>

@@ -16,7 +16,6 @@ if (!$id) {
 // Consulta segura
 $stmt = $pdo->prepare('SELECT * FROM tecnologias WHERE id = :id');
 $stmt->execute(['id' => $id]);
-
 $tec = $stmt->fetch();
 
 if (!$tec) {
@@ -32,61 +31,49 @@ $pagina_atual = "catalogo";
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-<?php include 'includes/cab_pdo.php'; ?>
+    <?php include 'includes/cab_pdo.php'; ?>
 </head>
 
 <body>
 
 <div class="container">
+    <div class="header-acoes">
+        <a href="index.php" class="btn-voltar">
+            ← Voltar ao catálogo
+        </a>
+    </div>
 
-<a href="index.php" style="color: #3b579d; font-weight: bold;">
-← Voltar ao catálogo
-</a>
+    <div class="card card-detalhe">
+        <div class="card-header-flex">
+            <h1 class="titulo-detalhe">
+                <?php echo htmlspecialchars($tec['nome']); ?>
+            </h1>
+            <span class="badge-categoria">
+                <?php echo htmlspecialchars($tec['categoria']); ?>
+            </span>
+        </div>
 
-<div class="card" style="margin-top: 20px;">
+        <p class="descricao-detalhe">
+            <?php echo htmlspecialchars($tec['descricao']); ?>
+        </p>
 
-<div style="display:flex;justify-content:space-between;align-items:flex-start;">
-
-<h1 style="color:#3b579d;margin:0 0 8px;font-size:24px;">
-<?php echo htmlspecialchars($tec['nome']); ?>
-</h1>
-
-<span style="background:#e8edf5;color:#3b579d;padding:4px 12px;border-radius:20px;font-size:13px;font-weight:bold;">
-<?php echo htmlspecialchars($tec['categoria']); ?>
-</span>
-
-</div>
-
-<p style="font-size:16px;margin:16px 0;">
-<?php echo htmlspecialchars($tec['descricao']); ?>
-</p>
-
-<table style="width:100%;border-collapse:collapse;margin-top:20px;font-size:14px;">
-
-<tr style="background:#f3f4f6;">
-<td style="padding:10px;border:1px solid #e5e7eb;font-weight:bold;width:160px;">ID</td>
-<td style="padding:10px;border:1px solid #e5e7eb;">
-<?php echo $tec['id']; ?>
-</td>
-</tr>
-
-<tr>
-<td style="padding:10px;border:1px solid #e5e7eb;font-weight:bold;">Ano de criação</td>
-<td style="padding:10px;border:1px solid #e5e7eb;">
-<?php echo $tec['ano_criacao']; ?>
-</td>
-</tr>
-
-<tr style="background:#f3f4f6;">
-<td style="padding:10px;border:1px solid #e5e7eb;font-weight:bold;">Cadastrado em</td>
-<td style="padding:10px;border:1px solid #e5e7eb;">
-<?php echo date('d/m/Y \à\s H:i', strtotime($tec['criado_em'])); ?>
-</td>
-</tr>
-
-</table>
-
-</div>
+        <div class="tabela-container">
+            <table class="tabela-dados">
+                <tr>
+                    <th>ID</th>
+                    <td><?php echo $tec['id']; ?></td>
+                </tr>
+                <tr>
+                    <th>Ano de criação</th>
+                    <td><?php echo $tec['ano_criacao']; ?></td>
+                </tr>
+                <tr>
+                    <th>Cadastrado em</th>
+                    <td><?php echo date('d/m/Y \à\s H:i', strtotime($tec['criado_em'])); ?></td>
+                </tr>
+            </table>
+        </div>
+    </div>
 </div>
 
 <?php include 'includes/rod_pdo.php'; ?>

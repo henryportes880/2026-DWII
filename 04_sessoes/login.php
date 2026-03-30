@@ -2,7 +2,7 @@
 session_start();
 
 if (isset($_SESSION['usuario'])) {
-    header('Location: login .php');
+    header('Location: painel.php');
     exit;
 }
 
@@ -18,66 +18,50 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     if ($login === $USUARIO_VALIDO && $senha === $SENHA_VALIDA) {
         session_regenerate_id(true);
-
         $_SESSION['usuario'] = $login;
-        $_SESSION['logado_em'] = date('d/m/Y \à\s H:i');
-
+        $_SESSION['logado_em'] = date('d/m/Y H:i:s');
         header('Location: painel.php');
         exit;
     } else {
-        $erro = 'Usuário ou senha incorretos.';
+        $erro = 'Usuário ou senha incorretos';
     }
 }
-
-$titulo_pagina = 'Login - Área Restrita';
-$caminho_raiz = '../';
-$pagina_atual = '';
 ?>
-
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-    <?php require_once __DIR__ . '/../includes/cabecalho.php'; ?>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login | Sistema</title>
+    <link rel="stylesheet" href="../includes/style.css">
 </head>
-<body>
-<div class="container" style="max-width: 420px;">
-    <div class="form-container">
+<body class="body-login">
+    <div class="container container-login">
+        <div class="card card-login">
+            <h2>🔒 Acesso Restrito</h2>
+            
+            <?php if ($erro): ?>
+                <div class="alerta-erro-simples"><?= $erro ?></div>
+            <?php endif; ?>
 
-        <h1 class="titulo-secao" style="text-align: center; font-size: 22px;">
-            🔒 Área Restrita
-        </h1>
+            <form method="post" class="form-login">
+                <div class="form-group">
+                    <label>Usuário</label>
+                    <input type="text" name="usuario" placeholder="usuário" value="<?= htmlspecialchars($login) ?>" required>
+                </div>
 
-        <?php if ($erro): ?>
-            <div class="alerta-erro">
-                <p style="margin: 0; font-size: 14px;">
-                    <?php echo htmlspecialchars($erro); ?>
-                </p>
+                <div class="form-group">
+                    <label>Senha</label>
+                    <input type="password" name="senha" placeholder="••••••••" required>
+                </div>
+
+                <button class="btn btn-block">Entrar no Sistema</button>
+            </form>
+
+            <div class="card-footer-login">
+                <a href="../index.php" class="link-voltar">← Voltar ao início</a>
             </div>
-        <?php endif; ?>
-
-        <form action="login.php" method="post">
-            <label>Usuário:</label>
-            <input type="text"
-                   name="usuario"
-                   value="<?php echo htmlspecialchars($login); ?>"
-                   autocomplete="username">
-
-            <label>Senha:</label>
-            <input type="password" 
-                   name="senha"
-                   autocomplete="current-password">
-
-            <button type="submit">Entrar</button>
-        </form>
-
-        <p style="text-align: center; margin-top: 20px; font-size: 13px; color: #6b7280;">
-            <a href="../index.php" style="color: #3b579d;">
-                ← Voltar ao início</a>
-        </p>
-
+        </div>
     </div>
-</div>
-
-<?php require_once __DIR__ . '/../includes/rodape.php'; ?>
 </body>
 </html>

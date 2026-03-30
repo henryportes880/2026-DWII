@@ -9,15 +9,20 @@ include '../includes/nav.php';
 ?>
 
 <section class="hero">
-    <img src="../imgs/henry.jpg" alt="Foto de Henry" class="foto" />
-    <h1><?php echo $nome; ?></h1>
-    <p><?php echo $profissao; ?> — <?php echo $curso; ?></p>
+    <div class="hero-content">
+        <img src="../imgs/henry.jpg" alt="Foto de Henry" class="hero-avatar" />
+        <h1><?php echo $nome; ?></h1>
+        <p class="hero-subtitle"><?php echo $profissao; ?> — <?php echo $curso; ?></p>
+    </div>
 </section>
 
 <main class="container">
-    <h2>Início</h2>
-    <p>Bem-vindo ao meu portfólio! Aqui você encontrará um pouco mais sobre quem eu sou, minha trajetória, minhas habilidades e os projetos que venho desenvolvendo ao longo da minha jornada na área de desenvolvimento web.</p>
-    <!-- restante do conteúdo da página -->
+    <div class="card card-apresentacao">
+        <h2 class="titulo-sessao">Início</h2>
+        <p class="texto-destaque">
+            Bem-vindo ao meu portfólio! Aqui você encontrará um pouco mais sobre quem eu sou, minha trajetória, minhas habilidades e os projetos que venho desenvolvendo ao longo da minha jornada na área de desenvolvimento web.
+        </p>
+    </div>
 </main>
 
 <?php include '../includes/rodape.php'; ?>
