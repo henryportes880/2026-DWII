@@ -4,36 +4,52 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Minha Apresentação | Henry Portes</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="../includes/style.css">
 </head>
 <body>
-
-    <header class="hero-header">
-        <h1>Henry Portes</h1>
-        <p class="tagline">Disciplina: Desenvolvimento Web II</p>
-    </header>
+    <a href="../index.php" class="btn-voltar">← Voltar ao Repositório</a>
+<header class="hub-header">
+    <div class="container">
+        <div class="header-acoes">
+        </div>
+        <h1>Apresentação Pessoal</h1>
+        <p class="tagline">Aula 00 - Estrutura Semântica</p>
+    </div>
+</header>
 
     <main class="container">
-        <div class="card card-apresentacao">
-            <div class="perfil-topo">
-                <img src="../imgs/henry.jpg" alt="Minha Foto" class="foto-perfil">
+        <article class="card">
+            
+            <div style="text-align: center; margin-bottom: 25px;">
+                <img src="../imgs/henry.jpg" alt="Minha Foto" class="hero-avatar" style="width: 150px; height: 150px; border-radius: 50%; object-fit: cover; border: 2px solid var(--border);">
             </div>
 
-            <section class="conteudo-bio">
-                <h2>Sobre mim</h2>
+            <section class="biografia">
+                <h2 class="titulo-sessao">Sobre mim</h2>
                 <p>
-                    Olá! Meu nome é <strong>Henry Rafael Ribeiro Portes</strong>, estou no terceiro ano do Instituto Federal do Paraná (IFPR). Tenho 17 anos e um grande interesse em tecnologia, programação e desenvolvimento web. Gosto de aprender coisas novas e evoluir constantemente.
+                    Olá! Meu nome é <strong>Henry Rafael Ribeiro Portes</strong>, estou no terceiro ano do <strong>Instituto Federal do Paraná (IFPR)</strong>. 
+                    Tenho 17 anos e um grande interesse em tecnologia, programação e desenvolvimento web. 
+                    Gosto de aprender coisas novas e evoluir constantemente.
                 </p>
             </section>
-        </div>
+
+            <div class="tags" style="margin-top: 20px;">
+                <span class="tag">HTML5</span>
+                <span class="tag">CSS3</span>
+                <span class="tag">PHP</span>
+                <span class="tag">IFPR</span>
+            </div>
+        </article>
         
-        <div class="acoes">
-            <a href="../index.php" class="btn">Acessar Portfólio Completo</a>
+        <div style="text-align: center; margin-top: 30px;">
+            <a href="../01_php-intro/index.php" class="btn">Acessar Portfólio Completo</a>
         </div>
     </main>
 
-    <footer>
-        <p>&copy; 2026 Henry Portes — DWII</p>
+    <footer class="main-footer">
+        <div class="container">
+            <p>&copy; 2026 Henry Portes — DWII</p>
+        </div>
     </footer>
 
 </body>

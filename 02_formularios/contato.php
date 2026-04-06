@@ -36,12 +36,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 include '../includes/cabecalho.php'; 
 ?>
 
-<div class="container">
-    <header class="header-pagina">
-        <h1 class="titulo-secao">📬 Entre em Contato</h1>
-        <p class="subtitulo">Tem alguma dúvida ou proposta? Mande uma mensagem abaixo.</p>
-    </header>
+<header class="hub-header">
+    <div class="container">
+        <div class="header-acoes">
+        </div>
+        <h1>Contato</h1>
+        <p class="tagline">Aula 04 - Formulários e Validações</p>
+    </div>
+</header>
+<a href="../index.php" class="btn-voltar">← Voltar ao Repositório</a>
 
+<div class="container">
     <div class="form-wrapper">
         <form class="form-container" action="contato.php" method="post">
             <div class="form-group">
@@ -64,7 +69,7 @@ include '../includes/cabecalho.php';
                           placeholder="Como posso te ajudar?"><?= htmlspecialchars($mensagem) ?></textarea>
             </div>
 
-            <button type="submit" class="btn btn-primary">Enviar Mensagem</button>
+            <button type="submit" class="btn">Enviar Mensagem</button>
         </form>
 
         <?php if (!empty($erros)): ?>

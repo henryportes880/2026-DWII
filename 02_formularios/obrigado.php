@@ -13,6 +13,16 @@ $nome_visitante = htmlspecialchars($_GET['nome'] ?? 'visitante');
 include '../includes/cabecalho.php'; 
 ?>
 
+<header class="hub-header">
+    <div class="container">
+        <div class="header-acoes">
+        </div>
+        <h1>Confirmação</h1>
+        <p class="tagline">Aula 04 - Feedback de Formulário</p>
+    </div>
+</header>
+<a href="../index.php" class="btn-voltar">← Voltar ao Repositório</a>
+
 <div class="container container-centro">
     <div class="card card-confirmacao">
         <div class="confirmacao-icone">✅</div>
@@ -25,7 +35,7 @@ include '../includes/cabecalho.php';
         </p>
 
         <div class="grid-botoes">
-            <a href="../index.php" class="btn">🏠 Início</a>
+            <a href="../index.php" class="btn">🏠 Painel PHP</a>
             <a href="contato.php" class="btn btn-outline">📮 Nova Mensagem</a>
         </div>
     </div>

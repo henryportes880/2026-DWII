@@ -100,7 +100,7 @@ $aulas = [
                 </div>
 
                 <a href="<?= htmlspecialchars($aula['link']) ?>" class="btn btn-block btn-projeto">
-                    Acessar Módulo →
+                    Acessar Módulo
                 </a>
             </article>
         <?php endforeach; ?>

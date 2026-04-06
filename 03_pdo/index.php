@@ -14,37 +14,54 @@ $tecnologias = $stmt->fetchAll();
     <?php include 'includes/cab_pdo.php'; ?>
 </head>
 
-<body>
+<body class="hub-page">
 
-<div class="container">
-    <header>
-        <h1 class="titulo-secao">📚 Catálogo de Tecnologias</h1>
+<a href="../index.php" class="btn-voltar">← Voltar ao Repositório</a>
+
+<header class="hub-header">
+    <div class="container">
+        <h1>Catálogo de Tecnologias</h1>
+        <p class="tagline">Aula 05 - Listagem de Dados com PDO</p>
+    </div>
+</header>
+
+<main class="container">
+    <div style="margin-bottom: 30px;">
         <p class="contador-stats">
-            <?php echo count($tecnologias); ?> tecnologia(s) cadastrada(s)
+            <span class="badge-aula"><?php echo count($tecnologias); ?> tecnologia(s) cadastrada(s)</span>
         </p>
-    </header>
+    </div>
 
-    <?php foreach ($tecnologias as $tec): ?>
-        <div class="card">
-            <div class="card-header-flex">
-                <h3><?php echo htmlspecialchars($tec['nome']); ?></h3>
-                <span class="badge-categoria">
-                    <?php echo htmlspecialchars($tec['categoria']); ?>
-                </span>
-            </div>
+    <div class="grid-hub">
+        <?php foreach ($tecnologias as $tec): ?>
+            <article class="card card-hub">
+                <div class="card-topo">
+                    <span class="icone-projeto">💻</span>
+                    <span class="badge-categoria">
+                        <?php echo htmlspecialchars($tec['categoria']); ?>
+                    </span>
+                </div>
 
-            <p class="card-descricao">
-                <?php echo htmlspecialchars($tec['descricao']); ?>
-            </p>
+                <div class="card-corpo">
+                    <h3><?php echo htmlspecialchars($tec['nome']); ?></h3>
+                    <p class="desc-hub">
+                        <?php 
+                            // Limita a descrição para não quebrar o layout do card
+                            $desc = htmlspecialchars($tec['descricao']);
+                            echo (strlen($desc) > 100) ? substr($desc, 0, 100) . '...' : $desc; 
+                        ?>
+                    </p>
+                </div>
 
-            <div class="card-footer">
-                <a href="/03_pdo/detalhe.php?id=<?php echo $tec['id']; ?>" class="btn-link">
-                    Ver detalhes →
-                </a>
-            </div>
-        </div>
-    <?php endforeach; ?>
-</div>
+                <div class="card-footer" style="margin-top: auto;">
+                    <a href="detalhe.php?id=<?php echo $tec['id']; ?>" class="btn btn-block">
+                        Ver detalhes →
+                    </a>
+                </div>
+            </article>
+        <?php endforeach; ?>
+    </div>
+</main>
 
 <?php include 'includes/rod_pdo.php'; ?>
 

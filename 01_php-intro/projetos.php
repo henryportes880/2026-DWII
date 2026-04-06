@@ -8,6 +8,16 @@ include '../includes/cabecalho.php';
 include '../includes/nav.php';
 ?>
 
+<header class="hub-header">
+    <div class="container">
+        <div class="header-acoes">
+        </div>
+        <h1>Meus Projetos</h1>
+        <p class="tagline">Aula 00 - Portfólio e Trajetória</p>
+    </div>
+</header>
+<a href="../index.php" class="btn-voltar">← Voltar ao Repositório</a>
+
 <section class="hero">
     <div class="hero-content">
         <h1><?php echo $nome; ?></h1>
@@ -16,7 +26,7 @@ include '../includes/nav.php';
 </section>
 
 <main class="container">
-    <h2 class="titulo-sessao">Meus Projetos</h2>
+    <h2 class="titulo-sessao">Galeria de Trabalhos</h2>
 
     <div class="card card-projeto">
         <h3>Página de Apresentação</h3>

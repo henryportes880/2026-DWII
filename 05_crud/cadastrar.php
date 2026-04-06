@@ -44,37 +44,49 @@ $caminho_raiz  = '../';
 include __DIR__ . '/../includes/cabecalho.php';
 ?>
 
-<div class="container">
-    <header class="header-pagina">
-        <h1 class="titulo-secao">➕ Novo Projeto</h1>
-        <a href="index.php" class="btn-voltar">← Voltar para a lista</a>
-    </header>
+<body class="hub-page">
+<a href="../index.php" class="btn-voltar">← Voltar ao Repositório</a>
+<header class="hub-header">
+    <div class="container">
+        <div class="header-acoes">
+        </div>
+        <h1>Novo Projeto</h1>
+        <p class="tagline">Aula 07 - Operação de Inserção (Create)</p>
+    </div>
+</header>
+
+<main class="container">
+    <div style="margin-bottom: 25px;">
+        <a href="index.php" class="btn-voltar">← Voltar para a lista de projetos</a>
+    </div>
 
     <div class="form-wrapper">
         <form action="cadastrar.php" method="post" class="form-container">
             <?php if ($erro): ?>
-                <div class="alerta-erro-simples">🚫 <?php echo htmlspecialchars($erro); ?></div>
+                <div class="alerta-erro" style="margin-bottom: 20px; padding: 12px; border-radius: 8px; background: rgba(239, 68, 68, 0.1); color: #f87171; border: 1px solid rgba(239, 68, 68, 0.2);">
+                    🚫 <?php echo htmlspecialchars($erro); ?>
+                </div>
             <?php endif; ?>
 
             <div class="form-group">
-                <label for="nome">Nome do Projeto <span class="obrigatorio">*</span></label>
+                <label for="nome">Nome do Projeto <span style="color: var(--accent);">*</span></label>
                 <input type="text" id="nome" name="nome" value="<?= htmlspecialchars($form['nome']) ?>" placeholder="Ex: E-commerce em PHP">
             </div>
 
             <div class="form-group">
-                <label for="descricao">Descrição <span class="obrigatorio">*</span></label>
-                <textarea id="descricao" name="descricao" rows="4"><?= htmlspecialchars($form['descricao']) ?></textarea>
+                <label for="descricao">Descrição <span style="color: var(--accent);">*</span></label>
+                <textarea id="descricao" name="descricao" rows="4" placeholder="Descreva brevemente o projeto..."><?= htmlspecialchars($form['descricao']) ?></textarea>
             </div>
 
             <div class="form-group">
-                <label for="tecnologias">Tecnologias <span class="obrigatorio">*</span></label>
+                <label for="tecnologias">Tecnologias <span style="color: var(--accent);">*</span></label>
                 <input type="text" id="tecnologias" name="tecnologias" value="<?= htmlspecialchars($form['tecnologias']) ?>" placeholder="PHP, MySQL, CSS...">
             </div>
 
-            <div class="form-row">
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
                 <div class="form-group">
                     <label for="link_github">GitHub (opcional)</label>
-                    <input type="url" id="link_github" name="link_github" value="<?= htmlspecialchars($form['link_github']) ?>">
+                    <input type="url" id="link_github" name="link_github" value="<?= htmlspecialchars($form['link_github']) ?>" placeholder="https://github.com/...">
                 </div>
                 <div class="form-group">
                     <label for="ano">Ano</label>
@@ -82,9 +94,10 @@ include __DIR__ . '/../includes/cabecalho.php';
                 </div>
             </div>
 
-            <button type="submit" class="btn btn-block">💾 Salvar Projeto</button>
+            <button type="submit" class="btn btn-block" style="width: 100%; margin-top: 20px;">💾 Salvar Projeto</button>
         </form>
     </div>
-</div>
+</main>
 
 <?php include __DIR__ . '/../includes/rodape.php'; ?>
+</body>

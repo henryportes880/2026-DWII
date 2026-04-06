@@ -8,35 +8,38 @@
 @import url('https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700;800&display=swap');
 
 
-
 :root {
+  /* 60% - Dominante (Fundo oficial do GitHub Dark) */
+  --bg: #0d1117;          /* Github bg (canvas-default) */
+  --bg-soft: #010409;     /* Fundo mais escuro (canvas-inset) */
 
-  --bg: #05070a;
+  /* 30% - Secundária (Cards, Botões e Bordas) */
+  --card: #161b22;        /* Fundo dos templates/cards (canvas-subtle) */
+  --card-strong: #21262d; /* Fundo dos botões "Use this template" (btn-bg) */
+  --text-sec: #8b949e;    /* Texto secundário/descrições (fg-muted) */
+  --border: #30363d;      /* Borda padrão dos cards (border-default) */
 
-  --bg-soft: #0a0f16;
+  /* 10% - Destaque (Textos e Ações) */
+  --text: #c9d1d9;        /* Texto principal padrão (fg-default) */
+  --text-title: #f0f6fc;  /* Branco brilhante para Títulos (fg-onEmphasis) */
+  --accent: #238636;      /* Verde do botão "New codespace" (btn-primary-bg) */
+  --accent-dark: #2ea043; /* Verde de hover do botão (btn-primary-hover-bg) */
+  --glow: rgba(35, 134, 54, 0.2);
 
-  --card: rgba(15, 20, 28, 0.6);
-
-  --card-strong: rgba(20, 25, 35, 0.9);
-
-  --text: #e6edf3;
-
-  --text-sec: #7d8590;
-
-  --accent: #00ff9c;
-
-  --accent-dark: #00c97a;
-
-  --border: rgba(255, 255, 255, 0.05);
-
-  --glow: rgba(0, 255, 156, 0.15);
-
-  --radius: 14px;
-
-  --radius-lg: 18px;
-
-  --transition: .4s cubic-bezier(.4, 0, .2, 1);
-
+  --radius: 6px;          /* O padrão visual de bordas do GitHub é de 6px */
+  --radius-lg: 8px;
+  --transition: 0.2s cubic-bezier(0.3, 0, 0.5, 1); /* Transição mais rápida, estilo native */
+}
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  /* Usando a variável --glow para o brilho se adaptar automaticamente */
+  background:
+    radial-gradient(circle at 20% 35%, var(--glow), transparent 45%), 
+    radial-gradient(circle at 80% 65%, rgba(0, 0, 0, 0.3), transparent 50%);
+  z-index: -1;
+  pointer-events: none;
 }
 
 
@@ -60,47 +63,15 @@
 
 
 body {
-
   font-family: 'Geist', sans-serif;
-
   background: var(--bg);
-
   color: var(--text);
-
   overflow-x: hidden;
-
   min-height: 100vh;
-
-  display: flex; /* Mantido para centralizar o conteúdo verticalmente se necessário */
-
+  display: flex; 
   flex-direction: column;
-
-  align-items: center; /* Centraliza os containers */
-
-}
-
-
-
-/* Efeito de Fundo Neon Fixo */
-
-body::before {
-
-  content: "";
-
-  position: fixed;
-
-  inset: 0;
-
-  background:
-
-    radial-gradient(circle at 15% 30%, rgba(0, 255, 156, 0.08), transparent 40%),
-
-    radial-gradient(circle at 85% 70%, rgba(0, 255, 156, 0.05), transparent 40%);
-
-  z-index: -1;
-
-  pointer-events: none;
-
+  align-items: center; /* Mantém seus cards centralizados */
+  padding-top: 80px;    /* Abre espaço para a navbar fixa */
 }
 
 
@@ -110,15 +81,10 @@ body::before {
    HEADER (Efeito Gradiente Animado)
 
 ============================== */
-
 header {
-
-  margin: 80px 0 40px;
-
+  margin: 40px 0 40px; /* Reduzi o topo para não sobrar espaço vazio */
   text-align: center;
-
   animation: fadeUp .8s ease forwards;
-
 }
 
 
@@ -142,68 +108,63 @@ header h1 {
 
 
 /* ==============================
-
-   NAV (Botões Flutuantes Glass)
-
+   NAVEGAÇÃO REFORMULADA (Corrigido)
 ============================== */
 
-nav {
-
-  display: flex;
-
-  gap: 12px;
-
-  flex-wrap: wrap;
-
-  justify-content: center;
-
-  margin-bottom: 60px;
-
+/* Localize e substitua todas as ocorrências de .navbar por esta única */
+.navbar {
+    background: rgba(15, 23, 42, 0.95) !important; 
+    backdrop-filter: blur(12px) !important;
+    border-bottom: 1px solid var(--border) !important;
+    padding: 15px 0 !important;
+    position: fixed !important; 
+    top: 0 !important;
+    left: 0 !important;
+    width: 100% !important;
+    z-index: 9999 !important;
+    display: flex !important;
+    justify-content: center !important;
 }
 
-
-
-nav a {
-
-  padding: 12px 24px;
-
-  border-radius: var(--radius);
-
-  background: var(--card);
-
-  backdrop-filter: blur(12px);
-
-  border: 1px solid var(--border);
-
-  color: var(--text);
-
-  text-decoration: none;
-
-  font-weight: 600;
-
-  font-size: 0.9rem;
-
-  transition: var(--transition);
-
-  position: relative;
-
+.nav-container {
+    width: 100%;
+    max-width: 900px;
+    display: flex;
+    justify-content: center;
+    gap: 30px;
 }
 
-
-
-nav a:hover {
-
-  transform: translateY(-5px);
-
-  border-color: var(--accent);
-
-  box-shadow: 0 10px 30px var(--glow);
-
-  color: var(--accent);
-
+/* Limpeza de estilos herdados de botões antigos */
+/* Isso remove qualquer estilo de botão que esteja 'vazando' para a navbar */
+.navbar a, 
+.nav-container a {
+    background: none !important;
+    background-color: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+    transform: none !important;
+    display: inline-block !important;
 }
 
+/* Estado Hover e Ativo (PHP $pagina_atual) */
+.navbar a:hover, 
+.navbar a.active {
+    color: var(--accent) !important;
+    background: transparent !important;
+}
 
+/* Linha Neon para o link ativo */
+.navbar a.active::after {
+    content: "";
+    position: absolute;
+    bottom: -5px;
+    left: 12px;
+    right: 12px;
+    height: 2px;
+    background: var(--accent);
+    border-radius: 2px;
+    box-shadow: 0 0 10px var(--glow);
+}
 
 /* ==============================
 
@@ -296,41 +257,23 @@ nav a:hover {
 ============================== */
 
 .btn {
-
   display: inline-block;
-
   padding: 12px 28px;
-
   border-radius: var(--radius);
-
   background: var(--accent);
-
   color: #001b12;
-
   font-weight: 700;
-
   text-decoration: none;
-
   transition: var(--transition);
-
   border: none;
-
   cursor: pointer;
-
   box-shadow: 0 4px 15px var(--glow);
-
 }
 
-
-
 .btn:hover {
-
   transform: translateY(-3px) scale(1.05);
-
   filter: brightness(1.1);
-
   box-shadow: 0 8px 25px var(--glow);
-
 }
 
 
@@ -1767,4 +1710,125 @@ input:focus {
 
     color: #000 !important;
 
+}
+.header-acoes {
+    margin: 40px 0 20px;
+    text-align: left;
+    width: 100%;
+}
+/* ==============================
+   BOTÃO VOLTAR CUSTOMIZADO
+============================== */
+
+.header-acoes {
+    margin-top: 30px;      /* Espaço para não sumir sob a navbar fixa */
+    margin-bottom: 20px;
+    text-align: left;
+    width: 100%;
+}
+
+/* ==============================
+   BOTÃO VOLTAR (Fixo no Topo Esquerdo)
+============================== */
+
+.btn-voltar {
+    position: fixed !important;
+    top: 15px !important;      
+    left: 20px !important;     
+    z-index: 10000 !important; /* Garante que fica por cima de tudo */
+    
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 18px;
+    
+    /* Efeito de Vidro (Glassmorphism) */
+    background: rgba(30, 41, 59, 0.5) !important; 
+    backdrop-filter: blur(10px) !important;
+    border: 1px solid var(--border) !important;
+    border-radius: var(--radius);
+    
+    color: var(--text-sec) !important;
+    text-decoration: none;
+    font-size: 0.85rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    transition: var(--transition);
+}
+
+.btn-voltar:hover {
+    color: var(--accent) !important;
+    border-color: var(--accent) !important;
+    background: var(--card-strong) !important;
+    transform: translateX(-5px) !important; /* Move ligeiramente para a esquerda */
+    box-shadow: 0 0 15px var(--glow) !important;
+}
+
+/* Container principal do card */
+.card-painel {
+    background: rgba(255, 255, 255, 0.03); /* Fundo sutilmente claro para contraste no dark mode */
+    border: 1px solid var(--border);       /* Usa a variável de borda que você já tem */
+    border-radius: 16px;
+    padding: 24px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+    backdrop-filter: blur(10px);           /* Efeito de vidro (glassmorphism) */
+    transition: transform 0.2s ease;
+}
+
+/* Títulos dentro do card */
+.card-painel h3 {
+    color: var(--text);
+    font-size: 1.2rem;
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+/* Estilização das informações do usuário (Status, Usuário, etc) */
+.painel-info p {
+    margin: 0;
+    font-size: 0.95rem;
+    color: var(--text-sec);
+}
+
+.painel-info strong {
+    color: var(--accent); /* Cor de destaque para os rótulos */
+}
+
+/* Badge de Status Online */
+.badge {
+    display: inline-block;
+    padding: 2px 10px;
+    border-radius: 6px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+/* Estilização do Botão de Gerenciar Projetos */
+.btn-primario {
+    display: inline-block;
+    background: var(--accent); /* Cor principal do seu tema */
+    color: var(--bg);          /* Cor de fundo do seu tema para contraste */
+    padding: 12px 24px;
+    border-radius: 8px;
+    font-weight: bold;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    margin-top: 10px;
+    border: 1px solid transparent;
+}
+
+.btn-primario:hover {
+    filter: brightness(1.2);
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+/* Ajuste para o divisor horizontal */
+.divisor {
+    border: 0;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    margin: 20px 0;
 }

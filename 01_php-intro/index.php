@@ -8,6 +8,15 @@ include '../includes/cabecalho.php';
 include '../includes/nav.php';
 ?>
 
+<header class="hub-header">
+    <div class="container">
+        <div class="header-acoes">
+        </div>
+        <h1>Apresentação Pessoal</h1>
+        <p class="tagline">Aula 00 - Estrutura e Identidade</p>
+    </div>
+</header>
+<a href="../index.php" class="btn-voltar">← Voltar ao Repositório</a>
 <section class="hero">
     <div class="hero-content">
         <img src="../imgs/henry.jpg" alt="Foto de Henry" class="hero-avatar" />

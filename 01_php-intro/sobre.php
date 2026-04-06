@@ -8,6 +8,16 @@ include '../includes/cabecalho.php';
 include '../includes/nav.php';
 ?>
 
+<header class="hub-header">
+    <div class="container">
+        <div class="header-acoes">
+        </div>
+        <h1>Sobre Mim</h1>
+        <p class="tagline">Aula 00 - Perfil e Objetivos</p>
+    </div>
+</header>
+<a href="../index.php" class="btn-voltar">← Voltar ao Repositório</a>
+
 <section class="hero">
     <div class="hero-content">
         <h1><?php echo $nome; ?></h1>
@@ -17,7 +27,7 @@ include '../includes/nav.php';
 
 <main class="container">
     <div class="card card-sobre">
-        <h2 class="titulo-sessao">Sobre mim</h2>
+        <h2 class="titulo-sessao">Minha História</h2>
         <div class="biografia">
             <p>Oi, meu nome é <strong>Henry Rafael Ribeiro Portes</strong>, tenho 17 anos e sou de Ponta Grossa, Paraná. Sou católico e tô no terceiro ano do Instituto Federal do Paraná (IFPR), no curso Técnico em Informática. Sempre curti entender como sites, sistemas e aplicativos funcionam, e minhas matérias favoritas são desenvolvimento web e educação física.</p>
             

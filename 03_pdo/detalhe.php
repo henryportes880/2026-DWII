@@ -34,10 +34,18 @@ $pagina_atual = "catalogo";
     <?php include 'includes/cab_pdo.php'; ?>
 </head>
 
-<body>
+<body class="hub-page">
+<header class="hub-header">
+    <div class="container">
+        <div class="header-acoes">
+        </div>
+        <h1>Detalhes do Item</h1>
+        <p class="tagline">Aula 05 - Consulta de Dados com PDO</p>
+    </div>
+</header>
 
 <div class="container">
-    <div class="header-acoes">
+    <div class="header-acoes" style="margin-top: 20px;">
         <a href="index.php" class="btn-voltar">
             ← Voltar ao catálogo
         </a>
