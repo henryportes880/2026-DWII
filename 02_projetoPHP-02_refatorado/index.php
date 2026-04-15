@@ -28,7 +28,7 @@ $instituicao = 'IFPR - Campus Ponta Grossa';
 include __DIR__ . '/includes/cabecalho.php';
 ?>
 
-<main class="container">
+<main>
     
     <!-- SEÇÃO HERO PREMIUM -->
     <section class="hero-section" style="display: flex; flex-wrap: wrap; align-items: center; gap: 4rem; text-align: left; margin-bottom: 4rem; animation: fadeInUp 0.8s ease-out;">
@@ -36,19 +36,14 @@ include __DIR__ . '/includes/cabecalho.php';
         <!-- COLUNA DE TEXTO -->
         <div class="texto-coluna" style="flex: 1; min-width: 300px;">
             
-            <!-- Badge de Status -->
-            <div style="margin-bottom: 1.5rem;">
-                <span class="badge badge-gold" style="display: inline-flex; align-items: center; gap: 0.5rem; font-size: 0.85rem;">
-                    🚀 <?= htmlspecialchars($profissao) ?>
-                </span>
-            </div>
+            
             
             <!-- Título Principal -->
             <h1 style="font-size: clamp(2rem, 6vw, 3.5rem); margin-bottom: 1rem; line-height: 1.2;">
                 Olá, eu sou <br>
                 <span style="background: var(--gradient-primary); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">
                     <?= htmlspecialchars($nome) ?>
-                </span> 👋
+                </span> 
             </h1>
             
             <!-- Subtítulo -->
@@ -138,7 +133,7 @@ include __DIR__ . '/includes/cabecalho.php';
             Confira os trabalhos que venho desenvolvendo durante meu curso de Desenvolvimento Web.
         </p>
         <a href="01_php-intro/projetos.php" class="btn" style="background: white; color: var(--primary); font-weight: 700; box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);">
-            🚀 Ver Todos os Projetos
+            Ver Todos os Projetos
         </a>
     </section>
 

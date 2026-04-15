@@ -28,67 +28,80 @@ require_once __DIR__ . '/../includes/cabecalho.php';
 ?>
 
 <main>
-    <div style="margin-bottom: 2rem;">
-        <a href="../index.php" class="btn" style="background: var(--bg-surface); color: var(--text-heading); border: 1px solid var(--border-focus); box-shadow: none; display: inline-block;">
+    
+    <!-- Botão Voltar -->
+    <div class="mb-4">
+        <a href="../index.php" class="btn btn-secondary">
             ← Voltar ao Repositório
         </a>
     </div>
 
+    <!-- Flash Message -->
     <?php if (isset($_SESSION['flash'])): ?>
-        <div style="background: #ecfdf5; border: 1px solid #a7f3d0; color: #065f46; padding: 1rem 1.5rem; border-radius: var(--radius-md); margin-bottom: 2.5rem; display: flex; align-items: center; gap: 0.75rem; box-shadow: var(--shadow-sm);">
-            <span style="font-size: 1.2rem;">✨</span>
-            <p style="margin: 0; font-weight: 500; font-size: 0.95rem;"><?php echo htmlspecialchars($_SESSION['flash']); ?></p>
+        <div class="alert-success" style="margin-bottom: var(--spacing-2xl);">
+            <span>✨</span>
+            <p style="margin: 0;"><?php echo htmlspecialchars($_SESSION['flash']); ?></p>
         </div>
-        <?php unset($_SESSION['flash']); // Limpa a mensagem para não aparecer de novo no F5 ?>
+        <?php unset($_SESSION['flash']); ?>
     <?php endif; ?>
 
-    <section class="inicio" style="margin-bottom: 2.5rem;">
+    <!-- Seção Introdutória -->
+    <section class="inicio mb-5">
         <h1>Painel de Controle</h1>
         <p>Bem-vindo à área restrita do sistema. Gerencie seus dados e acessos por aqui.</p>
     </section>
 
-    <section style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem; margin-bottom: 3rem;">
+    <!-- Grid de Cards -->
+    <section class="cards-grid mb-5">
         
-        <article class="card" style="margin-bottom: 0;">
-            <h3 style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 1.5rem; color: var(--text-heading); border-bottom: 1px solid var(--border-light); padding-bottom: 0.75rem;">
+        <!-- Card: Status da Sessão -->
+        <article class="card">
+            <h3 style="display: flex; align-items: center; gap: var(--spacing-sm); margin-bottom: var(--spacing-lg); color: var(--neutral-900); border-bottom: 1px solid var(--neutral-200); padding-bottom: var(--spacing-md); margin-top: 0;">
                 <span>👤</span> Status da Sessão
             </h3>
             
-            <ul style="list-style: none; padding: 0; margin: 0 0 1.5rem 0; display: flex; flex-direction: column; gap: 0.75rem;">
-                <li style="display: flex; justify-content: space-between; align-items: center; padding-bottom: 0.5rem; border-bottom: 1px dashed var(--border-light);">
-                    <strong style="color: var(--text-muted);">Usuário:</strong> 
-                    <span style="color: var(--text-heading); font-weight: 600;"><?php echo htmlspecialchars($_SESSION['usuario']); ?></span>
+            <ul style="list-style: none; padding: 0; margin: 0 0 var(--spacing-lg) 0; display: flex; flex-direction: column; gap: var(--spacing-md);">
+                <li style="display: flex; justify-content: space-between; align-items: center; padding-bottom: var(--spacing-sm); border-bottom: 1px dashed var(--neutral-200);">
+                    <strong class="text-muted">Usuário:</strong> 
+                    <span style="color: var(--neutral-900); font-weight: 600;">
+                        <?php echo htmlspecialchars($_SESSION['usuario']); ?>
+                    </span>
                 </li>
-                <li style="display: flex; justify-content: space-between; align-items: center; padding-bottom: 0.5rem; border-bottom: 1px dashed var(--border-light);">
-                    <strong style="color: var(--text-muted);">Acesso em:</strong> 
-                    <span style="color: var(--text-heading); font-weight: 500;"><?php echo htmlspecialchars($_SESSION['logado_em'] ?? '-'); ?></span>
+                <li style="display: flex; justify-content: space-between; align-items: center; padding-bottom: var(--spacing-sm); border-bottom: 1px dashed var(--neutral-200);">
+                    <strong class="text-muted">Acesso em:</strong> 
+                    <span style="color: var(--neutral-900); font-weight: 500;">
+                        <?php echo htmlspecialchars($_SESSION['logado_em'] ?? '-'); ?>
+                    </span>
                 </li>
                 <li style="display: flex; justify-content: space-between; align-items: center;">
-                    <strong style="color: var(--text-muted);">Visitas:</strong> 
-                    <span class="badge" style="font-size: 0.9rem;"><?php echo $_SESSION['visitas']; ?></span>
+                    <strong class="text-muted">Visitas:</strong> 
+                    <span class="badge"><?php echo $_SESSION['visitas']; ?></span>
                 </li>
             </ul>
             
-            <div style="background: var(--bg-surface-hover); padding: 1rem; border-radius: var(--radius-sm); font-size: 0.85rem; color: var(--text-muted); display: flex; gap: 0.5rem; align-items: flex-start;">
+            <div style="background: var(--neutral-100); padding: var(--spacing-lg); border-radius: var(--radius-md); font-size: 0.85rem; color: var(--neutral-500); display: flex; gap: var(--spacing-sm); align-items: flex-start;">
                 <span>💡</span>
-                <p style="margin: 0; line-height: 1.5;">O contador aumenta a cada atualização (F5) porque a sessão persiste no servidor.</p>
+                <p style="margin: 0; line-height: 1.6;">
+                    O contador aumenta a cada atualização (F5) porque a sessão persiste no servidor.
+                </p>
             </div>
         </article>
 
-        <article class="card" style="margin-bottom: 0; display: flex; flex-direction: column;">
-            <h3 style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 1.5rem; color: var(--text-heading); border-bottom: 1px solid var(--border-light); padding-bottom: 0.75rem;">
+        <!-- Card: Gerenciamento -->
+        <article class="card" style="display: flex; flex-direction: column;">
+            <h3 style="display: flex; align-items: center; gap: var(--spacing-sm); margin-bottom: var(--spacing-lg); color: var(--neutral-900); border-bottom: 1px solid var(--neutral-200); padding-bottom: var(--spacing-md); margin-top: 0;">
                 <span>📊</span> Gerenciamento
             </h3>
             
-            <p style="color: var(--text-body); margin-bottom: 2rem; line-height: 1.6;">
+            <p style="color: var(--neutral-600); margin-bottom: var(--spacing-lg); line-height: 1.6;">
                 O conteúdo abaixo é restrito. Utilize os módulos para gerenciar os dados do sistema com segurança.
             </p>
             
-            <div style="display: flex; flex-direction: column; gap: 1rem; margin-top: auto;">
-                <a href="../05_crud/index.php" class="btn" style="text-align: center; justify-content: center;">
+            <div style="display: flex; flex-direction: column; gap: var(--spacing-lg); margin-top: auto;">
+                <a href="../05_crud/index.php" class="btn btn-large btn-block">
                     📂 Gerenciar Projetos
                 </a>
-                <a href="perfil.php" class="btn" style="background: var(--bg-surface); color: var(--text-heading); border: 1px solid var(--border-focus); box-shadow: none; text-align: center; justify-content: center;">
+                <a href="perfil.php" class="btn btn-secondary btn-large btn-block">
                     ⚙️ Meu Perfil
                 </a>
             </div>
@@ -96,11 +109,52 @@ require_once __DIR__ . '/../includes/cabecalho.php';
 
     </section>
 
-    <div style="text-align: center; padding-top: 2rem; border-top: 1px solid var(--border-light);">
-        <a href="logout.php" class="btn" style="background: #fef2f2; color: #dc2626; border: 1px solid #fecaca; box-shadow: none; padding: 0.75rem 2rem;">
+    <!-- Botão Logout -->
+    <div class="text-center pt-4" style="border-top: 1px solid var(--neutral-200);">
+        <a href="logout.php" class="btn" style="background: rgba(239, 68, 68, 0.1); color: var(--error); border: 1px solid var(--error); box-shadow: none;">
             🚪 Encerrar Sessão
         </a>
     </div>
+
 </main>
+
+<!-- ANIMAÇÕES CSS -->
+<style>
+    @keyframes fadeInUp {
+        from {
+            opacity: 0;
+            transform: translateY(30px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    main {
+        animation: fadeInUp 0.8s ease-out;
+    }
+
+    .card {
+        animation: fadeInUp 0.8s ease-out backwards;
+    }
+
+    .cards-grid .card:nth-child(1) { animation-delay: 0.1s; }
+    .cards-grid .card:nth-child(2) { animation-delay: 0.2s; }
+
+    .alert-success {
+        animation: fadeInUp 0.6s ease-out;
+    }
+
+    @media (max-width: 768px) {
+        main {
+            gap: 2rem;
+        }
+
+        .cards-grid {
+            grid-template-columns: 1fr;
+        }
+    }
+</style>
 
 <?php require_once __DIR__ . '/../includes/rodape.php'; ?>

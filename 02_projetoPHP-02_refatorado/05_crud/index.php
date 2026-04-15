@@ -48,7 +48,7 @@ $pagina_atual  = 'crud';
 require_once __DIR__ . '/../includes/cabecalho.php';
 ?>
 
-<main class="container">
+<main>
     
     <!-- Header com Título e Botão -->
     <header class="flex-between" style="flex-wrap: wrap; gap: 2rem; margin-bottom: 3rem; border-bottom: 1px solid var(--neutral-200); padding-bottom: 2rem;">

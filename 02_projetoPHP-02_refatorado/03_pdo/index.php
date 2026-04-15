@@ -45,27 +45,31 @@ $tecnologias = $stmt->fetchAll();
         <p>Exploração de stack e ferramentas desenvolvidas por Henry no IFPR.</p>
     </section>
 
-    <section style="margin: -1.5rem 0 2rem 0;">
-        <article class="card" style="padding: 1.5rem; margin-bottom: 0;">
+    <!-- SEÇÃO DE BUSCA E FILTROS -->
+    <section style="margin-bottom: var(--spacing-2xl);">
+        <article class="card">
             
-            <form method="get" style="display: flex; gap: 0.5rem; margin-bottom: 1.5rem;">
+            <form method="get" class="flex gap-2" style="margin-bottom: var(--spacing-lg);">
                 <input type="text" name="busca" placeholder="O que você procura?" 
                        value="<?php echo htmlspecialchars($busca); ?>"
-                       style="flex: 1; margin-bottom: 0;">
-                <button type="submit" style="width: auto; padding: 0 1.5rem;">Buscar</button>
+                       style="flex: 1;">
+                <button type="submit" class="btn" style="width: auto;">Buscar</button>
             </form>
 
-            <nav style="display: flex; gap: 0.5rem; flex-wrap: wrap; align-items: center; justify-content: flex-start;">
-                <span style="font-size: 0.85rem; font-weight: 700; color: var(--text-muted); text-transform: uppercase; margin-right: 0.5rem;">
-                    Filtrar por:
+            <!-- Filtros por Categoria -->
+            <nav class="flex gap-2" style="flex-wrap: wrap; align-items: center;">
+                <span class="text-muted" style="font-size: 0.85rem; font-weight: 700; text-transform: uppercase; margin-right: var(--spacing-sm);">
+                    Filtrar:
                 </span>
                 
-                <a href="index.php" class="<?php echo !$categoria ? 'ativo' : ''; ?>" style="text-decoration: none;">Todos</a>
+                <a href="index.php" class="<?php echo !$categoria ? 'ativo' : ''; ?>" style="padding: var(--spacing-sm) var(--spacing-lg); border-radius: var(--radius-full); transition: var(--transition-fast); text-decoration: none; color: var(--neutral-600); font-weight: 500;">
+                    Todos
+                </a>
                 
                 <?php foreach ($categorias as $cat): ?>
                     <a href="index.php?categoria=<?php echo urlencode($cat['categoria']); ?>" 
                        class="<?php echo $categoria === $cat['categoria'] ? 'ativo' : ''; ?>"
-                       style="text-decoration: none;">
+                       style="padding: var(--spacing-sm) var(--spacing-lg); border-radius: var(--radius-full); transition: var(--transition-fast); text-decoration: none; color: var(--neutral-600); font-weight: 500;">
                         <?php echo htmlspecialchars($cat['categoria']); ?>
                     </a>
                 <?php endforeach; ?>
@@ -73,29 +77,35 @@ $tecnologias = $stmt->fetchAll();
         </article>
     </section>
 
-    <p style="margin-bottom: 1rem; font-size: 0.9rem; color: var(--text-muted);">
+    <!-- CONTADOR DE RESULTADOS -->
+    <p class="text-muted" style="margin-bottom: var(--spacing-lg); font-size: 0.9rem;">
         Encontramos <strong><?php echo count($tecnologias); ?></strong> item(s) para sua seleção.
     </p>
 
-    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem;">
+    <!-- GRID DE TECNOLOGIAS -->
+    <section class="cards-grid mb-5">
         
         <?php if (empty($tecnologias)): ?>
-            <article class="card" style="grid-column: 1 / -1; text-align: center; padding: 3rem;">
-                <p style="font-size: 1.2rem; color: var(--text-muted);">Nenhuma tecnologia encontrada para essa busca. 🔍</p>
-                <a href="index.php" class="btn" style="margin-top: 1rem; display: inline-block;">Limpar Filtros</a>
+            <article class="card text-center" style="grid-column: 1 / -1; padding: var(--spacing-4xl) var(--spacing-2xl);">
+                <p style="font-size: 1.2rem; color: var(--neutral-500); margin-bottom: var(--spacing-lg);">
+                    Nenhuma tecnologia encontrada para essa busca. 🔍
+                </p>
+                <a href="index.php" class="btn">Limpar Filtros</a>
             </article>
         <?php endif; ?>
 
         <?php foreach ($tecnologias as $tec): ?>
             <article class="card" style="display: flex; flex-direction: column; justify-content: space-between;">
                 <div>
-                    <div style="margin-bottom: 1rem;">
+                    <div class="mb-3">
                         <span class="badge"><?php echo htmlspecialchars($tec['categoria']); ?></span>
                     </div>
                     
-                    <h3 style="margin-bottom: 0.75rem; color: var(--text-heading);"><?php echo htmlspecialchars($tec['nome']); ?></h3>
+                    <h3 style="margin-bottom: var(--spacing-md); color: var(--neutral-900); margin-top: 0;">
+                        <?php echo htmlspecialchars($tec['nome']); ?>
+                    </h3>
                     
-                    <p style="font-size: 0.95rem; line-height: 1.6; color: var(--text-body);">
+                    <p style="font-size: 0.95rem; line-height: 1.6; color: var(--neutral-600);">
                         <?php 
                             $desc = htmlspecialchars($tec['descricao']);
                             echo (strlen($desc) > 130) ? substr($desc, 0, 130) . '...' : $desc; 
@@ -103,19 +113,53 @@ $tecnologias = $stmt->fetchAll();
                     </p>
                 </div>
 
-                <div style="margin-top: 1.5rem; padding-top: 1rem; border-top: 1px solid var(--border-light);">
+                <div style="margin-top: var(--spacing-lg); padding-top: var(--spacing-lg); border-top: 1px solid var(--neutral-200);">
                     <a href="detalhes.php?id=<?php echo $tec['id']; ?>&categoria=<?php echo urlencode($categoria); ?>" 
-                       class="btn" style="width: 100%; text-align: center;">Ver detalhes →</a>
+                       class="btn btn-block">Ver detalhes →</a>
                 </div>
             </article>
         <?php endforeach; ?>
-    </div>
+    </section>
     
-    <div style="text-align: center; margin-top: 3rem;">
-        <a href="../index.php" class="btn" style="background: var(--bg-surface); color: var(--text-heading); border: 1px solid var(--border-focus); box-shadow: none;">
-            ← Voltar ao Repositório
-        </a>
+    <!-- BOTÃO VOLTAR -->
+    <div class="text-center mt-5">
+        <a href="../index.php" class="btn btn-secondary">← Voltar ao Repositório</a>
     </div>
 </main>
+
+<!-- ANIMAÇÕES CSS -->
+<style>
+    @keyframes fadeInUp {
+        from {
+            opacity: 0;
+            transform: translateY(30px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    main {
+        animation: fadeInUp 0.8s ease-out;
+    }
+
+    .card {
+        animation: fadeInUp 0.8s ease-out backwards;
+    }
+
+    .cards-grid .card:nth-child(1) { animation-delay: 0.1s; }
+    .cards-grid .card:nth-child(2) { animation-delay: 0.2s; }
+    .cards-grid .card:nth-child(3) { animation-delay: 0.3s; }
+    .cards-grid .card:nth-child(4) { animation-delay: 0.4s; }
+    .cards-grid .card:nth-child(5) { animation-delay: 0.5s; }
+    .cards-grid .card:nth-child(6) { animation-delay: 0.6s; }
+
+    @media (max-width: 768px) {
+        main {
+            gap: 2rem;
+        }
+    }
+</style>
 
 <?php include 'includes/rod_pdo.php'; ?>

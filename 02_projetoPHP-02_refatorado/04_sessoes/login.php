@@ -65,55 +65,111 @@ $pagina_atual = 'login';
 require_once __DIR__ . '/../includes/cabecalho.php';
 ?>
 
-<main>
-    <article class="card" style="max-width: 420px; margin: 2rem auto; padding: 2.5rem 2rem; text-align: center;">
+<main style="display: flex; align-items: center; justify-content: center; min-height: 60vh; padding: var(--spacing-2xl) 0;">
+    
+    <article class="card" style="width: 100%; max-width: 420px; text-align: center;">
         
-        <div style="display: inline-flex; align-items: center; justify-content: center; width: 64px; height: 64px; border-radius: var(--radius-pill); background: var(--bg-surface-hover); color: var(--primary); font-size: 1.8rem; margin-bottom: 1rem; border: 2px solid var(--border-light);">
+        <!-- Ícone -->
+        <div class="flex-center" style="width: 64px; height: 64px; border-radius: var(--radius-full); background: rgba(21, 101, 192, 0.1); color: var(--primary); font-size: 1.8rem; margin: 0 auto var(--spacing-lg);">
             🔐
         </div>
         
-        <h1 style="font-size: clamp(1.5rem, 4vw, 1.8rem); margin-bottom: 0.5rem; color: var(--text-heading);">Acesso Restrito</h1>
+        <!-- Título -->
+        <h1 style="font-size: clamp(1.5rem, 4vw, 1.8rem); margin-bottom: var(--spacing-sm); color: var(--neutral-900);">
+            Acesso Restrito
+        </h1>
         
-        <div style="margin-bottom: 2rem;">
-            <span class="badge" style="background: var(--bg-surface); border: 1px solid var(--border-light);">Aula 06 - Gestão de Sessões</span>
+        <!-- Badge -->
+        <div class="mb-4">
+            <span class="badge">Aula 06 - Gestão de Sessões</span>
         </div>
 
+        <!-- Alerta de Erro -->
         <?php if ($erro): ?>
-            <div style="background: #fef2f2; color: #dc2626; border: 1px solid #fecaca; padding: 1rem; border-radius: var(--radius-md); margin-bottom: 1.5rem; text-align: left; font-size: 0.95rem; display: flex; align-items: center; gap: 0.75rem; box-shadow: var(--shadow-sm);">
+            <div class="alert-error" style="margin-bottom: var(--spacing-lg); text-align: left;">
                 <span style="font-size: 1.2rem;">🚫</span>
-                <span style="font-weight: 500; line-height: 1.4;"><?php echo htmlspecialchars($erro); ?></span>
+                <span><?php echo htmlspecialchars($erro); ?></span>
             </div>
         <?php endif; ?>
 
-        <form action="login.php" method="post" style="display: flex; flex-direction: column; gap: 1.25rem; text-align: left;">
+        <!-- Formulário -->
+        <form action="login.php" method="post" class="form-container">
             
-            <div style="display: flex; flex-direction: column; gap: 0.4rem;">
-                <label for="usuario" style="font-weight: 600; color: var(--text-heading); font-size: 0.95rem;">Usuário:</label>
+            <div class="form-group">
+                <label for="usuario">Usuário:</label>
                 <input type="text" name="usuario" id="usuario" 
                        value="<?php echo htmlspecialchars($login); ?>" 
-                       placeholder="Ex: admin" required autocomplete="username"
-                       style="width: 100%; padding: 0.75rem; border: 1px solid var(--border-light); border-radius: var(--radius-sm); background: var(--bg-surface); font-family: inherit; font-size: 1rem; outline: none;">
+                       placeholder="Ex: admin" required autocomplete="username">
             </div>
 
-            <div style="display: flex; flex-direction: column; gap: 0.4rem;">
-                <label for="senha" style="font-weight: 600; color: var(--text-heading); font-size: 0.95rem;">Senha:</label>
+            <div class="form-group">
+                <label for="senha">Senha:</label>
                 <input type="password" name="senha" id="senha" 
-                       placeholder="••••••••" required autocomplete="current-password"
-                       style="width: 100%; padding: 0.75rem; border: 1px solid var(--border-light); border-radius: var(--radius-sm); background: var(--bg-surface); font-family: inherit; font-size: 1rem; outline: none;">
+                       placeholder="••••••••" required autocomplete="current-password">
             </div>
 
-            <button type="submit" class="btn" style="width: 100%; margin-top: 0.5rem; padding: 0.85rem; font-size: 1.05rem; justify-content: center;">
+            <button type="submit" class="btn btn-large btn-block">
                 Entrar no Sistema →
             </button>
         </form>
 
-        <div style="margin-top: 2rem; padding-top: 1.5rem; border-top: 1px solid var(--border-light);">
-            <a href="../index.php" style="color: var(--text-muted); text-decoration: none; font-size: 0.95rem; font-weight: 500; transition: color 0.2s;">
+        <!-- Link Voltar -->
+        <div style="margin-top: var(--spacing-2xl); padding-top: var(--spacing-lg); border-top: 1px solid var(--neutral-200);">
+            <a href="../index.php" class="text-muted" style="font-size: 0.95rem; font-weight: 500; transition: var(--transition-fast);" onmouseover="this.style.color='var(--primary)'" onmouseout="this.style.color='var(--neutral-500)'">
                 ← Voltar ao Início
             </a>
         </div>
         
     </article>
+
 </main>
+
+<!-- ANIMAÇÕES CSS -->
+<style>
+    @keyframes fadeInUp {
+        from {
+            opacity: 0;
+            transform: translateY(30px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    @keyframes slideDown {
+        from {
+            opacity: 0;
+            transform: translateY(-20px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    main {
+        animation: fadeInUp 0.8s ease-out;
+    }
+
+    .card {
+        animation: slideDown 0.6s ease-out;
+    }
+
+    .alert-error {
+        animation: slideDown 0.5s ease-out;
+    }
+
+    @media (max-width: 768px) {
+        main {
+            min-height: auto;
+            padding: var(--spacing-lg) 0;
+        }
+
+        .card {
+            margin: 0 var(--spacing-lg);
+        }
+    }
+</style>
 
 <?php require_once __DIR__ . '/../includes/rodape.php'; ?>

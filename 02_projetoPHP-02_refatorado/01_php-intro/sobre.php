@@ -69,5 +69,48 @@
 
     <?php include '../includes/rodape.php'; ?>
 
+    <!-- ANIMAÇÕES CSS -->
+    <style>
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes slideInRight {
+            from {
+                opacity: 0;
+                transform: translateX(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        main {
+            animation: fadeInUp 0.8s ease-out;
+        }
+
+        .card {
+            animation: fadeInUp 0.8s ease-out backwards;
+        }
+
+        .card:nth-child(2) { animation-delay: 0.1s; }
+        .card:nth-child(3) { animation-delay: 0.2s; }
+        .card:nth-child(4) { animation-delay: 0.3s; }
+
+        @media (max-width: 768px) {
+            main {
+                gap: 2rem;
+            }
+        }
+    </style>
+
 </body>
 </html>

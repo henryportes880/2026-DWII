@@ -71,9 +71,9 @@ include '../includes/cabecalho.php';
     </div>
 
     <?php if (!empty($erros)): ?>
-        <div class="alerta-erro" style="flex-direction: column; align-items: flex-start; gap: 0.5rem;">
-            <strong style="font-size: 1rem;">🚫 Corrija os erros abaixo:</strong>
-            <ul style="margin-left: 1.5rem; font-size: 0.9rem;">
+        <div class="alert-error">
+            <strong>🚫 Corrija os erros abaixo:</strong>
+            <ul style="margin-left: 1.5rem; font-size: 0.9rem; margin-top: var(--spacing-sm);">
                 <?php foreach ($erros as $erro): ?>
                     <li><?php echo htmlspecialchars($erro); ?></li>
                 <?php endforeach; ?>
@@ -110,7 +110,7 @@ include '../includes/cabecalho.php';
             <div class="form-group">
                 <label for="mensagem">Sua mensagem:</label>
                 <textarea name="mensagem" id="mensagem" rows="6" placeholder="Escreva sua mensagem aqui..."><?php echo htmlspecialchars($mensagem); ?></textarea>
-                <p style="font-size: 0.8rem; color: var(--text-muted); text-align: right; margin-top: 0.25rem;">
+                <p style="font-size: 0.8rem; color: var(--neutral-500); text-align: right; margin-top: var(--spacing-xs);">
                     <?php echo strlen($mensagem); ?> / 500 caracteres
                 </p>
             </div>
@@ -119,10 +119,53 @@ include '../includes/cabecalho.php';
         </form>
     </article>
     
-    <div style="text-align: center; margin-top: 2.5rem;">
+    <div style="text-align: center; margin-top: var(--spacing-2xl);">
         <a href="../index.php" class="btn">← Voltar ao Início</a>
     </div>
 
 </main>
+
+<!-- ANIMAÇÕES CSS -->
+<style>
+    @keyframes fadeInUp {
+        from {
+            opacity: 0;
+            transform: translateY(30px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    @keyframes slideInRight {
+        from {
+            opacity: 0;
+            transform: translateX(50px);
+        }
+        to {
+            opacity: 1;
+            transform: translateX(0);
+        }
+    }
+
+    main {
+        animation: fadeInUp 0.8s ease-out;
+    }
+
+    .alert-error {
+        animation: fadeInUp 0.6s ease-out;
+    }
+
+    .card {
+        animation: fadeInUp 0.8s ease-out 0.1s backwards;
+    }
+
+    @media (max-width: 768px) {
+        main {
+            gap: 2rem;
+        }
+    }
+</style>
 
 <?php include '../includes/rodape.php'; ?>
