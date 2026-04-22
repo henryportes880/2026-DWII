@@ -8,92 +8,94 @@
  * =========================================================
  */
 
-// 1. Início da Sessão (Sempre no topo)
+// 1. INÍCIO DA SESSÃO E PROTEÇÃO
 session_start();
-
-// 2. Proteção: Se já estiver logado, redireciona para o painel
 require_once __DIR__ . '/includes/auth.php';
 redirecionar_se_logado();
 
-// 3. Configurações e Credenciais (Virão do BD futuramente)
+// 2. CONFIGURAÇÕES INICIAIS
 $USUARIO_VALIDO = 'admin';
 $SENHA_VALIDA = 'dwii2026';
-$erro = '';
 $login = '';
+$erros = [];
 $agora = time();
 
-// 4. Lógica de Bloqueio por Tentativas
+// 3. LÓGICA DE BLOQUEIO POR TENTATIVAS
 if (isset($_SESSION['bloqueado_ate']) && $agora < $_SESSION['bloqueado_ate']) {
     $minutos_restantes = ceil(($_SESSION['bloqueado_ate'] - $agora) / 60);
-    $erro = "Muitas tentativas. Sistema bloqueado. Tente novamente em instantes.";
+    $erros[] = "Muitas tentativas. Sistema bloqueado. Tente novamente em instantes.";
 }
 
-// 5. Processamento do Formulário (POST)
-if ($_SERVER['REQUEST_METHOD'] === 'POST' && empty($erro)) {
+// 4. PROCESSAMENTO DO FORMULÁRIO (POST)
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && empty($erros)) {
+    // trim() limpa espaços vazios indesejados
     $login = trim($_POST['usuario'] ?? '');
     $senha = trim($_POST['senha'] ?? '');
 
-    if ($login === $USUARIO_VALIDO && $senha === $SENHA_VALIDA) {
-        // Sucesso: Regenera ID por segurança
-        session_regenerate_id(true);
-        $_SESSION['usuario'] = $login;
-        $_SESSION['logado_em'] = date('d/m/Y \à\s H:i');
-        $_SESSION['tentativas'] = 0; // Reseta contador
-        
-        header('Location: painel.php');
-        exit;
-    } else {
-        // Erro: Incrementa contador
-        $_SESSION['tentativas'] = ($_SESSION['tentativas'] ?? 0) + 1;
-        
-        if ($_SESSION['tentativas'] >= 3) {
-            $_SESSION['bloqueado_ate'] = time() + 60; // Bloqueia por 1 minuto
-            $_SESSION['tentativas'] = 0;
-            $erro = "Tentativas esgotadas. Sistema bloqueado por 1 minuto.";
+    // VALIDAÇÕES
+    if (empty($login)) {
+        $erros[] = 'O campo Usuário é obrigatório.';
+    }
+
+    if (empty($senha)) {
+        $erros[] = 'O campo Senha é obrigatório.';
+    }
+
+    // PROCESSAMENTO SE NÃO HOUVER ERROS DE PREENCHIMENTO
+    if (empty($erros)) {
+        if ($login === $USUARIO_VALIDO && $senha === $SENHA_VALIDA) {
+            // Sucesso: Regenera ID por segurança
+            session_regenerate_id(true);
+            $_SESSION['usuario'] = $login;
+            $_SESSION['logado_em'] = date('d/m/Y \à\s H:i');
+            $_SESSION['tentativas'] = 0; // Reseta contador
+            
+            header('Location: painel.php');
+            exit;
         } else {
-            $erro = "Usuário ou senha incorretos.";
+            // Erro: Incrementa contador
+            $_SESSION['tentativas'] = ($_SESSION['tentativas'] ?? 0) + 1;
+            
+            if ($_SESSION['tentativas'] >= 3) {
+                $_SESSION['bloqueado_ate'] = time() + 60; // Bloqueia por 1 minuto
+                $_SESSION['tentativas'] = 0;
+                $erros[] = "Tentativas esgotadas. Sistema bloqueado por 1 minuto.";
+            } else {
+                $erros[] = "Usuário ou senha incorretos.";
+            }
         }
     }
 }
 
-// 6. Variáveis de Template
-$titulo_pagina = 'Login | Acesso Restrito';
-$caminho_raiz = '../';
+// 5. VARIÁVEIS DO TEMPLATE (Para o cabeçalho)
+$nome = "Henry";
 $pagina_atual = 'login';
+$caminho_raiz = '../';
+$titulo_pagina = 'Login | Acesso Restrito';
 
-// 7. Renderização do Cabeçalho
 require_once __DIR__ . '/../includes/cabecalho.php';
 ?>
 
-<main style="display: flex; align-items: center; justify-content: center; min-height: 60vh; padding: var(--spacing-2xl) 0;">
+<main>
     
-    <article class="card" style="width: 100%; max-width: 420px; text-align: center;">
-        
-        <!-- Ícone -->
-        <div class="flex-center" style="width: 64px; height: 64px; border-radius: var(--radius-full); background: rgba(21, 101, 192, 0.1); color: var(--primary); font-size: 1.8rem; margin: 0 auto var(--spacing-lg);">
-            🔐
-        </div>
-        
-        <!-- Título -->
-        <h1 style="font-size: clamp(1.5rem, 4vw, 1.8rem); margin-bottom: var(--spacing-sm); color: var(--neutral-900);">
-            Acesso Restrito
-        </h1>
-        
-        <!-- Badge -->
-        <div class="mb-4">
-            <span class="badge">Aula 06 - Gestão de Sessões</span>
-        </div>
+    <div class="inicio">
+        <h1>Acesso Restrito</h1>
+        <p>Informe suas credenciais para entrar no sistema. (Aula 06 - Gestão de Sessões)</p>
+    </div>
 
-        <!-- Alerta de Erro -->
-        <?php if ($erro): ?>
-            <div class="alert-error" style="margin-bottom: var(--spacing-lg); text-align: left;">
-                <span style="font-size: 1.2rem;">🚫</span>
-                <span><?php echo htmlspecialchars($erro); ?></span>
-            </div>
-        <?php endif; ?>
+    <?php if (!empty($erros)): ?>
+        <div class="alert-error">
+            <strong>🚫 Atenção:</strong>
+            <ul style="margin-left: 1.5rem; font-size: 0.9rem; margin-top: var(--spacing-sm);">
+                <?php foreach ($erros as $erro): ?>
+                    <li><?php echo htmlspecialchars($erro); ?></li>
+                <?php endforeach; ?>
+            </ul>
+        </div>
+    <?php endif; ?>
 
-        <!-- Formulário -->
-        <form action="login.php" method="post" class="form-container">
+    <article class="card">
+        <form class="form-container" action="login.php" method="post">
             
             <div class="form-group">
                 <label for="usuario">Usuário:</label>
@@ -108,23 +110,16 @@ require_once __DIR__ . '/../includes/cabecalho.php';
                        placeholder="••••••••" required autocomplete="current-password">
             </div>
 
-            <button type="submit" class="btn btn-large btn-block">
-                Entrar no Sistema →
-            </button>
+            <button type="submit">Entrar no Sistema →</button>
         </form>
-
-        <!-- Link Voltar -->
-        <div style="margin-top: var(--spacing-2xl); padding-top: var(--spacing-lg); border-top: 1px solid var(--neutral-200);">
-            <a href="../index.php" class="text-muted" style="font-size: 0.95rem; font-weight: 500; transition: var(--transition-fast);" onmouseover="this.style.color='var(--primary)'" onmouseout="this.style.color='var(--neutral-500)'">
-                ← Voltar ao Início
-            </a>
-        </div>
-        
     </article>
+    
+    <div style="text-align: center; margin-top: var(--spacing-2xl);">
+        <a href="../index.php" class="btn">← Voltar ao Início</a>
+    </div>
 
 </main>
 
-<!-- ANIMAÇÕES CSS -->
 <style>
     @keyframes fadeInUp {
         from {
@@ -137,14 +132,14 @@ require_once __DIR__ . '/../includes/cabecalho.php';
         }
     }
 
-    @keyframes slideDown {
+    @keyframes slideInRight {
         from {
             opacity: 0;
-            transform: translateY(-20px);
+            transform: translateX(50px);
         }
         to {
             opacity: 1;
-            transform: translateY(0);
+            transform: translateX(0);
         }
     }
 
@@ -152,22 +147,17 @@ require_once __DIR__ . '/../includes/cabecalho.php';
         animation: fadeInUp 0.8s ease-out;
     }
 
-    .card {
-        animation: slideDown 0.6s ease-out;
+    .alert-error {
+        animation: fadeInUp 0.6s ease-out;
     }
 
-    .alert-error {
-        animation: slideDown 0.5s ease-out;
+    .card {
+        animation: fadeInUp 0.8s ease-out 0.1s backwards;
     }
 
     @media (max-width: 768px) {
         main {
-            min-height: auto;
-            padding: var(--spacing-lg) 0;
-        }
-
-        .card {
-            margin: 0 var(--spacing-lg);
+            gap: 2rem;
         }
     }
 </style>

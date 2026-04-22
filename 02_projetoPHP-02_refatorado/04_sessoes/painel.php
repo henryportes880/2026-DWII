@@ -28,15 +28,7 @@ require_once __DIR__ . '/../includes/cabecalho.php';
 ?>
 
 <main>
-    
-    <!-- Botão Voltar -->
-    <div class="mb-4">
-        <a href="../index.php" class="btn btn-secondary">
-            ← Voltar ao Repositório
-        </a>
-    </div>
 
-    <!-- Flash Message -->
     <?php if (isset($_SESSION['flash'])): ?>
         <div class="alert-success" style="margin-bottom: var(--spacing-2xl);">
             <span>✨</span>
@@ -45,16 +37,13 @@ require_once __DIR__ . '/../includes/cabecalho.php';
         <?php unset($_SESSION['flash']); ?>
     <?php endif; ?>
 
-    <!-- Seção Introdutória -->
     <section class="inicio mb-5">
         <h1>Painel de Controle</h1>
         <p>Bem-vindo à área restrita do sistema. Gerencie seus dados e acessos por aqui.</p>
     </section>
 
-    <!-- Grid de Cards -->
     <section class="cards-grid mb-5">
         
-        <!-- Card: Status da Sessão -->
         <article class="card">
             <h3 style="display: flex; align-items: center; gap: var(--spacing-sm); margin-bottom: var(--spacing-lg); color: var(--neutral-900); border-bottom: 1px solid var(--neutral-200); padding-bottom: var(--spacing-md); margin-top: 0;">
                 <span>👤</span> Status da Sessão
@@ -87,7 +76,6 @@ require_once __DIR__ . '/../includes/cabecalho.php';
             </div>
         </article>
 
-        <!-- Card: Gerenciamento -->
         <article class="card" style="display: flex; flex-direction: column;">
             <h3 style="display: flex; align-items: center; gap: var(--spacing-sm); margin-bottom: var(--spacing-lg); color: var(--neutral-900); border-bottom: 1px solid var(--neutral-200); padding-bottom: var(--spacing-md); margin-top: 0;">
                 <span>📊</span> Gerenciamento
@@ -109,16 +97,18 @@ require_once __DIR__ . '/../includes/cabecalho.php';
 
     </section>
 
-    <!-- Botão Logout -->
     <div class="text-center pt-4" style="border-top: 1px solid var(--neutral-200);">
         <a href="logout.php" class="btn" style="background: rgba(239, 68, 68, 0.1); color: var(--error); border: 1px solid var(--error); box-shadow: none;">
             🚪 Encerrar Sessão
         </a>
     </div>
 
+    <div class="text-center mt-5">
+        <a href="../index.php" class="btn btn-secondary">← Voltar ao Repositório</a>
+    </div>
+
 </main>
 
-<!-- ANIMAÇÕES CSS -->
 <style>
     @keyframes fadeInUp {
         from {

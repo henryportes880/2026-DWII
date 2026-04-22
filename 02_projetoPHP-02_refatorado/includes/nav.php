@@ -68,3 +68,22 @@ $logado = isset($_SESSION['usuario']);
         </a>
     <?php endif; ?>
 </nav>
+
+<style>
+    /* Estilização do botão de Sair */
+    .menu-principal .link-sair {
+        color: #ef4444; /* Texto vermelho */
+        background-color: rgba(239, 68, 68, 0.1); /* Fundo vermelho claro */
+        border-radius: var(--radius-md, 6px); /* Arredondamento padrão */
+        padding: 0.4rem 0.8rem;
+        transition: all 0.2s ease-in-out;
+        font-weight: 600;
+        margin-left: 0.5rem; /* Dá um leve respiro dos outros itens */
+    }
+
+    .menu-principal .link-sair:hover {
+        background-color: #ef4444; /* Fundo vermelho sólido */
+        color: #ffffff !important; /* Texto branco */
+        transform: translateY(-2px); /* Efeito de elevação leve */
+    }
+</style>
