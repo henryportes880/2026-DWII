@@ -87,7 +87,7 @@ include __DIR__ . '/includes/cabecalho.php';
                 <div style="position: absolute; inset: -20px; background: var(--gradient-primary); border-radius: var(--radius-2xl); opacity: 0.1; z-index: 0;"></div>
                 
                 <!-- Imagem -->
-                <img src="<?= $caminho_raiz ?>imgs/henry.jpg" 
+                <img src="<?= $caminho_raiz ?>includes/imgs/henry.jpg" 
                      alt="Foto de <?= htmlspecialchars($nome) ?>" 
                      style="position: relative; z-index: 1; width: 100%; height: 100%; object-fit: cover; border-radius: var(--radius-xl); box-shadow: var(--shadow-2xl); border: 6px solid white;">
             </div>

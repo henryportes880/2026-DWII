@@ -7,11 +7,16 @@
  * Autor: Henry
  * ===============================================================
  */
+
+if (session_status() === PHP_SESSION_NONE){
+ session_start();
+ }
+
     // Variáveis PHP
     $nome = "Henry";
     $idade = 17;
-    $pagina_atual = "sobre"; 
-    $caminho_raiz = "../"; 
+    $pagina_atual = "sobre";
+    $caminho_raiz = "./"; 
     $titulo_pagina = "Sobre mim - {$nome}";
 ?>
 
@@ -21,11 +26,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?php echo $titulo_pagina; ?></title>
-    <link rel="stylesheet" href="<?php echo $caminho_raiz; ?>css/style.css">
+    <?php include __DIR__ . '/includes/cabecalho.php'; ?>
 </head>
 <body>
     
-    <?php include '../includes/cabecalho.php'; ?>
+
 
     <main>
         
@@ -62,12 +67,12 @@
         </article>
 
         <div style="text-align: center; margin-top: 2.5rem;">
-            <a href="../index.php" class="btn">← Voltar ao início</a>
+            <a href="index.php" class="btn">← Voltar ao início</a>
         </div>
 
     </main>
 
-    <?php include '../includes/rodape.php'; ?>
+    <?php include __DIR__ . '/includes/rodape.php'; ?>
 
     <!-- ANIMAÇÕES CSS -->
     <style>

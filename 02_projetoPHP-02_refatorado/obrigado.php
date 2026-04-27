@@ -11,7 +11,7 @@
 // 1. VARIÁVEIS DO TEMPLATE
 $nome = "Henry";
 $pagina_atual = "contato"; // Mantém o item de contato ativo no menu
-$caminho_raiz = "../"; 
+$caminho_raiz = "./"; 
 $titulo_pagina = "Obrigado - {$nome}";
 
 // 2. RECEBIMENTO DE DADOS VIA GET
@@ -19,7 +19,7 @@ $titulo_pagina = "Obrigado - {$nome}";
 $nome_visitante = htmlspecialchars($_GET['nome'] ?? 'Visitante');
 $assunto = htmlspecialchars($_GET['assunto'] ?? 'Geral');
 
-include '../includes/cabecalho.php'; 
+include __DIR__ .'/includes/cabecalho.php'; 
 ?>
 
 <main>
@@ -46,7 +46,7 @@ include '../includes/cabecalho.php';
 
         <div style="display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap;">
             
-            <a href="../index.php" class="btn" style="background: var(--bg-surface); color: var(--text-heading); border: 1px solid var(--border-focus); box-shadow: none;">
+            <a href="index.php" class="btn" style="background: var(--bg-surface); color: var(--text-heading); border: 1px solid var(--border-focus); box-shadow: none;">
                 Voltar ao Início
             </a>
             
@@ -60,4 +60,4 @@ include '../includes/cabecalho.php';
 
 </main>
 
-<?php include '../includes/rodape.php'; ?>
+<?php include __DIR__ . '/includes/rodape.php'; ?>

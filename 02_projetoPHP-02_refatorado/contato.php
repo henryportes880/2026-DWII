@@ -57,10 +57,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 // 3. VARIÁVEIS DO TEMPLATE (Para o cabeçalho)
 $nome = "Henry";
 $pagina_atual = "contato";
-$caminho_raiz = "../"; 
+$caminho_raiz = "./"; 
 $titulo_pagina = "Contato - {$nome}";
 
-include '../includes/cabecalho.php'; 
+include __DIR__ . '/includes/cabecalho.php'; 
 ?>
 
 <main>
@@ -120,7 +120,7 @@ include '../includes/cabecalho.php';
     </article>
     
     <div style="text-align: center; margin-top: var(--spacing-2xl);">
-        <a href="../index.php" class="btn">← Voltar ao Início</a>
+        <a href="index.php" class="btn">← Voltar ao Início</a>
     </div>
 
 </main>
@@ -168,4 +168,4 @@ include '../includes/cabecalho.php';
     }
 </style>
 
-<?php include '../includes/rodape.php'; ?>
+<?php include __DIR__ . '/includes/rodape.php'; ?>
