@@ -1,10 +1,8 @@
 <?php
 /**
  * ===============================================================
- * Arquivo: 01_php-intro/projetos.php 
- * Disciplina: Desenvolvimento Web II (2026-DWII)
- * Projeto: Portfólio Pessoal - Versão Dinâmica (PDO)
- * Autor: Henry
+ * Arquivo: projetos.php 
+ * Descrição: Listagem pública filtrando apenas projetos 'publicado'.
  * ===============================================================
  */
 
@@ -21,8 +19,13 @@ $titulo_pagina = "Projetos - Henry";
 require_once __DIR__ . '/includes/conexao.php';
 $pdo = conectar();
 
-// 2. Busca os projetos no banco (mesma lógica do seu CRUD)
-$stmt = $pdo->query("SELECT * FROM projetos ORDER BY criado_em DESC");
+// 2. Busca apenas os projetos PUBLICADOS
+// Removemos rascunhos e arquivados da vista do usuário final.
+$stmt = $pdo->query(
+    "SELECT * FROM projetos 
+     WHERE status = 'publicado' 
+     ORDER BY criado_em DESC"
+);
 $projetos = $stmt->fetchAll();
 ?>
 
@@ -39,12 +42,12 @@ $projetos = $stmt->fetchAll();
     <main>
         <div class="inicio">
             <h1>Meus Projetos</h1>
-            <p>Projetos reais recuperados dinamicamente do banco de dados através de PDO.</p>
+            <p>Exibindo apenas projetos finalizados e publicados.</p>
         </div>
 
         <?php if (empty($projetos)): ?>
             <div class="card" style="text-align: center;">
-                <p>Nenhum projeto encontrado no banco de dados.</p>
+                <p>Nenhum projeto publicado no momento. Volte em breve!</p>
             </div>
         <?php else: ?>
             
@@ -60,6 +63,9 @@ $projetos = $stmt->fetchAll();
                     
                     <div style="margin-top: 1rem; font-size: 0.8rem; color: #666;">
                         <span>📅 Ano: <?php echo (int)$projeto['ano']; ?></span>
+                        <?php if ($projeto['atualizado_em']): ?>
+                            <span style="margin-left: 10px;">• Atualizado em: <?php echo date('d/m/Y', strtotime($projeto['atualizado_em'])); ?></span>
+                        <?php endif; ?>
                     </div>
 
                     <?php if (!empty($projeto['link_github'])): ?>
@@ -86,16 +92,17 @@ $projetos = $stmt->fetchAll();
             from { opacity: 0; transform: translateY(30px); }
             to { opacity: 1; transform: translateY(0); }
         }
-
         main { animation: fadeInUp 0.8s ease-out; }
-
         .card { 
             animation: fadeInUp 0.8s ease-out backwards; 
-            margin-bottom: 1.5rem; /* Ajuste de espaçamento */
+            margin-bottom: 1.5rem; 
         }
-
-        @media (max-width: 768px) {
-            main { gap: 2rem; }
+        .badge {
+            background: #e0e0e0;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 0.75rem;
+            font-weight: bold;
         }
     </style>
 </body>

@@ -141,42 +141,7 @@ include __DIR__ . '/includes/cabecalho.php';
 
 <!-- ANIMAÇÕES CSS -->
 <style>
-    @keyframes fadeInUp {
-        from {
-            opacity: 0;
-            transform: translateY(30px);
-        }
-        to {
-            opacity: 1;
-            transform: translateY(0);
-        }
-    }
-
-    @keyframes slideInRight {
-        from {
-            opacity: 0;
-            transform: translateX(50px);
-        }
-        to {
-            opacity: 1;
-            transform: translateX(0);
-        }
-    }
-
-    .hero-section {
-        animation: fadeInUp 0.8s ease-out;
-    }
-
-    @media (max-width: 768px) {
-        .hero-section {
-            gap: 2rem;
-        }
-
-        .foto-coluna {
-            width: 100%;
-            max-width: 260px;
-        }
-    }
+    
 </style>
 
 <?php 

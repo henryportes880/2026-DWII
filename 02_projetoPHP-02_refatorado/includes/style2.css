@@ -1,0 +1,1035 @@
+/* ════════════════════════════════════════════════════════════
+ * ARQUIVO    : style.css
+ * Tema       : Cyberpunk Minimalista - Hacker Dark Mode Tech-Noir
+ * ════════════════════════════════════════════════════════════ */
+
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap');
+
+/* ── Variáveis Globais Cyberpunk ────────────────────────────── */
+:root {
+    /* Paleta de Cores Cyberpunk */
+    --bg-primary: #000000;
+    --bg-surface: #121212;
+    --bg-surface-alt: #1a1a1a;
+    
+    --neon-cyan: #5CE1E6;
+    --neon-cyan-dark: #3A6B70;
+    --neon-purple: #A020F0;
+    --neon-gold: #FFD700;
+    
+    --text-primary: #FFFFFF;
+    --text-secondary: #555555;
+    --text-tertiary: #333333;
+    
+    /* Gradientes Cyberpunk */
+    --gradient-neon-fade: linear-gradient(90deg, #5CE1E6 0%, transparent 100%);
+    --gradient-neon-fade-reverse: linear-gradient(90deg, transparent 0%, #000000 100%);
+    
+    /* Sombras Neon */
+    --glow-cyan: 0 0 20px rgba(92, 225, 230, 0.6), 0 0 40px rgba(92, 225, 230, 0.3);
+    --glow-cyan-subtle: 0 0 10px rgba(92, 225, 230, 0.3);
+    
+    /* Transições */
+    --transition-fast: 150ms cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-smooth: 300ms cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-slow: 500ms cubic-bezier(0.4, 0, 0.2, 1);
+    
+    /* Espaçamento */
+    --spacing-xs: 0.25rem;
+    --spacing-sm: 0.5rem;
+    --spacing-md: 1rem;
+    --spacing-lg: 1.5rem;
+    --spacing-xl: 2rem;
+    --spacing-2xl: 3rem;
+    --spacing-3xl: 4rem;
+    --spacing-4xl: 6rem;
+    
+    /* Border Radius */
+    --radius-none: 0;
+    --radius-sm: 0.25rem;
+    --radius-md: 0.5rem;
+    --radius-lg: 1rem;
+}
+
+/* ── Reset Avançado ────────────────────────────────────── */
+*, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+    font-family: 'Space Grotesk', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    background: var(--bg-primary);
+    background-image: 
+        linear-gradient(0deg, transparent 24%, rgba(92, 225, 230, 0.05) 25%, rgba(92, 225, 230, 0.05) 26%, transparent 27%, transparent 74%, rgba(92, 225, 230, 0.05) 75%, rgba(92, 225, 230, 0.05) 76%, transparent 77%, transparent),
+        linear-gradient(90deg, transparent 24%, rgba(92, 225, 230, 0.05) 25%, rgba(92, 225, 230, 0.05) 26%, transparent 27%, transparent 74%, rgba(92, 225, 230, 0.05) 75%, rgba(92, 225, 230, 0.05) 76%, transparent 77%, transparent);
+    background-size: 50px 50px;
+    color: var(--text-secondary);
+    line-height: 1.6;
+    font-size: 1rem;
+    min-height: 100vh;
+    overflow-x: hidden;
+}
+
+/* ── Tipografia Cyberpunk ────────────────────────────────── */
+:is(h1, h2, h3, h4, h5, h6) {
+    font-family: 'Bebas Neue', sans-serif;
+    color: var(--text-primary);
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    line-height: 1.2;
+    margin-bottom: var(--spacing-lg);
+    text-transform: uppercase;
+}
+
+h1 {
+    font-size: clamp(2.5rem, 8vw, 4.5rem);
+    font-weight: 700;
+    letter-spacing: 0.08em;
+}
+
+h2 {
+    font-size: clamp(2rem, 6vw, 3.5rem);
+    font-weight: 700;
+}
+
+h3 {
+    font-size: clamp(1.5rem, 4vw, 2.5rem);
+    font-weight: 700;
+}
+
+h4 {
+    font-size: 1.5rem;
+    font-weight: 700;
+}
+
+h5 {
+    font-size: 1.25rem;
+    font-weight: 600;
+}
+
+h6 {
+    font-size: 1rem;
+    font-weight: 600;
+}
+
+p {
+    color: var(--text-secondary);
+    margin-bottom: var(--spacing-md);
+    line-height: 1.7;
+}
+
+a {
+    color: var(--neon-cyan);
+    text-decoration: none;
+    transition: var(--transition-fast);
+    font-weight: inherit;
+}
+
+a:hover {
+    color: var(--neon-cyan);
+    text-shadow: var(--glow-cyan-subtle);
+}
+
+/* ── Header Cyberpunk ────────────────────────────────────── */
+header {
+    background: var(--bg-primary);
+    border-bottom: 1px solid var(--bg-surface-alt);
+    padding: var(--spacing-xl) var(--spacing-2xl);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    text-align: center;
+}
+
+header h1 {
+    font-size: 1.75rem;
+    margin: 0;
+    color: var(--text-primary);
+    letter-spacing: 0.1em;
+    position: relative;
+    display: inline-block;
+}
+
+header h1::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80%;
+    height: 1px;
+    background: var(--gradient-neon-fade-reverse);
+    box-shadow: var(--glow-cyan-subtle);
+}
+
+/* ── Navegação Cyberpunk ────────────────────────────────── */
+nav {
+    display: flex;
+    justify-content: center;
+    gap: var(--spacing-xl);
+    align-items: center;
+    flex-wrap: wrap;
+    margin-top: var(--spacing-lg);
+}
+
+nav a {
+    font-family: 'JetBrains Mono', monospace;
+    color: var(--neon-cyan-dark);
+    font-weight: 500;
+    padding: var(--spacing-sm) var(--spacing-lg);
+    border-radius: var(--radius-none);
+    transition: var(--transition-fast);
+    position: relative;
+    font-size: 0.85rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+}
+
+nav a::before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: var(--neon-cyan);
+    transition: var(--transition-smooth);
+    box-shadow: var(--glow-cyan-subtle);
+}
+
+nav a:hover {
+    color: var(--neon-cyan);
+}
+
+nav a:hover::before {
+    width: 100%;
+}
+
+nav a.ativo {
+    color: var(--neon-cyan);
+}
+
+nav a.ativo::before {
+    width: 100%;
+}
+
+/* ── Container Principal ────────────────────────────────── */
+main {
+    background: var(--bg-primary);
+    width: min(95%, 90rem);
+    padding: var(--spacing-4xl) var(--spacing-2xl);
+    margin: var(--spacing-4xl) auto;
+}
+
+.container {
+    max-width: 90rem;
+    margin: 0 auto;
+    padding: 0 var(--spacing-xl);
+}
+
+/* ── Seção Hero Cyberpunk ────────────────────────────────── */
+.hero {
+    background: var(--bg-primary);
+    color: var(--text-primary);
+    padding: var(--spacing-4xl) var(--spacing-xl);
+    border-radius: var(--radius-none);
+    position: relative;
+    overflow: hidden;
+    margin-bottom: var(--spacing-4xl);
+    text-align: center;
+}
+
+.hero-pretitle {
+    font-family: 'JetBrains Mono', monospace;
+    color: var(--neon-cyan-dark);
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    margin-bottom: var(--spacing-lg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--spacing-md);
+}
+
+.hero-pretitle::before,
+.hero-pretitle::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--neon-cyan-dark);
+    opacity: 0.5;
+}
+
+.hero h1 {
+    position: relative;
+    margin-bottom: var(--spacing-lg);
+    font-size: clamp(3rem, 10vw, 5rem);
+}
+
+.hero h1::after {
+    content: '';
+    position: absolute;
+    bottom: -20px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100%;
+    height: 1px;
+    background: var(--gradient-neon-fade-reverse);
+    box-shadow: var(--glow-cyan);
+}
+
+.hero-subtitle {
+    font-family: 'Space Grotesk', sans-serif;
+    color: var(--neon-cyan-dark);
+    font-size: 1rem;
+    letter-spacing: 0.1em;
+    margin-bottom: var(--spacing-2xl);
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.hero-scroll {
+    font-family: 'JetBrains Mono', monospace;
+    color: var(--neon-cyan-dark);
+    font-size: 0.75rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    margin-top: var(--spacing-3xl);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--spacing-sm);
+    animation: bounce 2s infinite;
+}
+
+.hero-scroll::after {
+    content: '↓';
+    font-size: 1.5rem;
+    color: var(--neon-cyan);
+}
+
+@keyframes bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(10px); }
+}
+
+/* ── Cards Status Cyberpunk ────────────────────────────────── */
+.status-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: var(--spacing-2xl);
+    margin-bottom: var(--spacing-4xl);
+}
+
+.status-card {
+    background: var(--bg-surface);
+    padding: var(--spacing-2xl);
+    border-radius: var(--radius-none);
+    border: 1px solid var(--bg-surface-alt);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: var(--spacing-lg);
+    transition: var(--transition-smooth);
+    position: relative;
+}
+
+.status-card:hover {
+    background: var(--bg-surface-alt);
+    border-color: var(--neon-cyan-dark);
+}
+
+.status-number {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(2.5rem, 6vw, 4rem);
+    color: var(--neon-cyan);
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    text-shadow: var(--glow-cyan);
+    line-height: 1;
+}
+
+.status-label {
+    font-family: 'JetBrains Mono', monospace;
+    color: var(--neon-cyan-dark);
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+}
+
+.status-icon {
+    font-size: 3rem;
+    filter: drop-shadow(0 0 10px rgba(255, 215, 0, 0.5));
+}
+
+/* ── Cards Glassmorphism ────────────────────────────────── */
+.card {
+    background: var(--bg-surface);
+    border: 1px solid var(--bg-surface-alt);
+    border-radius: var(--radius-none);
+    padding: var(--spacing-2xl);
+    transition: var(--transition-smooth);
+    position: relative;
+    overflow: hidden;
+}
+
+.card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: var(--gradient-neon-fade);
+    opacity: 0;
+    transition: var(--transition-smooth);
+}
+
+.card:hover {
+    background: var(--bg-surface-alt);
+    border-color: var(--neon-cyan-dark);
+}
+
+.card:hover::before {
+    opacity: 1;
+    box-shadow: var(--glow-cyan-subtle);
+}
+
+.card h3 {
+    margin-top: 0;
+    color: var(--text-primary);
+}
+
+.card p {
+    color: var(--text-secondary);
+}
+
+/* ── Grid de Cards ────────────────────────────────────── */
+.cards-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: var(--spacing-2xl);
+    margin-bottom: var(--spacing-4xl);
+}
+
+/* ── Botões Cyberpunk ────────────────────────────────────── */
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--spacing-sm);
+    background: var(--neon-cyan);
+    color: var(--bg-primary);
+    padding: 1rem 2rem;
+    font-size: 1rem;
+    font-weight: 700;
+    font-family: 'Bebas Neue', sans-serif;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    border-radius: var(--radius-none);
+    text-decoration: none;
+    border: none;
+    cursor: pointer;
+    transition: var(--transition-smooth);
+    box-shadow: var(--glow-cyan);
+    position: relative;
+    overflow: hidden;
+}
+
+.btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.2);
+    transition: var(--transition-smooth);
+}
+
+.btn:hover {
+    box-shadow: 0 0 30px rgba(92, 225, 230, 0.8), 0 0 60px rgba(92, 225, 230, 0.4);
+    transform: translateY(-2px);
+}
+
+.btn:hover::before {
+    left: 100%;
+}
+
+.btn:active {
+    transform: translateY(0);
+}
+
+.btn-secondary {
+    background: var(--bg-surface);
+    color: var(--neon-cyan);
+    border: 2px solid var(--neon-cyan);
+    box-shadow: none;
+}
+
+.btn-secondary:hover {
+    background: var(--neon-cyan);
+    color: var(--bg-primary);
+    box-shadow: var(--glow-cyan);
+}
+
+.btn-outline {
+    background: transparent;
+    color: var(--neon-cyan);
+    border: 2px solid var(--neon-cyan);
+    box-shadow: none;
+}
+
+.btn-outline:hover {
+    background: var(--neon-cyan);
+    color: var(--bg-primary);
+    box-shadow: var(--glow-cyan);
+}
+
+.btn-small {
+    padding: 0.625rem 1.25rem;
+    font-size: 0.875rem;
+}
+
+.btn-large {
+    padding: 1.25rem 2.5rem;
+    font-size: 1.125rem;
+    width: 100%;
+}
+
+.btn-block {
+    width: 100%;
+}
+
+/* ── Badges Cyberpunk ────────────────────────────────────── */
+.badge {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--spacing-xs);
+    padding: var(--spacing-xs) var(--spacing-lg);
+    background: var(--bg-surface);
+    color: var(--neon-cyan);
+    font-size: 0.7rem;
+    font-weight: 700;
+    font-family: 'JetBrains Mono', monospace;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    border-radius: var(--radius-none);
+    border: 1px solid var(--neon-cyan-dark);
+}
+
+.badge-neon {
+    background: rgba(92, 225, 230, 0.1);
+    color: var(--neon-cyan);
+    border-color: var(--neon-cyan);
+    box-shadow: var(--glow-cyan-subtle);
+}
+
+.badge-purple {
+    background: rgba(160, 32, 240, 0.1);
+    color: var(--neon-purple);
+    border-color: var(--neon-purple);
+}
+
+/* ── Formulários Cyberpunk ────────────────────────────────── */
+.form-container {
+    display: grid;
+    gap: var(--spacing-lg);
+    max-width: 100%;
+    background: var(--bg-surface);
+    padding: var(--spacing-2xl);
+    border-radius: var(--radius-none);
+    border-top: 2px solid var(--neon-cyan);
+    position: relative;
+    overflow: hidden;
+}
+
+.form-container::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: var(--gradient-neon-fade-reverse);
+    box-shadow: var(--glow-cyan-subtle);
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-sm);
+}
+
+label {
+    color: var(--neon-cyan-dark);
+    font-size: 0.75rem;
+    font-weight: 600;
+    font-family: 'JetBrains Mono', monospace;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+}
+
+label::before {
+    content: attr(data-index) ' / ';
+    color: var(--neon-cyan);
+    margin-right: var(--spacing-sm);
+}
+
+:is(input, textarea, select) {
+    background: var(--bg-surface-alt);
+    border: none;
+    color: var(--text-primary);
+    padding: var(--spacing-md) var(--spacing-lg);
+    border-radius: var(--radius-none);
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 1rem;
+    transition: var(--transition-fast);
+    box-shadow: inset 0 0 10px rgba(92, 225, 230, 0.1);
+}
+
+:is(input, textarea, select)::placeholder {
+    color: var(--text-secondary);
+}
+
+:is(input, textarea, select):hover {
+    background: var(--bg-surface-alt);
+    box-shadow: inset 0 0 15px rgba(92, 225, 230, 0.2);
+}
+
+:is(input, textarea, select):focus-visible {
+    outline: none;
+    box-shadow: inset 0 0 20px rgba(92, 225, 230, 0.3), 0 0 20px rgba(92, 225, 230, 0.2);
+}
+
+textarea {
+    resize: vertical;
+    min-height: 140px;
+}
+
+button[type="submit"] {
+    background: var(--neon-cyan);
+    color: var(--bg-primary);
+    padding: var(--spacing-lg) var(--spacing-xl);
+    border-radius: var(--radius-none);
+    font-size: 1rem;
+    font-weight: 700;
+    font-family: 'Bebas Neue', sans-serif;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    cursor: pointer;
+    border: none;
+    transition: var(--transition-smooth);
+    width: 100%;
+    margin-top: var(--spacing-md);
+    box-shadow: var(--glow-cyan);
+}
+
+button[type="submit"]:hover {
+    box-shadow: 0 0 30px rgba(92, 225, 230, 0.8), 0 0 60px rgba(92, 225, 230, 0.4);
+    transform: translateY(-2px);
+}
+
+/* ── Alertas Cyberpunk ────────────────────────────────────── */
+:is(.alert-error, .alert-success, .alert-warning, .alert-info) {
+    padding: var(--spacing-lg) var(--spacing-xl);
+    border-radius: var(--radius-none);
+    display: flex;
+    align-items: flex-start;
+    gap: var(--spacing-lg);
+    margin-bottom: var(--spacing-lg);
+    font-weight: 500;
+    border-left: 3px solid transparent;
+    background: var(--bg-surface);
+}
+
+.alert-error {
+    background: rgba(239, 68, 68, 0.1);
+    border-left-color: #ef4444;
+    color: #ef4444;
+}
+
+.alert-success {
+    background: rgba(16, 185, 129, 0.1);
+    border-left-color: #10b981;
+    color: #10b981;
+}
+
+.alert-warning {
+    background: rgba(245, 158, 11, 0.1);
+    border-left-color: #f59e0b;
+    color: #f59e0b;
+}
+
+.alert-info {
+    background: rgba(92, 225, 230, 0.1);
+    border-left-color: var(--neon-cyan);
+    color: var(--neon-cyan);
+    box-shadow: var(--glow-cyan-subtle);
+}
+
+/* ── Tabelas Cyberpunk ────────────────────────────────────── */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: var(--spacing-2xl);
+    border: 1px solid var(--bg-surface-alt);
+    border-radius: var(--radius-none);
+    overflow: hidden;
+    box-shadow: 0 0 20px rgba(92, 225, 230, 0.1);
+}
+
+thead {
+    background: var(--bg-surface);
+    border-bottom: 2px solid var(--neon-cyan-dark);
+}
+
+th {
+    padding: var(--spacing-lg);
+    text-align: left;
+    font-weight: 700;
+    color: var(--neon-cyan);
+    font-family: 'JetBrains Mono', monospace;
+    letter-spacing: 0.1em;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+}
+
+td {
+    padding: var(--spacing-lg);
+    border-bottom: 1px solid var(--bg-surface-alt);
+    color: var(--text-secondary);
+}
+
+tbody tr {
+    transition: var(--transition-fast);
+}
+
+tbody tr:hover {
+    background: var(--bg-surface);
+}
+
+tbody tr:last-child td {
+    border-bottom: none;
+}
+
+/* ── Seções com Gradiente ────────────────────────────────── */
+.section-gradient {
+    background: var(--bg-surface);
+    color: var(--text-primary);
+    padding: var(--spacing-4xl) var(--spacing-xl);
+    border-radius: var(--radius-none);
+    margin-bottom: var(--spacing-4xl);
+    text-align: center;
+    border-top: 2px solid var(--neon-cyan);
+    border-bottom: 2px solid var(--neon-cyan-dark);
+    box-shadow: 0 0 30px rgba(92, 225, 230, 0.2);
+}
+
+.section-gradient h2 {
+    color: var(--text-primary);
+}
+
+.section-gradient p {
+    color: var(--text-secondary);
+}
+
+/* ── Footer Cyberpunk ────────────────────────────────────── */
+footer {
+    background: var(--bg-primary);
+    color: var(--text-secondary);
+    padding: var(--spacing-4xl) var(--spacing-xl) var(--spacing-2xl);
+    border-top: 1px solid var(--bg-surface-alt);
+    margin-top: var(--spacing-4xl);
+    text-align: center;
+}
+
+footer h4 {
+    color: var(--text-primary);
+    margin-bottom: var(--spacing-lg);
+}
+
+footer a {
+    color: var(--neon-cyan-dark);
+    display: inline-block;
+    margin: 0 var(--spacing-md);
+    transition: var(--transition-fast);
+}
+
+footer a:hover {
+    color: var(--neon-cyan);
+    text-shadow: var(--glow-cyan-subtle);
+}
+
+footer .footer-bottom {
+    border-top: 1px solid var(--bg-surface-alt);
+    padding-top: var(--spacing-xl);
+    margin-top: var(--spacing-xl);
+    font-size: 0.875rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--spacing-md);
+}
+
+footer .footer-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--neon-purple);
+    box-shadow: 0 0 10px var(--neon-purple);
+}
+
+footer .footer-text {
+    font-family: 'JetBrains Mono', monospace;
+    color: var(--text-secondary);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    font-size: 0.75rem;
+}
+
+/* ── Utilitários ────────────────────────────────────── */
+.text-center { text-align: center; }
+.text-left { text-align: left; }
+.text-right { text-align: right; }
+
+.text-neon { color: var(--neon-cyan); text-shadow: var(--glow-cyan-subtle); }
+.text-neon-dark { color: var(--neon-cyan-dark); }
+.text-primary { color: var(--text-primary); }
+.text-secondary { color: var(--text-secondary); }
+
+.mt-1 { margin-top: var(--spacing-sm); }
+.mt-2 { margin-top: var(--spacing-md); }
+.mt-3 { margin-top: var(--spacing-lg); }
+.mt-4 { margin-top: var(--spacing-xl); }
+.mt-5 { margin-top: var(--spacing-2xl); }
+.mt-6 { margin-top: var(--spacing-3xl); }
+
+.mb-1 { margin-bottom: var(--spacing-sm); }
+.mb-2 { margin-bottom: var(--spacing-md); }
+.mb-3 { margin-bottom: var(--spacing-lg); }
+.mb-4 { margin-bottom: var(--spacing-xl); }
+.mb-5 { margin-bottom: var(--spacing-2xl); }
+.mb-6 { margin-bottom: var(--spacing-3xl); }
+
+.pt-1 { padding-top: var(--spacing-sm); }
+.pt-2 { padding-top: var(--spacing-md); }
+.pt-3 { padding-top: var(--spacing-lg); }
+.pt-4 { padding-top: var(--spacing-xl); }
+.pt-5 { padding-top: var(--spacing-2xl); }
+
+.pb-1 { padding-bottom: var(--spacing-sm); }
+.pb-2 { padding-bottom: var(--spacing-md); }
+.pb-3 { padding-bottom: var(--spacing-lg); }
+.pb-4 { padding-bottom: var(--spacing-xl); }
+.pb-5 { padding-bottom: var(--spacing-2xl); }
+
+.flex { display: flex; }
+.flex-center { display: flex; align-items: center; justify-content: center; }
+.flex-between { display: flex; align-items: center; justify-content: space-between; }
+.flex-col { display: flex; flex-direction: column; }
+.gap-1 { gap: var(--spacing-sm); }
+.gap-2 { gap: var(--spacing-md); }
+.gap-3 { gap: var(--spacing-lg); }
+.gap-4 { gap: var(--spacing-xl); }
+
+.grid { display: grid; }
+.grid-2 { display: grid; grid-template-columns: repeat(2, 1fr); }
+.grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); }
+
+.rounded { border-radius: var(--radius-lg); }
+.rounded-none { border-radius: var(--radius-none); }
+
+.glow { text-shadow: var(--glow-cyan); }
+.glow-subtle { text-shadow: var(--glow-cyan-subtle); }
+
+/* ── Animações Cyberpunk ────────────────────────────────── */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes slideInRight {
+    from {
+        opacity: 0;
+        transform: translateX(50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes glitch {
+    0%, 100% { transform: translate(0); }
+    20% { transform: translate(-2px, 2px); }
+    40% { transform: translate(-2px, -2px); }
+    60% { transform: translate(2px, 2px); }
+    80% { transform: translate(2px, -2px); }
+}
+
+main {
+    animation: fadeInUp 0.8s ease-out;
+}
+
+.card {
+    animation: fadeInUp 0.8s ease-out backwards;
+}
+
+/* ── Responsividade ────────────────────────────────────── */
+@media (max-width: 1024px) {
+    main {
+        padding: var(--spacing-2xl);
+    }
+
+    .cards-grid {
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    }
+
+    .grid-3 {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 768px) {
+    header {
+        padding: var(--spacing-md) var(--spacing-lg);
+    }
+
+    header h1 {
+        font-size: 1.25rem;
+    }
+
+    nav {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: var(--spacing-sm);
+        margin-top: var(--spacing-md);
+    }
+
+    nav a {
+        padding: var(--spacing-sm) var(--spacing-md);
+        font-size: 0.75rem;
+    }
+
+    main {
+        padding: var(--spacing-2xl) var(--spacing-lg);
+        margin: var(--spacing-2xl) auto;
+        width: 95%;
+    }
+
+    .hero {
+        padding: var(--spacing-2xl) var(--spacing-lg);
+    }
+
+    .hero h1 {
+        font-size: 2rem;
+    }
+
+    .hero-subtitle {
+        font-size: 0.9rem;
+    }
+
+    .cards-grid {
+        grid-template-columns: 1fr;
+        gap: var(--spacing-lg);
+    }
+
+    .card {
+        padding: var(--spacing-lg);
+    }
+
+    .grid-2,
+    .grid-3 {
+        grid-template-columns: 1fr;
+    }
+
+    .form-container {
+        max-width: 100%;
+    }
+
+    .status-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 480px) {
+    :root {
+        font-size: 14px;
+    }
+
+    header {
+        padding: var(--spacing-md);
+    }
+
+    header h1 {
+        font-size: 1.1rem;
+    }
+
+    nav {
+        gap: var(--spacing-xs);
+    }
+
+    nav a {
+        padding: var(--spacing-xs) var(--spacing-sm);
+        font-size: 0.7rem;
+    }
+
+    main {
+        padding: var(--spacing-lg);
+        margin: var(--spacing-lg) auto;
+        width: 98%;
+    }
+
+    .hero {
+        padding: var(--spacing-xl) var(--spacing-md);
+    }
+
+    .hero h1 {
+        font-size: 1.75rem;
+    }
+
+    .hero-subtitle {
+        font-size: 0.85rem;
+    }
+
+    .btn {
+        padding: 0.75rem 1.5rem;
+        font-size: 0.9rem;
+    }
+
+    .card {
+        padding: var(--spacing-lg);
+    }
+
+    table {
+        font-size: 0.85rem;
+    }
+
+    th, td {
+        padding: var(--spacing-md);
+    }
+
+    .status-number {
+        font-size: 2rem;
+    }
+}
