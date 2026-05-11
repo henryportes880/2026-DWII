@@ -54,15 +54,15 @@ $logado = isset($_SESSION['usuario']);
     </a>
 
     <?php if ($logado): ?>
-        <a href="<?php echo $caminho_raiz; ?>04_sessoes/painel.php" 
+        <a href="<?php echo $caminho_raiz; ?>painel.php" 
            <?php echo menu_class('login', $pagina_atual); ?>>
            🔐 Painel
         </a>
-        <a href="<?php echo $caminho_raiz; ?>04_sessoes/logout.php" class="link-sair">
+        <a href="<?php echo $caminho_raiz; ?>logout.php" class="link-sair">
            📤 Sair
         </a>
     <?php else: ?>
-        <a href="<?php echo $caminho_raiz; ?>04_sessoes/login.php" 
+        <a href="<?php echo $caminho_raiz; ?>login.php" 
            <?php echo menu_class('login', $pagina_atual); ?>>
            🔑 Login
         </a>

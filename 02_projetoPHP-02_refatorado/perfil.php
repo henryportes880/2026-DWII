@@ -14,15 +14,15 @@ requer_login();
 
 // 2. Variáveis de Template
 $titulo_pagina = 'Perfil do Usuário';
-$caminho_raiz  = '../';
+$caminho_raiz  = '';
 $pagina_atual  = 'login';
 
 // 3. Inclusão do Cabeçalho Global
-require_once __DIR__ . '/../includes/cabecalho.php';
+require_once __DIR__ . '/includes/cabecalho.php';
 
 // 4. Foto de perfil do Henry
 $usuario = htmlspecialchars($_SESSION['usuario']);
-$foto_url = $caminho_raiz . 'imgs/henry.jpg';
+$foto_url = $caminho_raiz . 'includes/imgs/henry.jpg';
 ?>
 
 <main>
@@ -101,4 +101,4 @@ $foto_url = $caminho_raiz . 'imgs/henry.jpg';
     </div>
 </main>
 
-<?php require_once __DIR__ . '/../includes/rodape.php'; ?>
+<?php require_once __DIR__ . '/includes/rodape.php'; ?>
