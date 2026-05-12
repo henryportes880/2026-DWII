@@ -14,91 +14,123 @@ requer_login();
 
 // 2. Variáveis de Template
 $titulo_pagina = 'Perfil do Usuário';
-$caminho_raiz  = '';
-$pagina_atual  = 'login';
+$caminho_raiz  = './';
+$pagina_atual  = 'painel';
 
 // 3. Inclusão do Cabeçalho Global
 require_once __DIR__ . '/includes/cabecalho.php';
 
-// 4. Foto de perfil do Henry
+// 4. Foto de perfil do usuário
 $usuario = htmlspecialchars($_SESSION['usuario']);
 $foto_url = $caminho_raiz . 'includes/imgs/henry.jpg';
 ?>
 
 <main>
-    <section class="inicio" style="margin-bottom: 2.5rem; text-align: center;">
-        <div style="margin-bottom: 0.5rem;">
-            <span class="badge" style="background: var(--bg-surface-hover); color: var(--text-heading); border: 1px solid var(--border-light);">Detalhes da Sessão Ativa</span>
-        </div>
-        <h1>👤 Perfil do Usuário</h1>
-    </section>
+    
+    <!-- Seção de Introdução -->
+    <div class="inicio mb-6">
+        <h1>Meu Perfil</h1>
+        <p>Gerencie suas informações de conta e sessão.</p>
+    </div>
 
-    <article class="card" style="max-width: 500px; margin: 0 auto; padding: 2.5rem 2rem;">
+    <!-- Grid com 2 Colunas -->
+    <div class="grid-2" style="gap: var(--spacing-2xl); margin-bottom: var(--spacing-4xl);">
         
-        <!-- FOTO DE PERFIL -->
-        <div style="text-align: center; margin-bottom: 2rem;">
-            <div style="position: relative; width: 140px; height: 140px; margin: 0 auto;">
-                <!-- Fundo decorativo -->
-                <div style="position: absolute; inset: -15px; background: var(--gradient-primary); border-radius: 50%; opacity: 0.1; z-index: 0;"></div>
-                
-                <!-- Imagem de Perfil -->
+        <!-- COLUNA 1: FOTO E DADOS BÁSICOS -->
+        <article class="card">
+            <div class="text-center mb-6">
                 <img src="<?= $foto_url ?>" 
                      alt="Foto de <?= $usuario ?>" 
-                     style="position: relative; z-index: 1; width: 100%; height: 100%; object-fit: cover; border-radius: 50%; box-shadow: var(--shadow-lg); border: 4px solid white;">
-            </div>
-            
-            <!-- Status Online -->
-            <div style="position: absolute; bottom: 0; right: 50%; transform: translateX(50%); width: 20px; height: 20px; background: #10b981; border-radius: 50%; border: 3px solid white; box-shadow: 0 0 0 2px #10b981; margin-top: -10px;"></div>
-        </div>
-
-        <!-- NOME DO USUÁRIO -->
-        <h2 style="font-size: 1.6rem; margin-bottom: 0.5rem; color: var(--text-heading); text-align: center;">
-            <?= $usuario ?>
-        </h2>
-        
-        <p style="text-align: center; color: var(--text-muted); margin-bottom: 2rem; font-size: 0.95rem;">
-            ✅ Conectado agora
-        </p>
-
-        <!-- INFORMAÇÕES DA SESSÃO -->
-        <div style="text-align: left; display: flex; flex-direction: column; gap: 1.25rem;">
-            
-            <div style="display: flex; justify-content: space-between; align-items: center; padding: 1rem; background: var(--bg-surface-hover); border-radius: var(--radius-md); border-left: 4px solid var(--primary);">
-                <strong style="color: var(--text-muted); font-size: 0.95rem;">👤 Usuário:</strong>
-                <span style="font-weight: 600; color: var(--text-heading);"><?= $usuario ?></span>
+                     style="width: 140px; height: 140px; object-fit: cover; border-radius: 50%; box-shadow: var(--shadow-lg); border: 4px solid var(--accent-gold);">
+                
+                <h2 style="margin: var(--spacing-lg) 0 var(--spacing-sm); color: var(--neutral-900);">
+                    <?= $usuario ?>
+                </h2>
+                <p class="text-success" style="margin: 0; font-weight: 600;">
+                    ✅ Conectado
+                </p>
             </div>
 
-            <div style="display: flex; justify-content: space-between; align-items: center; padding: 1rem; background: var(--bg-surface-hover); border-radius: var(--radius-md); border-left: 4px solid var(--accent-gold);">
-                <strong style="color: var(--text-muted); font-size: 0.95rem;">🕐 Login em:</strong>
-                <span style="font-weight: 500; color: var(--text-heading);"><?= htmlspecialchars($_SESSION['logado_em'] ?? '-') ?></span>
+            <hr style="border: none; border-top: 1px solid var(--neutral-200); margin: var(--spacing-lg) 0;">
+
+            <div class="flex-col gap-3">
+                <div>
+                    <p class="text-muted" style="font-size: 0.85rem; margin-bottom: var(--spacing-xs); text-transform: uppercase; letter-spacing: 0.05em; font-weight: 600;">
+                        Tipo de Acesso
+                    </p>
+                    <p class="text-primary" style="margin: 0; font-weight: 600;">
+                        Usuário Autenticado
+                    </p>
+                </div>
+
+                <div>
+                    <p class="text-muted" style="font-size: 0.85rem; margin-bottom: var(--spacing-xs); text-transform: uppercase; letter-spacing: 0.05em; font-weight: 600;">
+                        Status
+                    </p>
+                    <span class="badge badge-success">Ativo</span>
+                </div>
             </div>
+        </article>
 
-            <div style="display: flex; justify-content: space-between; align-items: center; padding: 1rem; background: var(--bg-surface-hover); border-radius: var(--radius-md); border-left: 4px solid var(--success);">
-                <strong style="color: var(--text-muted); font-size: 0.95rem;">🔄 Interações:</strong>
-                <span class="badge badge-success" style="font-size: 0.9rem;"><?= $_SESSION['visitas'] ?? 0 ?></span>
+        <!-- COLUNA 2: INFORMAÇÕES DA SESSÃO -->
+        <article class="card">
+            <h3 class="text-primary mb-4" style="margin-top: 0;">Informações da Sessão</h3>
+
+            <div class="flex-col gap-3">
+                
+                <div class="px-3 py-3" style="background: var(--neutral-50); border-radius: var(--radius-lg);">
+                    <p class="text-muted" style="font-size: 0.85rem; margin-bottom: var(--spacing-xs); text-transform: uppercase; letter-spacing: 0.05em; font-weight: 600;">
+                        👤 Usuário
+                    </p>
+                    <p class="text-primary" style="margin: 0; font-weight: 600;">
+                        <?= $usuario ?>
+                    </p>
+                </div>
+
+                <div class="px-3 py-3" style="background: var(--neutral-50); border-radius: var(--radius-lg);">
+                    <p class="text-muted" style="font-size: 0.85rem; margin-bottom: var(--spacing-xs); text-transform: uppercase; letter-spacing: 0.05em; font-weight: 600;">
+                        🕐 Login em
+                    </p>
+                    <p style="margin: 0; font-weight: 500; color: var(--neutral-700);">
+                        <?= htmlspecialchars($_SESSION['logado_em'] ?? 'Agora') ?>
+                    </p>
+                </div>
+
+                <div class="px-3 py-3" style="background: var(--neutral-50); border-radius: var(--radius-lg);">
+                    <p class="text-muted" style="font-size: 0.85rem; margin-bottom: var(--spacing-xs); text-transform: uppercase; letter-spacing: 0.05em; font-weight: 600;">
+                        🔄 Visitas
+                    </p>
+                    <p style="margin: 0;">
+                        <span class="badge badge-gold">
+                            <?= $_SESSION['visitas'] ?? 0 ?>
+                        </span>
+                    </p>
+                </div>
+
             </div>
+        </article>
 
-        </div>
+    </div>
 
-        <!-- ID DA SESSÃO -->
-        <div style="margin-top: 2.5rem; padding: 1.5rem; background: var(--neutral-50); border-radius: var(--radius-md); border: 1px dashed var(--border-light);">
-            <p style="margin-bottom: 0.75rem; color: var(--text-muted); font-size: 0.85rem; font-weight: 600;">🔐 ID da Sessão:</p>
-            <code style="background: white; padding: 0.75rem; border-radius: var(--radius-sm); border: 1px solid var(--border-light); display: block; word-break: break-all; color: var(--primary); font-family: 'Courier New', monospace; font-size: 0.8rem;">
-                <?= session_id() ?>
-            </code>
-        </div>
-
+    <!-- ID DA SESSÃO -->
+    <article class="card mb-6">
+        <h3 class="text-primary mb-3" style="margin-top: 0;">🔐 Identificador da Sessão</h3>
+        <code style="background: var(--neutral-50); padding: var(--spacing-lg); border-radius: var(--radius-lg); border: 1px solid var(--neutral-300); display: block; word-break: break-all; color: var(--primary); font-family: 'Courier New', monospace; font-size: 0.8rem; line-height: 1.8;">
+            <?= session_id() ?>
+        </code>
     </article>
 
     <!-- BOTÕES DE AÇÃO -->
-    <div style="text-align: center; margin-top: 2.5rem; display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
-        <a href="painel.php" class="btn" style="background: var(--bg-surface); color: var(--text-heading); border: 1px solid var(--border-focus); box-shadow: none;">
-            ← Voltar ao Painel
-        </a>
-        <a href="logout.php" class="btn" style="background: var(--error); color: white; box-shadow: 0 4px 8px rgba(239, 68, 68, 0.3);">
+    <div style="display: flex; gap: 1rem; justify-content: center; margin-top: var(--spacing-2xl); flex-wrap: wrap;">
+    <a href="index.php" class="btn-voltar">
+        ← Voltar ao Início
+    </a>
+        <a href="logout.php" class="btn btn-error">
             🚪 Sair da Conta
         </a>
     </div>
-</main>
 
+</div>
+
+</main>
 <?php require_once __DIR__ . '/includes/rodape.php'; ?>

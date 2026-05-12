@@ -14,14 +14,14 @@ if (usuario_logado()) {
     exit;
 }
 
-$erro = '';
+$erros = [];
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $login = trim($_POST['login'] ?? '');
     $senha = $_POST['senha'] ?? '';
 
     if ($login === '' || $senha === '') {
-        $erro = 'Informe usuário e senha.';
+        $erros[] = 'Informe usuário e senha.';
     } else {
         $pdo = conectar();
 
@@ -63,7 +63,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $log->execute([':login' => $login]);
 
             // Mensagem genérica: não dizer se o erro foi no login ou na senha.
-            $erro = 'Usuário ou senha inválidos.';
+            $erros[] = 'Usuário ou senha inválidos.';
         }
     }
 }
@@ -75,24 +75,59 @@ $caminho_raiz = './';
 require_once __DIR__ . '/includes/cabecalho.php';
 ?>
 
-<main style="max-width: 420px; margin: 60px auto; padding: 0 20px;">
-    <h1>Login</h1>
+<main>
+    
+    <div class="inicio">
+        <h1>Faça Login</h1>
+        <p>Acesse sua conta para continuar navegando.</p>
+    </div>
 
-    <?php if ($erro !== ''): ?>
-        <p style="color:#cf1c21;"><?= htmlspecialchars($erro) ?></p>
+    <?php if (!empty($erros)): ?>
+        <div class="alert-error">
+            <strong>🚫 Corrija os erros abaixo:</strong>
+            <ul style="margin-left: 1.5rem; font-size: 0.9rem; margin-top: var(--spacing-sm);">
+                <?php foreach ($erros as $erro): ?>
+                    <li><?php echo htmlspecialchars($erro); ?></li>
+                <?php endforeach; ?>
+            </ul>
+        </div>
     <?php endif; ?>
 
-    <form method="POST" action="login.php">
-        <label>Usuário<br>
-            <input type="text" name="login" required>
-        </label>
-        <br><br>
-        <label>Senha<br>
-            <input type="password" name="senha" required>
-        </label>
-        <br><br>
-        <button type="submit">Entrar</button>
-    </form>
-</main>
+    <article class="card">
+        <form class="form-container" action="login.php" method="post">
+            
+            <div class="form-group">
+                <label for="login">Usuário:</label>
+                <input 
+                    type="text" 
+                    name="login" 
+                    id="login"
+                    placeholder="Digite seu usuário"
+                    required
+                    autofocus
+                >
+            </div>
 
+            <div class="form-group">
+                <label for="senha">Senha:</label>
+                <input 
+                    type="password" 
+                    name="senha" 
+                    id="senha"
+                    placeholder="Digite sua senha"
+                    required
+                >
+            </div>
+
+            <button type="submit">Entrar</button>
+        </form>
+    </article>
+
+    <div style="text-align: center; margin-top: var(--spacing-2xl);">
+        <p class="text-muted" style="font-size: 0.9rem;">
+            Não tem conta? <a href="cadastro.php" class="text-primary" style="font-weight: 600;">Cadastre-se aqui</a>
+        </p>
+    </div>
+
+</main>
 <?php require_once __DIR__ . '/includes/rodape.php'; ?>

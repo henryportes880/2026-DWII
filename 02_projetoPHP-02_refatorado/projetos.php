@@ -29,15 +29,12 @@ $stmt = $pdo->query(
 $projetos = $stmt->fetchAll();
 ?>
 
-<!DOCTYPE html>
-<html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?php echo $titulo_pagina; ?></title>
     <?php include __DIR__ . '/includes/cabecalho.php'; ?>
 </head>
-<body>
 
     <main>
         <div class="inicio">
@@ -80,30 +77,10 @@ $projetos = $stmt->fetchAll();
 
         <?php endif; ?>
 
-        <div style="text-align: center; margin-top: 2.5rem;">
-            <a href="index.php" class="btn">← Voltar ao início</a>
-        </div>
-    </main>  
-
-    <?php include __DIR__ . '/includes/rodape.php'; ?>
-
-    <style>
-        @keyframes fadeInUp {
-            from { opacity: 0; transform: translateY(30px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        main { animation: fadeInUp 0.8s ease-out; }
-        .card { 
-            animation: fadeInUp 0.8s ease-out backwards; 
-            margin-bottom: 1.5rem; 
-        }
-        .badge {
-            background: #e0e0e0;
-            padding: 2px 8px;
-            border-radius: 4px;
-            font-size: 0.75rem;
-            font-weight: bold;
-        }
-    </style>
-</body>
-</html>
+        <div style="text-align: center; margin-top: var(--spacing-2xl);">
+    <a href="index.php" class="btn-voltar">
+        ← Voltar ao Início
+    </a>
+</div>
+</main>  
+<?php include __DIR__ . '/includes/rodape.php'; ?>

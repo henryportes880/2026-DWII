@@ -14,88 +14,107 @@
 
 if (session_status() === PHP_SESSION_NONE) session_start();
 
-// $pagina_atual = 'catalogo' (não 'detalhe') porque queremos
-// que o item "Catálogo" do nav fique destacado em ambas as páginas.
-// Pedagogicamente: detalhe é uma sub-página do catálogo.
 $pagina_atual = 'catalogo';
 $titulo_pagina = 'Detalhe | Portfólio DWII';
 $caminho_raiz = './';
 
 require_once __DIR__ . '/includes/conexao.php';
+require_once __DIR__ . '/includes/cabecalho.php';
 
-// filter_input(INPUT_GET, 'id', FILTER_VALIDATE_INT):
-// - retorna o INT se a string for um inteiro válido
-// - retorna FALSE se não for inteiro (ex.: 'abc', '5.5', '5; DROP')
-// - retorna NULL se 'id' não estiver na URL
-// Já elimina entrada maliciosa antes mesmo de chegar ao banco.
 $id = filter_input(INPUT_GET, 'id', FILTER_VALIDATE_INT);
 
-// Cinto + suspensórios: além do filter_input, exigimos id > 0.
-// IDs sempre começam em 1 – qualquer valor <= 0 é entrada inválida.
 if (!$id || $id <= 0) {
     header('Location: catalogo.php');
-    exit; // SEMPRE após header() - sem o exit, código continua executando.
+    exit;
 }
 
 $pdo = conectar();
 
-// Prepared statement: o valor :id é enviado SEPARADO da string SQL.
-// O banco trata como dado, NUNCA como código. SQL Injection
-// fica impossível, mesmo se o atacante mandar `?id=1; DROP TABLE`.
-//
-// Filtro AND status = 'ativo': mesmo que alguém adivinhe um id
-// de tecnologia inativa, ele não consegue acessar o detalhe.
 $stmt = $pdo->prepare(
-"SELECT * FROM tecnologias 
-WHERE id = :id 
-AND status = 'ativo' 
-LIMIT 1"
+    "SELECT * FROM tecnologias 
+    WHERE id = :id 
+    AND status = 'ativo' 
+    LIMIT 1"
 );
 $stmt->execute([':id' => $id]);
 $tec = $stmt->fetch();
 
-// $tec === false quando: id não existe OU está inativo.
-// Em qualquer caso, redirecionamos sem revelar o motivo
-// (boa prática: não dar pistas a quem está sondando).
 if (!$tec) {
     header('Location: catalogo.php');
     exit;
 }
 
-// Atualiza o título da aba com o nome da tecnologia.
-// Movido para DEPOIS do fetch porque depende dos dados.
 $titulo_pagina = htmlspecialchars($tec['nome']) . ' | Portfólio DWII';
 ?>
-<!DOCTYPE html>
-<html lang="pt-BR">
-<head>
-<?php include __DIR__ . '/includes/cabecalho.php'; ?>
-</head>
-<body>
-    <div class="container">
-    <a href="catalogo.php" class="btn-secundario" 
-    style="display: inline-block; margin-bottom: 20px;">← Voltar ao catálogo</a>
 
-    <div class="card">
-        <div style="display: flex; justify-content: space-between; align-items: flex-start;">
-            <h1 class="titulo-secao" style="margin: 0;">
-                <?php echo htmlspecialchars($tec['nome']); ?>
-            </h1>
-            <span style="background: #e8edf5; color: #3b579d; padding: 4px 12px; 
-            border-radius: 20px; font-size: 14px; white-space: nowrap; margin-left: 12px;">
+<main>
+    
+    <div class="inicio">
+        <h1><?php echo htmlspecialchars($tec['nome']); ?></h1>
+        <p><?php echo htmlspecialchars($tec['descricao']); ?></p>
+    </div>
+
+    <article class="card">
+        
+        <!-- Header com Badge -->
+        <div class="flex-between mb-4" style="align-items: center;">
+            <h2 class="text-primary" style="margin: 0;">Detalhes da Tecnologia</h2>
+            <span class="badge badge-gold">
                 <?php echo htmlspecialchars($tec['categoria']); ?>
             </span>
         </div>
 
-        <p><?php echo htmlspecialchars($tec['descricao']); ?></p>
+        <!-- Conteúdo Principal -->
+        <div class="mb-6">
+            <h3 class="text-primary mb-2">Descrição</h3>
+            <p class="text-muted" style="line-height: 1.8; font-size: 1.05rem;">
+                <?php echo htmlspecialchars($tec['descricao']); ?>
+            </p>
+        </div>
 
-        <p style="font-size: 13px; color: #6b7280; margin-top: 16px;">
-        📅 Cadastrado em: 
-        <?php echo date('d/m/Y', strtotime($tec['criado_em'])); ?>
-        </p>
-    </div>
-    </div>
+        <!-- Informações em Linha -->
+        <div class="grid-2" style="gap: var(--spacing-2xl); margin-bottom: var(--spacing-2xl);">
+            
+            <div class="px-3 py-3" style="background: var(--neutral-50); border-radius: var(--radius-lg); border-left: 4px solid var(--accent-gold);">
+                <p class="text-muted" style="font-size: 0.85rem; margin-bottom: var(--spacing-xs); text-transform: uppercase; letter-spacing: 0.05em;">
+                    Categoria
+                </p>
+                <p class="text-primary" style="margin: 0; font-weight: 600; font-size: 1.1rem;">
+                    <?php echo htmlspecialchars($tec['categoria']); ?>
+                </p>
+            </div>
 
-<?php include __DIR__ . '/includes/rodape.php'; ?>
-</body>
-</html>
+            <div class="px-3 py-3" style="background: var(--neutral-50); border-radius: var(--radius-lg); border-left: 4px solid var(--success);">
+                <p class="text-muted" style="font-size: 0.85rem; margin-bottom: var(--spacing-xs); text-transform: uppercase; letter-spacing: 0.05em;">
+                    Status
+                </p>
+                <p style="margin: 0; font-weight: 600; font-size: 1.1rem;">
+                    <span class="badge badge-success">✓ Ativo</span>
+                </p>
+            </div>
+
+        </div>
+
+        <!-- Data de Cadastro -->
+        <div class="px-3 py-3" style="background: linear-gradient(135deg, rgba(21, 101, 192, 0.05) 0%, rgba(212, 175, 55, 0.05) 100%); border-radius: var(--radius-lg); border-left: 4px solid var(--primary);">
+            <p class="text-muted" style="font-size: 0.85rem; margin-bottom: var(--spacing-xs); text-transform: uppercase; letter-spacing: 0.05em;">
+                📅 Data de Cadastro
+            </p>
+            <p class="text-primary" style="margin: 0; font-weight: 600;">
+                <?php echo date('d de F de Y', strtotime($tec['criado_em'])); ?>
+            </p>
+        </div>
+
+    </article>
+
+    
+
+    <div style="text-align: center; margin-top: var(--spacing-2xl);">
+    <a href="catalogo.php" class="btn-voltar">
+        ← Voltar ao Catálogo
+    </a>
+</div>
+
+
+</main>
+<?php require_once __DIR__ . '/includes/rodape.php'; ?>

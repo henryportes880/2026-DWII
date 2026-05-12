@@ -480,6 +480,49 @@ main {
     cursor: not-allowed;
 }
 
+.btn-voltar {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.75rem 1.5rem;
+    background: var(--neutral-100);
+    color: var(--primary);
+    border: 2px solid var(--primary);
+    border-radius: var(--radius-md);
+    font-weight: 600;
+    font-size: 0.95rem;
+    text-decoration: none;
+    transition: var(--transition-fast);
+    cursor: pointer;
+}
+
+.btn-voltar:hover {
+    background: var(--primary);
+    color: white;
+}
+
+.btn-voltar:active {
+    transform: scale(0.98);
+}
+
+/* Estilização do botão de Sair */
+    .menu-principal .link-sair {
+        color: #ef4444; /* Texto vermelho */
+        background-color: rgba(239, 68, 68, 0.1); /* Fundo vermelho claro */
+        border-radius: var(--radius-md, 6px); /* Arredondamento padrão */
+        padding: 0.4rem 0.8rem;
+        transition: all 0.2s ease-in-out;
+        font-weight: 600;
+        margin-left: 0.5rem; /* Dá um leve respiro dos outros itens */
+    }
+
+    .menu-principal .link-sair:hover {
+        background-color: rgba(239, 68, 68, 0.1); /* Fundo vermelho sólido */
+        color: #fb0000 !important; /* Texto branco */
+        transform: translateY(-2px); /* Efeito de elevação leve */
+    }
+
+
 /* ── Badges Premium ────────────────────────────────────── */
 .badge {
     display: inline-flex;

@@ -16,23 +16,40 @@ O sistema permite o controle completo de projetos, com foco em:
 
 ```text
 /
-├── includes/               
-│   ├── cabecalho.php
-│   └── rodape.php
+├── .devcontainer/
 │
-├── 04_sessoes/             
-│   └── includes/
-│       └── auth.php        # Middleware de segurança (requer_login)
+├── 01_projetoPHP-01/
 │
-└── 05_crud/                
-    ├── includes/
-    │   └── conexao.php     # Conexão PDO + tratamento de erros
-    │
-    ├── index.php           # Listagem de projetos (Read)
-    ├── cadastrar.php       # Inserção de dados (Create)
-    ├── editar.php          # Atualização de dados (Update)
-    ├── excluir.php         # Remoção de dados (Delete)
-    └── detalhe.php         # Visualização completa
+├── 02_projetoPHP-02_refatorado/
+│   ├── 05_crud/
+│   │
+│   ├── includes/
+│   │   ├── imgs/
+│   │       └── henry.jpg
+│   │   ├── auth.php
+│   │   ├── cabecalho.php
+│   │   ├── conexao.php
+│   │   ├── nav.php
+│   │   ├── rodape.php
+│   │   ├── style.css
+│   │   └── style2.css
+│   │
+│   ├── sql/
+│   │   └── setup.sql
+│   │
+│   ├── catalogo.php
+│   ├── contato.php
+│   ├── detalhe.php
+│   ├── index.php
+│   ├── login.php
+│   ├── logout.php
+│   ├── obrigado.php
+│   ├── painel.php
+│   ├── perfil.php
+│   ├── projetos.php
+│   ├── sobre.php
+│
+└── README.md
 ```
 
 ---

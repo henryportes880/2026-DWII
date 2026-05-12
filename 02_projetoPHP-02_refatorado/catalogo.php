@@ -27,6 +27,7 @@ $caminho_raiz = './';
 // independente de qual pasta você estava ao executar o PHP.
 // Resolve P10 (caminhos frágeis dependentes do CWD).
 require_once __DIR__ . '/includes/conexao.php';
+require_once __DIR__ . '/includes/cabecalho.php';
 
 // conectar() devolve uma instância PDO nova.
 // Padrão função (vs $pdo global) deixa explícito que estamos
@@ -46,35 +47,30 @@ $stmt = $pdo->query(
 $tecnologias = $stmt->fetchAll();
 ?>
 
-<!DOCTYPE html>
-<html lang="pt-BR">
-<head>
-    <?php
-    // Note o __DIR__ aqui também – não dependemos do CWD em
-    // NENHUM include do projeto.
-    include __DIR__ . '/includes/cabecalho.php';
-    ?>
-</head>
-<body>
-    <div class="container">
-        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
-            <h1 class="titulo-secao" style="margin: 0;">Catálogo de Tecnologias</h1>
-            <span style="color: #6b7280; font-size: 14px;">
-                <?php echo count($tecnologias); ?> tecnologia(s)
-            </span>
+<main>
+    
+    <div class="inicio">
+        <h1>Catálogo de Tecnologias</h1>
+        <p>Conheça as tecnologias que utilizo em meus projetos.</p>
+    </div>
+
+    <?php if (empty($tecnologias)): ?>
+        <div class="card text-center" style="padding: 60px 20px;">
+            <p style="font-size: 48px; margin: 0 0 16px;">📁</p>
+            <h3 style="color: var(--neutral-600); margin: 0;">Nenhuma tecnologia ativa</h3>
+            <p class="text-muted" style="margin-top: var(--spacing-md);">
+                As tecnologias serão adicionadas em breve.
+            </p>
         </div>
+    <?php else: ?>
 
-        <?php if (empty($tecnologias)): ?>
-            <div class="card" style="text-align: center; padding: 40px 20px; color: #6b7280;">
-                <p style="font-size: 40px; margin: 0 0 12px;">📁</p>
-                <p style="font-size: 16px; margin: 0;">Nenhuma tecnologia ativa.</p>
-            </div>
-        <?php else: ?>
-
+        <div class="cards-grid">
             <?php foreach ($tecnologias as $tec): ?>
-                <div class="card">
-                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
-                        <h3 style="margin: 0;">
+                <article class="card">
+                    
+                    <!-- Header do Card -->
+                    <div class="flex-between mb-3">
+                        <h3 style="margin: 0; color: var(--neutral-900);">
                             <?php 
                             // htmlspecialchars() converte < > " & em entidades.
                             // Bloqueia XSS – se um atacante salvar <script>
@@ -82,22 +78,40 @@ $tecnologias = $stmt->fetchAll();
                             echo htmlspecialchars($tec['nome']); 
                             ?>
                         </h3>
-                        <span style="background: #e8edf5; color: #3b579d; padding: 3px 10px; border-radius: 20px; font-size: 13px; white-space: nowrap;">
+                    </div>
+
+                    <!-- Badge de Categoria -->
+                    <div class="mb-3">
+                        <span class="badge badge-gold">
                             <?php echo htmlspecialchars($tec['categoria']); ?>
                         </span>
                     </div>
                     
-                    <p style="margin: 0 0 10px;"><?php echo htmlspecialchars($tec['descricao']); ?></p>
+                    <!-- Descrição -->
+                    <p class="text-muted mb-4">
+                        <?php echo htmlspecialchars($tec['descricao']); ?>
+                    </p>
                     
-                    <div style="display: flex; justify-content: flex-end;">
-                        <a href="detalhe.php?id=<?php echo (int)$tec['id']; ?>" class="btn-secundario">Ver detalhes →</a>
+                    <!-- Botão de Ação -->
+                    <div class="flex-between" style="margin-top: auto;">
+                        <a href="detalhe.php?id=<?php echo (int)$tec['id']; ?>" class="btn btn-outline btn-small">
+                            Ver detalhes →
+                        </a>
                     </div>
-                </div>
+
+                </article>
             <?php endforeach; ?>
+        </div>
 
-        <?php endif; ?>
-    </div>
+    <?php endif; ?>
 
-    <?php include __DIR__ . '/includes/rodape.php'; ?>
-</body>
-</html>
+    <!-- Botão Voltar -->
+    <div style="text-align: center; margin-top: var(--spacing-2xl);">
+    <a href="index.php" class="btn-voltar">
+        ← Voltar ao Início
+    </a>
+</div>
+
+
+</main>
+<?php require_once __DIR__ . '/includes/rodape.php'; ?>

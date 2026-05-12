@@ -56,28 +56,21 @@ include __DIR__ . '/includes/cabecalho.php';
                 <?= htmlspecialchars($descricao) ?>
             </p>
             
-            <!-- Botões de Ação -->
-            <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
-                <a href="01_php-intro/projetos.php" class="btn btn-large" style="box-shadow: 0 8px 16px rgba(21, 101, 192, 0.3);">
-                    📚 Meus Projetos
-                </a>
-                <a href="01_php-intro/sobre.php" class="btn btn-outline btn-large">
-                    👤 Sobre Mim
-                </a>
-            </div>
+           <!-- Botões de Ação -->
+<div style="display: flex; gap: 1rem; flex-wrap: wrap;">
+    <a href="catalogo.php" class="btn btn-outline btn-small">
+        📚 Meus Projetos →
+    </a>
+    <a href="sobre.php" class="btn btn-outline btn-small">
+        👤 Sobre Mim →
+    </a>
+</div>
+
+
+
 
             <!-- Links Sociais/Contato -->
-            <div style="margin-top: 3rem; padding-top: 2rem; border-top: 1px solid var(--neutral-200);">
-                <p style="color: var(--neutral-500); font-size: 0.9rem; margin-bottom: 1rem;">Conecte-se comigo:</p>
-                <div style="display: flex; gap: 1rem;">
-                    <a href="mailto:<?= htmlspecialchars($email) ?>" title="Enviar Email" style="display: inline-flex; align-items: center; justify-content: center; width: 44px; height: 44px; border-radius: var(--radius-full); background: var(--neutral-100); color: var(--primary); font-size: 1.3rem; transition: var(--transition-fast); text-decoration: none;" onmouseover="this.style.background='var(--primary)'; this.style.color='white';" onmouseout="this.style.background='var(--neutral-100)'; this.style.color='var(--primary)';">
-                        ✉️
-                    </a>
-                    <a href="01_php-intro/sobre.php" title="Mais Informações" style="display: inline-flex; align-items: center; justify-content: center; width: 44px; height: 44px; border-radius: var(--radius-full); background: var(--neutral-100); color: var(--primary); font-size: 1.3rem; transition: var(--transition-fast); text-decoration: none;" onmouseover="this.style.background='var(--primary)'; this.style.color='white';" onmouseout="this.style.background='var(--neutral-100)'; this.style.color='var(--primary)';">
-                        ℹ️
-                    </a>
-                </div>
-            </div>
+            
         </div>
 
         <!-- COLUNA DE FOTO -->
@@ -124,6 +117,7 @@ include __DIR__ . '/includes/cabecalho.php';
             <p style="font-size: 0.85rem; color: var(--neutral-500);">E-mail Institucional</p>
         </article>
 
+
     </section>
 
     <!-- SEÇÃO CTA (Call To Action) -->
@@ -132,19 +126,21 @@ include __DIR__ . '/includes/cabecalho.php';
         <p style="color: rgba(255, 255, 255, 0.9); margin-bottom: 2rem; font-size: 1.05rem; max-width: 500px; margin-left: auto; margin-right: auto;">
             Confira os trabalhos que venho desenvolvendo durante meu curso de Desenvolvimento Web.
         </p>
-        <a href="01_php-intro/projetos.php" class="btn" style="background: white; color: var(--primary); font-weight: 700; box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);">
+        <a href="projetos.php" class="btn" style="background: white; color: var(--primary); font-weight: 700; box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);">
             Ver Todos os Projetos
         </a>
     </section>
+    <div style="margin-top: 3rem; padding-top: 2rem; border-top: 1px solid var(--neutral-200);">
+                <p style="color: var(--neutral-500); font-size: 0.9rem; margin-bottom: 1rem;">Conecte-se comigo:</p>
+                <div style="display: flex; gap: 1rem;">
+                    <a href="mailto:<?= htmlspecialchars($email) ?>" title="Enviar Email" style="display: inline-flex; align-items: center; justify-content: center; width: 44px; height: 44px; border-radius: var(--radius-full); background: var(--neutral-100); color: var(--primary); font-size: 1.3rem; transition: var(--transition-fast); text-decoration: none;" onmouseover="this.style.background='var(--primary)'; this.style.color='white';" onmouseout="this.style.background='var(--neutral-100)'; this.style.color='var(--primary)';">
+                        ✉️
+                    </a>
+                    <a href="sobre.php" title="Mais Informações" style="display: inline-flex; align-items: center; justify-content: center; width: 44px; height: 44px; border-radius: var(--radius-full); background: var(--neutral-100); color: var(--primary); font-size: 1.3rem; transition: var(--transition-fast); text-decoration: none;" onmouseover="this.style.background='var(--primary)'; this.style.color='white';" onmouseout="this.style.background='var(--neutral-100)'; this.style.color='var(--primary)';">
+                        ℹ️
+                    </a>
+                </div>
+            </div>
 
 </main>
-
-<!-- ANIMAÇÕES CSS -->
-<style>
-    
-</style>
-
-<?php 
-// 3. INCLUI O RODAPÉ
-include __DIR__ . '/includes/rodape.php'; 
-?>
+<?php include __DIR__ . '/includes/rodape.php'; ?>

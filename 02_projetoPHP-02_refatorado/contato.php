@@ -120,52 +120,11 @@ include __DIR__ . '/includes/cabecalho.php';
     </article>
     
     <div style="text-align: center; margin-top: var(--spacing-2xl);">
-        <a href="index.php" class="btn">← Voltar ao Início</a>
-    </div>
+    <a href="index.php" class="btn-voltar">
+        ← Voltar ao Início
+    </a>
+</div>
+
 
 </main>
-
-<!-- ANIMAÇÕES CSS -->
-<style>
-    @keyframes fadeInUp {
-        from {
-            opacity: 0;
-            transform: translateY(30px);
-        }
-        to {
-            opacity: 1;
-            transform: translateY(0);
-        }
-    }
-
-    @keyframes slideInRight {
-        from {
-            opacity: 0;
-            transform: translateX(50px);
-        }
-        to {
-            opacity: 1;
-            transform: translateX(0);
-        }
-    }
-
-    main {
-        animation: fadeInUp 0.8s ease-out;
-    }
-
-    .alert-error {
-        animation: fadeInUp 0.6s ease-out;
-    }
-
-    .card {
-        animation: fadeInUp 0.8s ease-out 0.1s backwards;
-    }
-
-    @media (max-width: 768px) {
-        main {
-            gap: 2rem;
-        }
-    }
-</style>
-
 <?php include __DIR__ . '/includes/rodape.php'; ?>

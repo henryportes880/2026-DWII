@@ -20,15 +20,12 @@ if (session_status() === PHP_SESSION_NONE){
     $titulo_pagina = "Sobre mim - {$nome}";
 ?>
 
-<!DOCTYPE html>
-<html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?php echo $titulo_pagina; ?></title>
     <?php include __DIR__ . '/includes/cabecalho.php'; ?>
 </head>
-<body>
     
 
 
@@ -66,56 +63,11 @@ if (session_status() === PHP_SESSION_NONE){
             <p style="margin-top: 0.5rem;">Meu objetivo principal a curto prazo é concluir o curso técnico. Em seguida, pretendo ingressar em uma faculdade na área de TI e construir uma carreira sólida no mercado.</p>
         </article>
 
-        <div style="text-align: center; margin-top: 2.5rem;">
-            <a href="index.php" class="btn">← Voltar ao início</a>
-        </div>
+        <div style="text-align: center; margin-top: var(--spacing-2xl);">
+    <a href="index.php" class="btn-voltar">
+        ← Voltar ao Início
+    </a>
+</div>
 
     </main>
-
-    <?php include __DIR__ . '/includes/rodape.php'; ?>
-
-    <!-- ANIMAÇÕES CSS -->
-    <style>
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        @keyframes slideInRight {
-            from {
-                opacity: 0;
-                transform: translateX(50px);
-            }
-            to {
-                opacity: 1;
-                transform: translateX(0);
-            }
-        }
-
-        main {
-            animation: fadeInUp 0.8s ease-out;
-        }
-
-        .card {
-            animation: fadeInUp 0.8s ease-out backwards;
-        }
-
-        .card:nth-child(2) { animation-delay: 0.1s; }
-        .card:nth-child(3) { animation-delay: 0.2s; }
-        .card:nth-child(4) { animation-delay: 0.3s; }
-
-        @media (max-width: 768px) {
-            main {
-                gap: 2rem;
-            }
-        }
-    </style>
-
-</body>
-</html>
+ <?php include __DIR__ . '/includes/rodape.php'; ?>

@@ -46,9 +46,11 @@ include __DIR__ .'/includes/cabecalho.php';
 
         <div style="display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap;">
             
-            <a href="index.php" class="btn" style="background: var(--bg-surface); color: var(--text-heading); border: 1px solid var(--border-focus); box-shadow: none;">
-                Voltar ao Início
-            </a>
+            <div style="text-align: center; margin-top: var(--spacing-2xl);">
+    <a href="index.php" class="btn-voltar">
+        ← Voltar ao Início
+    </a>
+</div>
             
             <a href="contato.php" class="btn">
                 Nova Mensagem
@@ -59,5 +61,4 @@ include __DIR__ .'/includes/cabecalho.php';
     </article>
 
 </main>
-
 <?php include __DIR__ . '/includes/rodape.php'; ?>

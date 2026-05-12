@@ -22,62 +22,120 @@ $caminho_raiz = './';
 require_once __DIR__ . '/includes/cabecalho.php';
 ?>
 
-<main style="max-width: 900px; margin: 40px auto; padding: 0 20px;">
+<main>
 
+    <!-- Alert Flash de Sucesso -->
     <?php if (isset($_SESSION['flash'])): ?>
-        <div class="alert-success" style="background: #d4edda; color: #155724; padding: 15px; border-radius: 5px; margin-bottom: 20px; display: flex; align-items: center; gap: 10px;">
+        <div class="alert-success mb-4">
             <span>✨</span>
-            <p style="margin: 0;"><?php echo htmlspecialchars($_SESSION['flash']); ?></p>
+            <div>
+                <strong>Sucesso!</strong>
+                <p><?php echo htmlspecialchars($_SESSION['flash']); ?></p>
+            </div>
         </div>
         <?php unset($_SESSION['flash']); ?>
     <?php endif; ?>
 
-    <section class="inicio" style="margin-bottom: 40px;">
+    <!-- Seção de Boas-vindas -->
+    <div class="inicio mb-6">
         <h1>Painel de Controle</h1>
-        <p>Olá, <strong><?= htmlspecialchars(usuario_atual()) ?></strong>! Bem-vindo à área restrita do sistema.</p>
-    </section>
+        <p>Olá, <strong><?= htmlspecialchars(usuario_atual()) ?></strong>! Bem-vindo à sua área restrita.</p>
+    </div>
 
-    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; margin-bottom: 40px;">
+    <!-- Grid de Cards -->
+    <div class="cards-grid mb-6">
         
-        <article class="card" style="border: 1px solid #ddd; padding: 20px; border-radius: 8px; background: #fff;">
-            <h3 style="border-bottom: 1px solid #eee; padding-bottom: 10px; margin-top: 0;">
-                <span>👤</span> Status da Sessão
-            </h3>
-            
-            <ul style="list-style: none; padding: 0; line-height: 2;">
-                <li style="display: flex; justify-content: space-between; border-bottom: 1px dashed #eee;">
-                    <strong>Usuário:</strong> 
-                    <span><?= htmlspecialchars(usuario_atual()) ?></span>
-                </li>
-                <li style="display: flex; justify-content: space-between; border-bottom: 1px dashed #eee;">
-                    <strong>Visitas:</strong> 
-                    <span style="background: #eee; padding: 2px 8px; border-radius: 10px; font-size: 0.9em;"><?php echo $_SESSION['visitas']; ?></span>
-                </li>
-            </ul>
-            
-            <div style="background: #f9f9f9; padding: 10px; border-radius: 4px; font-size: 0.85rem; color: #666; margin-top: 15px;">
-                <p style="margin: 0;">💡 O contador aumenta a cada F5 porque a sessão persiste no servidor.</p>
+        <!-- Card 1: Status da Sessão -->
+        <article class="card">
+            <div class="flex-between mb-3">
+                <h3 style="margin: 0; color: var(--neutral-900);">👤 Status da Sessão</h3>
+            </div>
+
+            <div class="mb-4">
+                <div class="px-3 py-3 mb-3" style="background: var(--neutral-50); border-radius: var(--radius-lg); border-left: 4px solid var(--primary);">
+                    <p class="text-muted" style="font-size: 0.85rem; margin-bottom: var(--spacing-xs); text-transform: uppercase; letter-spacing: 0.05em;">
+                        Usuário Logado
+                    </p>
+                    <p class="text-primary" style="margin: 0; font-weight: 600; font-size: 1.1rem;">
+                        <?= htmlspecialchars(usuario_atual()) ?>
+                    </p>
+                </div>
+
+                <div class="px-3 py-3" style="background: var(--neutral-50); border-radius: var(--radius-lg); border-left: 4px solid var(--accent-gold);">
+                    <p class="text-muted" style="font-size: 0.85rem; margin-bottom: var(--spacing-xs); text-transform: uppercase; letter-spacing: 0.05em;">
+                        Visitas nesta Sessão
+                    </p>
+                    <p style="margin: 0; font-weight: 600; font-size: 1.1rem;">
+                        <span class="badge badge-gold">
+                            🔄 <?php echo $_SESSION['visitas']; ?>
+                        </span>
+                    </p>
+                </div>
+            </div>
+
+            <div class="px-3 py-3" style="background: rgba(21, 101, 192, 0.05); border-radius: var(--radius-lg); border-left: 4px solid var(--info);">
+                <p class="text-muted" style="font-size: 0.8rem; margin: 0; line-height: 1.6;">
+                    💡 <strong>Dica:</strong> O contador aumenta a cada F5 porque a sessão persiste no servidor.
+                </p>
             </div>
         </article>
 
-        <article class="card" style="border: 1px solid #ddd; padding: 20px; border-radius: 8px; background: #fff; display: flex; flex-direction: column;">
-            <h3 style="border-bottom: 1px solid #eee; padding-bottom: 10px; margin-top: 0;">
-                <span>📊</span> Ações
-            </h3>
-            <p style="color: #666; flex-grow: 1;">Gerencie seus projetos e informações de perfil.</p>
-            
-            <div style="display: flex; flex-direction: column; gap: 10px;">
-                <a href="projetos.php" style="display: block; text-align: center; padding: 10px; background: #007bff; color: white; text-decoration: none; border-radius: 4px;">📂 Gerenciar Projetos</a>
-                <a href="perfil.php" style="display: block; text-align: center; padding: 10px; background: #6c757d; color: white; text-decoration: none; border-radius: 4px;">⚙️ Meu Perfil</a>
+        <!-- Card 2: Ações Rápidas -->
+        <article class="card flex-col">
+            <h3 style="margin: 0 0 var(--spacing-lg) 0; color: var(--neutral-900);">📊 Ações Rápidas</h3>
+            <p class="text-muted mb-4" style="flex-grow: 1;">
+                Acesse rapidamente as principais funcionalidades do sistema.
+            </p>
+
+            <div class="flex-col gap-2">
+                <a href="projetos.php" class="btn btn-primary btn-block" style="background: var(--gradient-primary);">
+                    📂 Gerenciar Projetos
+                </a>
+                <a href="perfil.php" class="btn btn-secondary btn-block">
+                    ⚙️ Meu Perfil
+                </a>
             </div>
         </article>
 
     </div>
 
-    <div style="text-align: center; border-top: 1px solid #eee; padding-top: 24px;">
-    <a href="logout.php" style="color: #dc3545; text-decoration: none; font-weight: bold; padding: 10px 20px; border: 1px solid #dc3545; border-radius: 4px;">🚪 Encerrar Sessão</a>
+    <!-- Seção de Informações Adicionais -->
+    <article class="card mb-6">
+        <h3 class="text-primary mb-4">📈 Resumo da Sessão</h3>
+        
+        <div class="grid-2" style="gap: var(--spacing-2xl);">
+            
+            <div>
+                <h4 class="text-primary mb-2" style="font-size: 1rem;">Acesso Seguro</h4>
+                <p class="text-muted" style="font-size: 0.95rem; line-height: 1.7;">
+                    Sua sessão está protegida por autenticação segura. Todos os dados são criptografados e validados no servidor.
+                </p>
+            </div>
+
+            <div>
+                <h4 class="text-primary mb-2" style="font-size: 1rem;">Funcionalidades</h4>
+                <ul style="list-style: none; padding: 0; margin: 0;">
+                    <li class="text-muted mb-2">✓ Gerenciamento de projetos</li>
+                    <li class="text-muted mb-2">✓ Edição de perfil</li>
+                    <li class="text-muted">✓ Histórico de atividades</li>
+                </ul>
+            </div>
+
+        </div>
+    </article>
+<div style="display: flex; gap: 1rem; justify-content: center; margin-top: var(--spacing-2xl); flex-wrap: wrap;">
+    <a href="index.php" class="btn-voltar">
+        ← Voltar ao Início
+    </a>
+    <a href="logout.php" class="btn btn-error">
+        🚪 Encerrar Sessão
+    </a>
 </div>
 
-</main>
+<p class="text-muted" style="font-size: 0.9rem; margin-top: var(--spacing-md); text-align: center;">
+    Você será desconectado e redirecionado para a página inicial.
+</p>
 
+
+</main>
 <?php require_once __DIR__ . '/includes/rodape.php'; ?>
