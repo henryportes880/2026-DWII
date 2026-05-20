@@ -5,12 +5,9 @@
  * Disciplina: Desenvolvimento Web II (2026-DWII)
  * Projeto: Portfólio Acadêmico
  * Autor: Henry
- * Descrição: Rodapé global com ano dinâmico e fallback de autor.
  * ===============================================================
  */
 
-// Tratamento do Autor: Prioriza a variável $nome, senão usa o padrão.
-// htmlspecialchars previne que caracteres especiais quebrem o layout.
 $exibir_autor = isset($nome) ? htmlspecialchars($nome) : "Portfólio Acadêmico";
 ?>
 
@@ -26,6 +23,46 @@ $exibir_autor = isset($nome) ? htmlspecialchars($nome) : "Portfólio Acadêmico"
         </p>
     </div>
 </footer>
+
+<script>
+const toggleBtn = document.getElementById('toggle-theme');
+
+function aplicarTema(tema) {
+
+    if (!toggleBtn) return;
+
+    if (tema === 'light') {
+        document.body.classList.add('light-mode');
+        toggleBtn.innerHTML = '☀️ Light';
+    } else {
+        document.body.classList.remove('light-mode');
+        toggleBtn.innerHTML = '🌙 Dark';
+    }
+}
+
+const temaSalvo = localStorage.getItem('tema') || 'dark';
+
+aplicarTema(temaSalvo);
+
+if (toggleBtn) {
+
+    toggleBtn.addEventListener('click', () => {
+
+        const temaAtual = document.body.classList.contains('light-mode')
+            ? 'light'
+            : 'dark';
+
+        const novoTema = temaAtual === 'dark'
+            ? 'light'
+            : 'dark';
+
+        localStorage.setItem('tema', novoTema);
+
+        aplicarTema(novoTema);
+    });
+
+}
+</script>
 
 </body>
 </html>

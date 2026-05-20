@@ -67,5 +67,8 @@ $logado = isset($_SESSION['usuario']);
            🔑 Login
         </a>
     <?php endif; ?>
+    <button id="toggle-theme" class="btn-theme">
+    🌙 Dark
+</button>
 </nav>
     
