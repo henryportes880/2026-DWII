@@ -1066,3 +1066,184 @@ main {
         padding: var(--spacing-md);
     }
 }
+
+/* ════════════════════════════════════════════════════════════
+   ADMIN PANEL
+════════════════════════════════════════════════════════════ */
+
+.admin-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: var(--spacing-lg);
+    flex-wrap: wrap;
+}
+
+.admin-actions {
+    display: flex;
+    gap: var(--spacing-md);
+    flex-wrap: wrap;
+    margin-top: var(--spacing-md);
+}
+
+.admin-filter {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-md);
+    flex-wrap: wrap;
+}
+
+.admin-filter select {
+    min-width: 160px;
+    width: auto;
+}
+
+.admin-empty {
+    text-align: center;
+    padding: var(--spacing-3xl);
+    border-radius: var(--radius-lg);
+    background: var(--neutral-50);
+    border: 2px dashed var(--neutral-300);
+}
+
+.admin-empty p {
+    margin: 0;
+}
+
+.admin-table-wrapper {
+    overflow-x: auto;
+    border-radius: var(--radius-lg);
+}
+
+.admin-table {
+    margin-bottom: 0;
+    box-shadow: none;
+    min-width: 700px;
+}
+
+.admin-table td,
+.admin-table th {
+    vertical-align: middle;
+}
+
+.admin-table-actions {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: var(--spacing-sm);
+    flex-wrap: wrap;
+}
+
+.admin-table-actions form {
+    margin: 0;
+}
+
+.admin-table .btn {
+    margin: 0;
+}
+
+.admin-footer-info {
+    border-top: 1px solid var(--neutral-200);
+    margin-top: var(--spacing-lg);
+    padding-top: var(--spacing-lg);
+    text-align: right;
+}
+
+.admin-footer-info p {
+    margin: 0;
+    font-size: 0.875rem;
+}
+
+.admin-form-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--spacing-lg);
+}
+
+.admin-card-title {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+}
+
+.admin-form textarea {
+    min-height: 160px;
+}
+
+.admin-form .btn {
+    width: auto;
+}
+
+.admin-status-badge {
+    min-width: 120px;
+    justify-content: center;
+}
+
+.admin-page-title {
+    margin-bottom: var(--spacing-2xl);
+}
+
+.admin-card {
+    position: relative;
+    overflow: hidden;
+}
+
+.admin-card::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background:
+        linear-gradient(
+            135deg,
+            transparent 0%,
+            rgba(255,255,255,0.04) 50%,
+            transparent 100%
+        );
+}
+
+/* ── Responsividade Admin ───────────────────────────── */
+
+@media (max-width: 768px) {
+
+    .admin-form-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .admin-header {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .admin-filter {
+        width: 100%;
+    }
+
+    .admin-filter select {
+        width: 100%;
+    }
+
+    .admin-table-actions {
+        justify-content: center;
+    }
+
+    .admin-footer-info {
+        text-align: center;
+    }
+}
+
+@media (max-width: 480px) {
+
+    .admin-actions {
+        flex-direction: column;
+    }
+
+    .admin-actions .btn,
+    .admin-actions a {
+        width: 100%;
+    }
+
+    .admin-table {
+        min-width: 600px;
+    }
+}

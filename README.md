@@ -1,31 +1,54 @@
-# 🚀 Portfólio Dinâmico — Gestão de Projetos (DWII)
+# 🚀 Portfólio Dinâmico — Gestão de Projetos
 
-## 📖 Sobre o Projeto
+Sistema web desenvolvido para a disciplina de Desenvolvimento Web II (DWII), com foco na aplicação prática de CRUD utilizando PHP e MariaDB.
 
-Este projeto consiste em um sistema de gerenciamento de portfólio acadêmico desenvolvido para a disciplina de Desenvolvimento Web II. O objetivo principal é aplicar, na prática, o ciclo **CRUD (Create, Read, Update, Delete)**, integrando **PHP 8** com **MariaDB**.
-
-O sistema permite o controle completo de projetos, com foco em:
-
-* 🔒 Segurança
-* 🧩 Modularização
-* 🎯 Experiência do usuário (UX)
+O projeto permite o gerenciamento completo de projetos acadêmicos através de um painel administrativo moderno, responsivo e seguro.
 
 ---
 
-## 📁 Estrutura de Arquivos
+# ✨ Funcionalidades
+
+- 🔐 Sistema de login com sessão
+- 📁 Cadastro de projetos
+- ✏️ Edição de projetos
+- 🗑 Exclusão de projetos
+- 👁 Visualização detalhada
+- 🔗 Integração com links do GitHub
+- 🧩 Tecnologias utilizadas em cada projeto
+- 📅 Controle de ano/data do projeto
+- 📱 Interface responsiva e moderna
+- 🛡 Proteção contra XSS
+
+---
+
+# 🛠 Tecnologias Utilizadas
+
+- PHP 8
+- MariaDB
+- HTML5
+- CSS3
+- PDO
+- Sessions
+- Docker / Dev Container
+
+---
+
+# 📁 Estrutura do Projeto
 
 ```text
 /
 ├── .devcontainer/
+│   ├── devcontainer.json
+│   ├── docker-compose.yml
+│   └── Dockerfile
 │
 ├── 01_projetoPHP-01/
 │
 ├── 02_projetoPHP-02_refatorado/
-│   ├── 05_crud/
 │   │
 │   ├── includes/
 │   │   ├── imgs/
-│   │       └── henry.jpg
+│   │   │   └── henry.jpg
 │   │   ├── auth.php
 │   │   ├── cabecalho.php
 │   │   ├── conexao.php
@@ -37,6 +60,7 @@ O sistema permite o controle completo de projetos, com foco em:
 │   ├── sql/
 │   │   └── setup.sql
 │   │
+│   ├── admin.php
 │   ├── catalogo.php
 │   ├── contato.php
 │   ├── detalhe.php
@@ -48,99 +72,110 @@ O sistema permite o controle completo de projetos, com foco em:
 │   ├── perfil.php
 │   ├── projetos.php
 │   ├── sobre.php
+│   └── visualizar.php
 │
 └── README.md
 ```
 
 ---
 
-## 🛠 Decisões de Refatoração
+# 🔒 Segurança e Refatoração
 
-### 🔐 Tratamento de Exceções (PDOException)
+## Sanitização de Dados
 
-* **Antes:** `die($e->getMessage())`
-* **Agora:** uso de `try/catch`
+Utilização de:
 
-**Motivo:**
-Evita expor informações sensíveis do banco de dados.
-Erros são registrados com `error_log()` e o usuário recebe apenas uma mensagem amigável.
+- `htmlspecialchars()`
+- `nl2br()`
 
----
-
-### 💾 Persistência de Dados em Formulários
-
-* **Implementação:** `array_merge($projeto, $_POST)`
-
-**Motivo:**
-Evita que o usuário perca os dados preenchidos ao ocorrer erro de validação.
+Prevenindo execução de scripts maliciosos (XSS).
 
 ---
 
-### 🎨 Layout Responsivo com CSS Grid
+## Tratamento de Exceções
 
-* **Uso:** `display: grid` + `repeat(auto-fill, minmax(320px, 1fr))`
+Uso de `try/catch` com `PDOException`.
 
-**Motivo:**
-
-* Melhor adaptação em diferentes telas
-* Centralização automática
-* Layout mais moderno
+Isso evita exposição de informações sensíveis do banco de dados ao usuário.
 
 ---
 
-### 🛡 Sanitização contra XSS
+## Persistência de Formulários
 
-* **Funções utilizadas:**
+Implementação com:
 
-  * `htmlspecialchars()`
-  * `nl2br()`
+```php
+array_merge($projeto, $_POST)
+```
 
-**Motivo:**
-Impede a execução de scripts maliciosos inseridos pelo usuário.
-
----
-
-## 🚀 Como Executar
-
-### 📌 Pré-requisitos
-
-* PHP 8.2+
-* MariaDB
-* Ambiente local ou Docker
+Mantendo os dados preenchidos em caso de erro de validação.
 
 ---
 
-### ⚙️ Passos
+## Layout Responsivo
 
-1. Clone ou baixe o projeto
-2. Importe o banco de dados conforme fornecido na disciplina
-3. No terminal, execute:
+Utilização de CSS Grid para melhor adaptação em diferentes tamanhos de tela.
+
+```css
+grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+```
+
+---
+
+# 🚀 Como Executar
+
+## Pré-requisitos
+
+- PHP 8+
+- MariaDB
+- VS Code Dev Container ou ambiente local
+
+---
+
+## Execução
+
+### 1. Clone o projeto
+
+```bash
+git clone <url-do-repositorio>
+```
+
+### 2. Importe o banco de dados
+
+```sql
+sql/setup.sql
+```
+
+### 3. Inicie o servidor
 
 ```bash
 php -S localhost:8000
 ```
 
-4. Acesse no navegador:
+### 4. Acesse no navegador
 
-```
-http://localhost:8000/05_crud/index.php
+```txt
+http://localhost:8000/02_projetoPHP-02_refatorado/index.php
 ```
 
 ---
 
-## 👤 Autor
+# 👤 Autor
 
-* **Nome:** Henry Rafael Ribeiro Portes
-* **Curso:** Técnico em Informática Integrado ao Ensino Médio
-* **Disciplina:** Desenvolvimento Web II (DWII)
-* **Ano:** 2026
+**Henry Rafael Ribeiro Portes**  
+Técnico em Informática Integrado ao Ensino Médio  
+Disciplina: Desenvolvimento Web II — DWII  
+2026
 
 ---
 
-## 📌 Observações
+# 📌 Objetivo Acadêmico
 
-Projeto focado em boas práticas de desenvolvimento web, com ênfase em:
+Este projeto teve como objetivo aplicar conceitos de:
 
-* Segurança de aplicações
-* Organização de código
-* Experiência do usuário
+- CRUD
+- Refatoração
+- Organização de código
+- Segurança em aplicações web
+- Modularização
+- Experiência do usuário (UX)

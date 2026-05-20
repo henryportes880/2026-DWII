@@ -113,12 +113,20 @@ $foto_url = $caminho_raiz . 'includes/imgs/henry.jpg';
     </div>
 
     <!-- ID DA SESSÃO -->
-    <article class="card mb-6">
-        <h3 class="text-primary mb-3" style="margin-top: 0;">🔐 Identificador da Sessão</h3>
-        <code style="background: var(--neutral-50); padding: var(--spacing-lg); border-radius: var(--radius-lg); border: 1px solid var(--neutral-300); display: block; word-break: break-all; color: var(--primary); font-family: 'Courier New', monospace; font-size: 0.8rem; line-height: 1.8;">
-            <?= session_id() ?>
-        </code>
-    </article>
+<article class="card mb-6">
+    <h3 class="text-primary mb-3" style="margin-top: 0;">🔐 Identificador da Sessão</h3>
+
+    <code style="background: var(--neutral-50); padding: var(--spacing-lg); border-radius: var(--radius-lg); border: 1px solid var(--neutral-300); display: block; word-break: break-all; color: var(--primary); font-family: 'Courier New', monospace; font-size: 0.8rem; line-height: 1.8;">
+        <?= session_id() ?>
+    </code>
+
+    <div style="margin-top: 1rem; background: var(--neutral-50); padding: var(--spacing-lg); border-radius: var(--radius-lg); border-left: 4px solid var(--accent-gold);">
+        <p style="margin: 0; font-weight: 600;">👤 Usuário</p>
+        <p style="margin: 0.3rem 0 0 0;"><strong>Usuário:</strong> admin</p>
+        <p style="margin: 0.3rem 0 0 0;"><strong>Senha:</strong> admin2026</p>
+    </div>
+</article>
+    
 
     <!-- BOTÕES DE AÇÃO -->
     <div style="display: flex; gap: 1rem; justify-content: center; margin-top: var(--spacing-2xl); flex-wrap: wrap;">

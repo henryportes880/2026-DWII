@@ -88,7 +88,7 @@ require_once __DIR__ . '/includes/cabecalho.php';
             </p>
 
             <div class="flex-col gap-2">
-                <a href="projetos.php" class="btn btn-primary btn-block" style="background: var(--gradient-primary);">
+                <a href="admin.php" class="btn btn-primary btn-block" style="background: var(--gradient-primary);">
                     📂 Gerenciar Projetos
                 </a>
                 <a href="perfil.php" class="btn btn-secondary btn-block">

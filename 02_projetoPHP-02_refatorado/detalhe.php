@@ -96,15 +96,15 @@ $titulo_pagina = htmlspecialchars($tec['nome']) . ' | Portfólio DWII';
         </div>
 
         <!-- Data de Cadastro -->
-        <div class="px-3 py-3" style="background: linear-gradient(135deg, rgba(21, 101, 192, 0.05) 0%, rgba(212, 175, 55, 0.05) 100%); border-radius: var(--radius-lg); border-left: 4px solid var(--primary);">
-            <p class="text-muted" style="font-size: 0.85rem; margin-bottom: var(--spacing-xs); text-transform: uppercase; letter-spacing: 0.05em;">
-                📅 Data de Cadastro
-            </p>
-            <p class="text-primary" style="margin: 0; font-weight: 600;">
-                <?php echo date('d de F de Y', strtotime($tec['criado_em'])); ?>
-            </p>
-        </div>
+<div class="px-3 py-3" style="background: linear-gradient(135deg, rgba(21, 101, 192, 0.05) 0%, rgba(212, 175, 55, 0.05) 100%); border-radius: var(--radius-lg); border-left: 4px solid var(--primary);">
+    <p class="text-muted" style="font-size: 0.85rem; margin-bottom: var(--spacing-xs); text-transform: uppercase; letter-spacing: 0.05em;">
+        📅 Data de Cadastro
+    </p>
 
+    <p class="text-primary" style="margin: 0; font-weight: 600;">
+        <?php echo date('d/m/Y H:i', strtotime($tec['criado_em'])); ?>
+    </p>
+</div>
     </article>
 
     
