@@ -70,7 +70,7 @@ $tecnologias = $stmt->fetchAll();
                     
                     <!-- Header do Card -->
                     <div class="flex-between mb-3">
-                        <h3 style="margin: 0; color: var(--neutral-900);">
+                        <h3 style="margin: 0; color: var(--neutral-700);">
                             <?php 
                             // htmlspecialchars() converte < > " & em entidades.
                             // Bloqueia XSS – se um atacante salvar <script>

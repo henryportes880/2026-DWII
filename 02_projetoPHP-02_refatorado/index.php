@@ -121,12 +121,12 @@ include __DIR__ . '/includes/cabecalho.php';
     </section>
 
     <!-- SEÇÃO CTA (Call To Action) -->
-    <section style="background: var(--gradient-primary); color: white; padding: 3rem 2rem; border-radius: var(--radius-2xl); text-align: center; margin-bottom: 2rem; box-shadow: var(--shadow-xl); animation: fadeInUp 0.8s ease-out 0.4s both;">
+    <section class="cta-projects" style="background: var(--gradient-primary); color: white; padding: 3rem 2rem; border-radius: var(--radius-2xl); text-align: center; margin-bottom: 2rem; box-shadow: var(--shadow-xl); animation: fadeInUp 0.8s ease-out 0.4s both;">
         <h2 style="color: white; margin-bottom: 1rem; font-size: 1.8rem;">Pronto para explorar meus projetos?</h2>
         <p style="color: rgba(255, 255, 255, 0.9); margin-bottom: 2rem; font-size: 1.05rem; max-width: 500px; margin-left: auto; margin-right: auto;">
             Confira os trabalhos que venho desenvolvendo durante meu curso de Desenvolvimento Web.
         </p>
-        <a href="projetos.php" class="btn" style="background: white; color: var(--primary); font-weight: 700; box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);">
+        <a href="projetos.php" class="btn cta-projects-btn" style="background: white; color: var(--primary); font-weight: 700; box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);">
             Ver Todos os Projetos
         </a>
     </section>
